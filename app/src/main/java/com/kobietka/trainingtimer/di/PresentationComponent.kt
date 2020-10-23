@@ -1,6 +1,6 @@
 package com.kobietka.trainingtimer.di
 
-import com.kobietka.trainingtimer.MainActivity
+import com.kobietka.trainingtimer.presentaion.ui.MainActivity
 import dagger.Subcomponent
 
 

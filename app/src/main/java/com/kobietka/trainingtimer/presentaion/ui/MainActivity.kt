@@ -1,7 +1,8 @@
-package com.kobietka.trainingtimer
+package com.kobietka.trainingtimer.presentaion.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.kobietka.trainingtimer.R
 
 class MainActivity : AppCompatActivity() {
 

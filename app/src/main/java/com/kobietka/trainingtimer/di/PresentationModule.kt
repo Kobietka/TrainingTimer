@@ -1,7 +1,7 @@
 package com.kobietka.trainingtimer.di
 
 import android.content.Context
-import com.kobietka.trainingtimer.MainActivity
+import com.kobietka.trainingtimer.presentaion.ui.MainActivity
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
