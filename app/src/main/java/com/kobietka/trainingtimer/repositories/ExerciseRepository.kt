@@ -5,6 +5,7 @@ import com.kobietka.trainingtimer.data.ExerciseEntity
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Observable
+import io.reactivex.Single
 import javax.inject.Inject
 
 
@@ -15,7 +16,7 @@ class ExerciseRepository
         return exerciseDao.getAllExercises()
     }
 
-    fun insertExercise(exerciseEntity: ExerciseEntity): Completable {
+    fun insertExercise(exerciseEntity: ExerciseEntity): Maybe<Long> {
         return exerciseDao.insertExercise(exerciseEntity)
     }
 
@@ -23,7 +24,7 @@ class ExerciseRepository
         return exerciseDao.deleteAllExercises()
     }
 
-    fun getById(id: Int): Observable<ExerciseEntity> {
+    fun getById(id: Int): Maybe<ExerciseEntity> {
         return exerciseDao.getById(id)
     }
 
@@ -31,7 +32,7 @@ class ExerciseRepository
         return exerciseDao.deleteById(id)
     }
 
-    fun getExerciseCountByWorkoutId(id: Int): Observable<Int> {
+    fun getExerciseCountByWorkoutId(id: Int): Single<Int> {
         return exerciseDao.getExerciseCountByWorkoutId(id)
     }
 

@@ -6,6 +6,7 @@ import androidx.room.Query
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Observable
+import io.reactivex.Single
 
 @Dao
 interface ExerciseDao {
@@ -14,18 +15,18 @@ interface ExerciseDao {
     fun getAllExercises(): Maybe<List<ExerciseEntity>>
 
     @Insert
-    fun insertExercise(exerciseEntity: ExerciseEntity): Completable
+    fun insertExercise(exerciseEntity: ExerciseEntity): Maybe<Long>
 
     @Query("Delete from exercises")
     fun deleteAllExercises(): Completable
 
     @Query("SELECT * FROM exercises where id = :id")
-    fun getById(id: Int?): Observable<ExerciseEntity>
+    fun getById(id: Int?): Maybe<ExerciseEntity>
 
     @Query("DELETE FROM exercises where id = :id")
     fun deleteById(id: Int?): Completable
 
     @Query("SELECT COUNT(*) from exercises WHERE workoutId = :id")
-    fun getExerciseCountByWorkoutId(id: Int?): Observable<Int>
+    fun getExerciseCountByWorkoutId(id: Int?): Single<Int>
 
 }
