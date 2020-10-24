@@ -4,13 +4,14 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import io.reactivex.Completable
+import io.reactivex.Maybe
 import io.reactivex.Observable
 
 @Dao
 interface ExerciseDao {
 
     @Query("SELECT * from exercises")
-    fun getAllExercises(): Observable<List<ExerciseEntity>>
+    fun getAllExercises(): Maybe<List<ExerciseEntity>>
 
     @Insert
     fun insertExercise(exerciseEntity: ExerciseEntity): Completable

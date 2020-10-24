@@ -5,13 +5,14 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import io.reactivex.Completable
+import io.reactivex.Maybe
 import io.reactivex.Observable
 
 @Dao
 interface WorkoutDao {
 
     @Query("SELECT * from workouts")
-    fun getAllWorkouts(): Observable<List<WorkoutEntity>>
+    fun getAllWorkouts(): Maybe<List<WorkoutEntity>>
 
     @Insert
     fun insertWorkout(workoutEntity: WorkoutEntity): Completable
@@ -21,6 +22,9 @@ interface WorkoutDao {
 
     @Query("DELETE FROM workouts where id = :id")
     fun deleteById(id: Int?): Completable
+
+    @Query("DELETE from workouts")
+    fun deleteAllWorkouts(): Completable
     
 
 }

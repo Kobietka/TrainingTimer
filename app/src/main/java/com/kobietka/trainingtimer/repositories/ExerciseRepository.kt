@@ -3,6 +3,7 @@ package com.kobietka.trainingtimer.repositories
 import com.kobietka.trainingtimer.data.ExerciseDao
 import com.kobietka.trainingtimer.data.ExerciseEntity
 import io.reactivex.Completable
+import io.reactivex.Maybe
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -10,7 +11,7 @@ import javax.inject.Inject
 class ExerciseRepository
 @Inject constructor(private val exerciseDao: ExerciseDao){
 
-    fun getAllExercises(): Observable<List<ExerciseEntity>> {
+    fun getAllExercises(): Maybe<List<ExerciseEntity>> {
         return exerciseDao.getAllExercises()
     }
 
