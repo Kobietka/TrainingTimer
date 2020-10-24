@@ -4,7 +4,7 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [ApplicationModule::class, DatabaseModule::class])
+@Component(modules = [ApplicationModule::class, DatabaseModule::class, RepositoryModule::class])
 interface ApplicationComponent {
     fun presentationComponent(presentationModule: PresentationModule): PresentationComponent
 }
