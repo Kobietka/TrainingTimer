@@ -15,16 +15,20 @@ class WorkoutRepository
         return workoutDao.getAllWorkouts()
     }
 
-    fun insertWorkout(workoutEntity: WorkoutEntity){
-        workoutDao.insertWorkout(workoutEntity)
+    fun insertWorkout(workoutEntity: WorkoutEntity): Maybe<Long> {
+        return workoutDao.insertWorkout(workoutEntity)
     }
 
-    fun getById(id: Int): Observable<WorkoutEntity> {
+    fun getById(id: Int): Maybe<WorkoutEntity> {
         return workoutDao.getById(id)
     }
 
     fun deleteById(id: Int): Completable {
         return workoutDao.deleteById(id)
+    }
+
+    fun deleteAllWorkouts(): Completable {
+        return workoutDao.deleteAllWorkouts()
     }
 
 }

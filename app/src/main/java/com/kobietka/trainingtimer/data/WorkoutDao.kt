@@ -15,10 +15,10 @@ interface WorkoutDao {
     fun getAllWorkouts(): Maybe<List<WorkoutEntity>>
 
     @Insert
-    fun insertWorkout(workoutEntity: WorkoutEntity): Completable
+    fun insertWorkout(workoutEntity: WorkoutEntity): Maybe<Long>
 
     @Query("SELECT * FROM workouts where id = :id")
-    fun getById(id: Int): Observable<WorkoutEntity>
+    fun getById(id: Int): Maybe<WorkoutEntity>
 
     @Query("DELETE FROM workouts where id = :id")
     fun deleteById(id: Int?): Completable
