@@ -8,6 +8,7 @@ import org.junit.runners.Suite
 @Suite.SuiteClasses(
     FragmentMainTest::class,
     WorkoutRepositoryTest::class,
-    ExerciseRepositoryTest::class
+    ExerciseRepositoryTest::class,
+    FragmentExercisesTest::class
 )
 class TestSuite
