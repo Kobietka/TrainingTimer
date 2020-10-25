@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Training Timer</string>
+    <string name="fragment_main_train_text">Train</string>
+    <string name="fragment_main_train_description">Let\'s get going</string>
+    <string name="fragment_main_workouts_text">Workouts</string>
+    <string name="fragment_main_workouts_description">Create, edit and manage your workouts</string>
+    <string name="fragment_main_exercises_text">Exercises</string>
+    <string name="fragment_main_exercises_description">Prepare exercises to use them in workouts</string>
+    <string name="fragment_main_statistics_text">Statistics</string>
+    <string name="fragment_main_statistics_description">Check how things are going</string>
 </resources>
