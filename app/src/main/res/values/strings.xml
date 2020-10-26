@@ -8,4 +8,8 @@
     <string name="fragment_main_exercises_description">Prepare exercises to use them in workouts</string>
     <string name="fragment_main_statistics_text">Statistics</string>
     <string name="fragment_main_statistics_description">Check how things are going</string>
+    <string name="fragment_create_exercise_text">Create exercise</string>
+    <string name="fragment_create_exercise_measurement_type_text">Measurement Type</string>
+    <string name="radio_button_measurement_time">Time</string>
+    <string name="radio_button_measurement_repetition">Repetition</string>
 </resources>
