@@ -99,6 +99,7 @@
                 />
 
             <TextView
+                android:id="@+id/fragment_create_exercise_measurement_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
