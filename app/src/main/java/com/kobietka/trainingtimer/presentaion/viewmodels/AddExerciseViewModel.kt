@@ -3,6 +3,8 @@ package com.kobietka.trainingtimer.presentaion.viewmodels
 import com.kobietka.trainingtimer.data.ExerciseEntity
 import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.repositories.ExerciseRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
@@ -30,8 +32,9 @@ class AddExerciseViewModel
             measurementValue,
             creationDate,
             0
-        ))
-
+        )).subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe()
     }
 
 }
