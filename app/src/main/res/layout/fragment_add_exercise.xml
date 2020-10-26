@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/fragment_create_exercise_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <ImageView
+            android:id="@+id/fragment_create_exercises_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_back_arrow"
+            android:layout_marginTop="1dp"/>
+
+        <TextView
+            android:id="@+id/fragment_create_exercises_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/fragment_create_exercises_back_arrow"
+            android:text="@string/fragment_create_exercise_text"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="15dp" />
+
+        <ImageView
+            android:id="@+id/fragment_exercises_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_done"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/fragment_create_exercise_input_area"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_below="@+id/fragment_create_exercise_bar">
+
+        <LinearLayout
+            android:id="@+id/fragment_create_exercise_input_name_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/fragment_create_exercise_edit_icon"
+                android:layout_marginTop="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_edit"/>
+
+            <EditText
+                android:id="@+id/fragment_create_exercise_edit_text_name"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:textAlignment="center"
+                android:hint="Name"
+                android:maxLines="1"
+                android:maxLength="28"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:background="@android:color/transparent"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/fragment_create_exercise_line_below_name_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_line"
+            android:layout_below="@id/fragment_create_exercise_input_name_area"/>
+
+        <LinearLayout
+            android:id="@+id/fragment_create_exercise_input_measurement_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fragment_create_exercise_line_below_name_area">
+
+            <ImageView
+                android:id="@+id/fragment_create_exercise_short_text_icon"
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_short_text"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="12dp"
+                android:textSize="17sp"
+                android:textColor="@android:color/black"
+                android:text="@string/fragment_create_exercise_measurement_type_text"/>
+
+        </LinearLayout>
+        
+        <RadioGroup
+            android:id="@+id/fragment_create_exercise_radio_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/fragment_create_exercise_input_measurement_area">
+            
+            <RadioButton
+                android:id="@+id/fragment_create_exercise_radio_button_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="34dp"
+                android:text="@string/radio_button_measurement_time"
+                android:textSize="15sp"/>
+
+            <RadioButton
+                android:id="@+id/fragment_create_exercise_radio_button_repetition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="34dp"
+                android:text="@string/radio_button_measurement_repetition"
+                android:textSize="15sp"/>
+
+        </RadioGroup>
+
+        <ImageView
+            android:id="@+id/fragment_create_exercise_line_below_radio_group"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_line"
+            android:layout_below="@id/fragment_create_exercise_radio_group"/>
+
+        <LinearLayout
+            android:id="@+id/fragment_create_exercise_input_count_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/fragment_create_exercise_radio_group">
+
+            <ImageView
+                android:id="@+id/fragment_create_exercise_timer_icon"
+                android:layout_marginTop="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_timer"/>
+
+            <EditText
+                android:id="@+id/fragment_create_exercise_count_edit_text"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:textAlignment="center"
+                android:hint="Count"
+                android:maxLines="1"
+                android:maxLength="28"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:background="@android:color/transparent"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/fragment_create_exercise_line_below_count_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_line"
+            android:layout_below="@id/fragment_create_exercise_input_count_area"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>
