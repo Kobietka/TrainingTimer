@@ -168,7 +168,7 @@
                 android:maxLines="1"
                 android:maxLength="28"
                 android:imeOptions="actionDone"
-                android:inputType="text"
+                android:inputType="number"
                 android:background="@android:color/transparent"/>
 
         </LinearLayout>
