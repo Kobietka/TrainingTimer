@@ -26,7 +26,4 @@ interface ExerciseDao {
     @Query("DELETE FROM exercises where id = :id")
     fun deleteById(id: Int?): Completable
 
-    @Query("SELECT COUNT(*) from exercises WHERE workoutId = :id")
-    fun getExerciseCountByWorkoutId(id: Int?): Single<Int>
-
 }

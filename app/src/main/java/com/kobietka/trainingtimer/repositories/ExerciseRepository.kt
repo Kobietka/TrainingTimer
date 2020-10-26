@@ -32,8 +32,4 @@ class ExerciseRepository
         return exerciseDao.deleteById(id)
     }
 
-    fun getExerciseCountByWorkoutId(id: Int): Single<Int> {
-        return exerciseDao.getExerciseCountByWorkoutId(id)
-    }
-
 }
