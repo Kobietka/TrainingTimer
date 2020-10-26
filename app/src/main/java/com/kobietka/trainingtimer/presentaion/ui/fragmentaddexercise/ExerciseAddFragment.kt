@@ -34,11 +34,12 @@ class ExerciseAddFragment : BaseFragment() {
                     view.findViewById<RadioButton>(id).text.toString(),
                     count.toInt()
                 )
-            } else Toast.makeText(activity, "Please fill all fields", Toast.LENGTH_LONG).show()
 
-            activity!!.supportFragmentManager.beginTransaction()
-                .replace(R.id.main_container, ExercisesFragment())
-                .commit()
+                activity!!.supportFragmentManager.beginTransaction()
+                    .replace(R.id.main_container, ExercisesFragment())
+                    .commit()
+
+            } else Toast.makeText(activity, "Please fill all fields", Toast.LENGTH_LONG).show()
         }
     }
 
