@@ -26,4 +26,7 @@ interface ExerciseDao {
     @Query("DELETE FROM exercises where id = :id")
     fun deleteById(id: Int?): Completable
 
+    @Query("SELECT id from exercises")
+    fun getAllIds(): Observable<List<Int>>
+
 }

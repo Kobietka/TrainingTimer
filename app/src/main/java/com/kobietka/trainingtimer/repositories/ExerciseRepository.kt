@@ -32,4 +32,8 @@ class ExerciseRepository
         return exerciseDao.deleteById(id)
     }
 
+    fun getAllIds(): Observable<List<Int>> {
+        return exerciseDao.getAllIds()
+    }
+
 }
