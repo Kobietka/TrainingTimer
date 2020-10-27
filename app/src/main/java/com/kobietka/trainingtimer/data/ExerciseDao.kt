@@ -3,6 +3,7 @@ package com.kobietka.trainingtimer.data
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import com.kobietka.trainingtimer.models.MeasurementType
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Observable
@@ -28,5 +29,15 @@ interface ExerciseDao {
 
     @Query("SELECT id from exercises")
     fun getAllIds(): Observable<List<Int>>
+
+    @Query("UPDATE exercises SET name =:name where id= :id")
+    fun updateExerciseName(id: Int, name: String): Completable
+
+    @Query("UPDATE exercises SET measurementType =:measurementType where id= :id")
+    fun updateExerciseMeasurementType(id: Int, measurementType: MeasurementType): Completable
+
+    @Query("UPDATE exercises SET measurementValue =:measurementValue where id= :id")
+    fun updateExerciseMeasurementValue(id: Int, measurementValue: Int): Completable
+
 
 }
