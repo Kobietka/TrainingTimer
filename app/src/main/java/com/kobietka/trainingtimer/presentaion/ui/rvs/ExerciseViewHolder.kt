@@ -6,12 +6,22 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
+import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.presentaion.viewmodels.ExerciseViewModel
 import io.reactivex.disposables.CompositeDisposable
 
 class ExerciseViewHolder(itemView: View, val viewModel: ExerciseViewModel, private val lifecycleOwner: LifecycleOwner) : RecyclerView.ViewHolder(itemView) {
 
+
     fun onAttach(){
+        viewModel.measurementType().observe(lifecycleOwner, Observer {
+            itemView.findViewById<TextView>(R.id.fragment_exercises_entry_measurement_type_text)
+                .text = when (it) {
+                    MeasurementType.Repetition -> "reps"
+                    MeasurementType.Time -> "seconds"
+                }
+        })
+
         viewModel.name().observe(lifecycleOwner, Observer {
             itemView.findViewById<TextView>(R.id.fragment_exercises_entry_name)
                 .text = it

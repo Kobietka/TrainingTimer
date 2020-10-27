@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.kobietka.trainingtimer.data.ExerciseEntity
+import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.repositories.ExerciseRepository
 import io.reactivex.Maybe
 import io.reactivex.Observable
@@ -23,6 +24,7 @@ class ExerciseViewModel
 
     private val _name = MutableLiveData<String>()
     private val _measurementValue = MutableLiveData<Int>()
+    private val _measurementType = MutableLiveData<MeasurementType>()
 
     fun measurementValue(): LiveData<Int> {
         return _measurementValue
@@ -30,6 +32,10 @@ class ExerciseViewModel
 
     fun name(): LiveData<String> {
         return _name
+    }
+
+    fun measurementType(): LiveData<MeasurementType> {
+        return _measurementType
     }
 
     fun switchId(id: Int){
@@ -41,21 +47,10 @@ class ExerciseViewModel
             exerciseRepository.getById(id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map {
-                    it.name
-                }.subscribe {
-                    _name.value = it
-                }
-        )
-
-        compositeDisposable.add(
-            exerciseRepository.getById(id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .map {
-                    it.measurementValue
-                }.subscribe {
-                    _measurementValue.value = it
+                .subscribe {
+                    _name.value = it.name
+                    _measurementValue.value = it.measurementValue
+                    _measurementType.value = it.measurementType
                 }
         )
     }
