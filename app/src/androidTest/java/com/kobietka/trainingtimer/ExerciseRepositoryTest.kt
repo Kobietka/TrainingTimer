@@ -23,10 +23,9 @@ open class ExerciseRepositoryTest {
     private val exerciseEntity = ExerciseEntity(
         null,
         "Jumping rope",
-        30,
         MeasurementType.Time,
-        10,
-        Calendar.getInstance().time.toString(),
+        30,
+        "26/9/2020",
         0
     )
 
@@ -71,18 +70,6 @@ open class ExerciseRepositoryTest {
         exerciseRepository.insertExercise(exerciseEntity).flatMapCompletable {
             exerciseRepository.deleteById(it.toInt())
         }.test().assertComplete()
-    }
-
-    @Test
-    fun insertExercises_GetCountByWorkoutId(){
-        val list = listOf(exerciseEntity, exerciseEntity, exerciseEntity)
-        list.forEach {
-            exerciseRepository.insertExercise(it).subscribe()
-        }
-
-        exerciseRepository.getExerciseCountByWorkoutId(exerciseEntity.workoutId!!).test().assertValue {
-            it == list.size
-        }
     }
 
     @Test

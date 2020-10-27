@@ -42,7 +42,11 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_version"
     implementation "androidx.room:room-rxjava2:$room_version"
     kapt 'com.google.dagger:dagger-compiler:2.29.1'
-    testImplementation 'io.mockk:mockk:1.10.2'
+
+    testImplementation ("io.mockk:mockk:1.10.2")
+    androidTestImplementation "io.mockk:mockk-android:1.10.2"
+    testImplementation "io.mockk:mockk:1.10.2"
+
     testImplementation 'junit:junit:4.13.1'
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:2.2.0"
