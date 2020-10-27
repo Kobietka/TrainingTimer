@@ -6,6 +6,7 @@ import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.models.EventType
 import com.kobietka.trainingtimer.presentaion.common.BaseActivity
 import com.kobietka.trainingtimer.presentaion.ui.fragmentaddexercise.ExerciseAddFragment
+import com.kobietka.trainingtimer.presentaion.ui.fragmenteditexercise.EditExerciseFragment
 import com.kobietka.trainingtimer.presentaion.ui.fragmentmainmenu.MainFragment
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.Subject
@@ -34,7 +35,7 @@ class MainActivity : BaseActivity() {
     private fun launchEvents(eventType: EventType){
         if(eventType.clickId == 1){
             this.supportFragmentManager.beginTransaction()
-                .replace(R.id.main_container, ExerciseAddFragment())
+                .replace(R.id.main_container, EditExerciseFragment())
                 .commit()
         }
     }
