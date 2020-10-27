@@ -23,6 +23,12 @@ class ExerciseAddFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         presentationComponent.inject(this)
 
+        fragment_create_exercises_back_arrow.setOnClickListener {
+            activity!!.supportFragmentManager.beginTransaction()
+                .replace(R.id.main_container, ExercisesFragment())
+                .commit()
+        }
+        
         fragment_exercises_add.setOnClickListener {
             val id = fragment_create_exercise_radio_group.checkedRadioButtonId
             val name = fragment_create_exercise_edit_text_name.text.toString()
