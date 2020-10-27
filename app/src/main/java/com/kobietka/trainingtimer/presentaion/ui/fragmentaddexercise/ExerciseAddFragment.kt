@@ -28,8 +28,8 @@ class ExerciseAddFragment : BaseFragment() {
                 .replace(R.id.main_container, ExercisesFragment())
                 .commit()
         }
-        
-        fragment_exercises_add.setOnClickListener {
+
+        fragment_create_exercises_add.setOnClickListener {
             val id = fragment_create_exercise_radio_group.checkedRadioButtonId
             val name = fragment_create_exercise_edit_text_name.text.toString()
             val count = fragment_create_exercise_count_edit_text.text.toString()
