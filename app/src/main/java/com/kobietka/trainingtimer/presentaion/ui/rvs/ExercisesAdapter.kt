@@ -2,6 +2,7 @@ package com.kobietka.trainingtimer.presentaion.ui.rvs
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
@@ -34,7 +35,14 @@ class ExercisesAdapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.recyclew_view_exercise_entry, parent, false)
-        return ExerciseViewHolder(view, modelProvider.get(), lifecycleOwner)
+
+        val viewModel = modelProvider.get()
+
+        view.findViewById<ImageView>(R.id.fragment_exercises_entry_delete_icon).setOnClickListener {
+            viewModel.onDeleteClick()
+        }
+
+        return ExerciseViewHolder(view, viewModel , lifecycleOwner)
     }
 
     override fun onBindViewHolder(holder: ExerciseViewHolder, position: Int) {
