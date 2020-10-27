@@ -41,6 +41,9 @@ class ExercisesAdapter
         view.findViewById<ImageView>(R.id.fragment_exercises_entry_delete_icon).setOnClickListener {
             viewModel.onDeleteClick()
         }
+        view.findViewById<ImageView>(R.id.fragment_exercises_entry_edit_icon).setOnClickListener {
+            viewModel.onEditClick()
+        }
 
         return ExerciseViewHolder(view, viewModel , lifecycleOwner)
     }
