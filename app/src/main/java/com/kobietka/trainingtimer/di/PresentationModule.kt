@@ -12,6 +12,8 @@ import com.kobietka.trainingtimer.presentaion.viewmodels.ExerciseViewModel
 import com.kobietka.trainingtimer.repositories.ExerciseRepository
 import dagger.Module
 import dagger.Provides
+import io.reactivex.Observable
+import io.reactivex.subjects.Subject
 import javax.inject.Named
 
 
@@ -29,5 +31,11 @@ class PresentationModule(private val activity: BaseActivity? = null,
     fun provideBaseFragment(): BaseFragment {
         return baseFragment!!
     }
+
+    @Provides
+    fun provideLaunchEvents(subject: Subject<Int>): Observable<Int> {
+        return subject
+    }
+
 
 }
