@@ -6,10 +6,10 @@ import org.junit.runners.Suite
 
 @RunWith(Suite::class)
 @Suite.SuiteClasses(
+    FragmentAddExerciseTest::class,
     FragmentMainTest::class,
     WorkoutRepositoryTest::class,
     ExerciseRepositoryTest::class,
-    FragmentExercisesTest::class,
-    FragmentAddExerciseTest::class
+    FragmentExercisesTest::class
 )
 class TestSuite

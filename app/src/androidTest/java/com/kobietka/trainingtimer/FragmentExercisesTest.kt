@@ -16,36 +16,7 @@ import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4ClassRunner::class)
 class FragmentExercisesTest {
-
-    @Before
-    fun initScenario(){
-        val scenario = launchFragmentInContainer<ExercisesFragment>()
-    }
-
-    @Test
-    fun isBackArrowVisible(){
-        onView(withId(R.id.fragment_exercises_back_arrow))
-            .check(matches(isDisplayed()))
-    }
-
-    @Test
-    fun isAddButtonVisible(){
-        onView(withId(R.id.fragment_exercises_add))
-            .check(matches(isDisplayed()))
-    }
-
-    @Test
-    fun isExercisesTextCorrect(){
-        onView(withId(R.id.fragment_exercises_text))
-            .check(matches(withText(R.string.fragment_main_exercises_text)))
-    }
-
-    @Test
-    fun isExercisesTextVisible(){
-        onView(withId(R.id.fragment_exercises_text))
-            .check(matches(isDisplayed()))
-    }
-
+    
     @Test
     fun backArrowNavigationTest(){
         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
@@ -59,9 +30,44 @@ class FragmentExercisesTest {
 
         onView(withId(R.id.fragment_main))
             .check(matches(isDisplayed()))
+
+        activityScenario.close()
     }
 
+    @Test
+    fun isBackArrowVisible(){
+        val scenario = launchFragmentInContainer<ExercisesFragment>()
+        onView(withId(R.id.fragment_exercises_back_arrow))
+            .check(matches(isDisplayed()))
+    }
 
+    @Test
+    fun isAddButtonVisible(){
+        val scenario = launchFragmentInContainer<ExercisesFragment>()
+        onView(withId(R.id.fragment_exercises_add))
+            .check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun isExercisesTextCorrect(){
+        val scenario = launchFragmentInContainer<ExercisesFragment>()
+        onView(withId(R.id.fragment_exercises_text))
+            .check(matches(withText(R.string.fragment_main_exercises_text)))
+    }
+
+    @Test
+    fun isExercisesTextVisible(){
+        val scenario = launchFragmentInContainer<ExercisesFragment>()
+        onView(withId(R.id.fragment_exercises_text))
+            .check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun isRecyclerViewVisible(){
+        val scenario = launchFragmentInContainer<ExercisesFragment>()
+        onView(withId(R.id.fragment_exercises_rv))
+            .check(matches(isDisplayed()))
+    }
 
 }
 
