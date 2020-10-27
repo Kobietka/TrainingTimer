@@ -2,6 +2,7 @@ package com.kobietka.trainingtimer.repositories
 
 import com.kobietka.trainingtimer.data.ExerciseDao
 import com.kobietka.trainingtimer.data.ExerciseEntity
+import com.kobietka.trainingtimer.models.MeasurementType
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Observable
@@ -34,6 +35,18 @@ class ExerciseRepository
 
     fun getAllIds(): Observable<List<Int>> {
         return exerciseDao.getAllIds()
+    }
+
+    fun updateName(id: Int, name: String): Completable {
+        return exerciseDao.updateExerciseName(id, name)
+    }
+
+    fun updateMeasurementValue(id: Int, measurementValue: Int): Completable {
+        return exerciseDao.updateExerciseMeasurementValue(id, measurementValue)
+    }
+
+    fun updateMeasurementType(id: Int, measurementType: MeasurementType): Completable {
+        return exerciseDao.updateExerciseMeasurementType(id, measurementType)
     }
 
 }
