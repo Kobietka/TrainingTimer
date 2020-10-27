@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.kobietka.trainingtimer.data.ExerciseEntity
+import com.kobietka.trainingtimer.models.EventType
 import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.repositories.ExerciseRepository
 import io.reactivex.Completable
@@ -23,10 +24,11 @@ import javax.inject.Inject
 
 class ExerciseViewModel
 @Inject constructor(private val exerciseRepository: ExerciseRepository,
-                    private val eventSubject: Subject<Int>) {
+                    private val eventSubject: Subject<EventType>) {
 
     private val compositeDisposable = CompositeDisposable()
     private val deleteClicks = BehaviorSubject.create<Int>().toSerialized()
+    private val editClicks = BehaviorSubject.create<Int>().toSerialized()
     private val ids = BehaviorSubject.create<Int>().toSerialized()
 
     private val _name = MutableLiveData<String>()
@@ -35,6 +37,10 @@ class ExerciseViewModel
 
 
     init {
+        editClicks.withLatestFrom(ids, { clickId, exerciseId ->
+            eventSubject.onNext(EventType(clickId, exerciseId))
+        }).subscribe()
+
         deleteClicks.withLatestFrom(ids, BiFunction<Int, Int, Completable> { clickId, exerciseId ->
             exerciseRepository.deleteById(exerciseId)
         }).flatMapCompletable { it }.subscribe()
@@ -50,6 +56,10 @@ class ExerciseViewModel
 
     fun measurementType(): LiveData<MeasurementType> {
         return _measurementType
+    }
+
+    fun onEditClick(){
+        editClicks.onNext(1)
     }
 
     fun onDeleteClick(){
