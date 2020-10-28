@@ -23,7 +23,7 @@ class WorkoutsFragment : BaseFragment() {
     }
 
     override fun getLayout(): Int {
-        return R.id.fragment_workouts
+        return R.layout.fragment_workouts
     }
 
 }
