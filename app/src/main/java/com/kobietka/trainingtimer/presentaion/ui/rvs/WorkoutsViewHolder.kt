@@ -21,6 +21,7 @@ class WorkoutsViewHolder(itemView: View,
 
         viewModel.numberOfExercises().observe(lifecycleOwner, {
             itemView.findViewById<TextView>(R.id.fragment_workout_entry_count)
+                .text = it.toString()
         })
     }
 
