@@ -41,7 +41,7 @@ class ExerciseViewModel
             eventSubject.onNext(EventType(clickId, exerciseId))
         }).subscribe()
 
-        deleteClicks.withLatestFrom(ids, BiFunction<Int, Int, Completable> { clickId, exerciseId ->
+        deleteClicks.withLatestFrom(ids, { clickId, exerciseId ->
             exerciseRepository.deleteById(exerciseId)
         }).flatMapCompletable { it }.subscribe()
     }
