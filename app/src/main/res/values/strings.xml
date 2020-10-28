@@ -13,4 +13,5 @@
     <string name="radio_button_measurement_time">Time</string>
     <string name="radio_button_measurement_repetition">Repetition</string>
     <string name="fragment_edit_exercise_text">Edit exercise</string>
+    <string name="fragment_workouts_exercises_text">exercises</string>
 </resources>
