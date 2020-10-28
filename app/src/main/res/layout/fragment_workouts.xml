@@ -42,7 +42,7 @@
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/fragment_exercises_rv"
+        android:id="@+id/fragment_workouts_rv"
         android:layout_below="@+id/fragment_workouts_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
