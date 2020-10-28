@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/fragment_edit_exercises_back_arrow"
-            android:text="@string/fragment_create_exercise_text"
+            android:text="@string/fragment_edit_exercise_text"
             android:textSize="23sp"
             android:textStyle="bold"
             android:textColor="@android:color/black"
