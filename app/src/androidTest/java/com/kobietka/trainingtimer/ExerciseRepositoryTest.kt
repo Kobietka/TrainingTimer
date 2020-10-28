@@ -79,4 +79,42 @@ open class ExerciseRepositoryTest {
         }.test().assertValue(exerciseEntity.copy(id = 1))
     }
 
+    @Test
+    fun insertExercise_UpdateName(){
+        val newName = "Push-ups"
+
+        exerciseRepository.insertExercise(exerciseEntity).flatMapCompletable {
+            exerciseRepository.updateName(it.toInt(), newName)
+        }.subscribe()
+
+        exerciseRepository.getById(1).test().assertValue {
+            it.name == newName
+        }
+    }
+
+    @Test
+    fun insertExercise_UpdateMeasurementType(){
+        val newType = MeasurementType.Repetition
+
+        exerciseRepository.insertExercise(exerciseEntity).flatMapCompletable {
+            exerciseRepository.updateMeasurementType(it.toInt(), newType)
+        }.subscribe()
+
+        exerciseRepository.getById(1).test().assertValue {
+            it.measurementType == newType
+        }
+    }
+
+    @Test
+    fun insertExercise_UpdateMeasurementValue(){
+        val newValue = 15
+
+        exerciseRepository.insertExercise(exerciseEntity).flatMapCompletable {
+            exerciseRepository.updateMeasurementValue(it.toInt(), newValue)
+        }.subscribe()
+
+        exerciseRepository.getById(1).test().assertValue {
+            it.measurementValue == newValue
+        }
+    }
 }
