@@ -12,6 +12,7 @@ import org.junit.runners.Suite
     ExerciseRepositoryTest::class,
     FragmentExercisesTest::class,
     FragmentEditExerciseTest::class,
-    FragmentWorkoutsTest::class
+    FragmentWorkoutsTest::class,
+    FragmentCreateWorkoutTest::class
 )
 class TestSuite
