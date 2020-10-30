@@ -140,6 +140,7 @@
                 android:text="@string/fragment_main_exercises_text"/>
 
             <ImageView
+                android:id="@+id/fragment_create_workout_add_exercise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ic_add"
