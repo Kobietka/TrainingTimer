@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_edit_workout">
+
+    <RelativeLayout
+        android:id="@+id/fragment_edit_workout_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <ImageView
+            android:id="@+id/fragment_edit_workout_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_back_arrow"
+            android:layout_marginTop="1dp"/>
+
+        <TextView
+            android:id="@+id/fragment_edit_workout_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/fragment_edit_workout_back_arrow"
+            android:text="@string/fragment_edit_workout_text"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="15dp" />
+
+        <ImageView
+            android:id="@+id/fragment_edit_workout_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_done"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/fragment_edit_workout_input_area"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_below="@+id/fragment_edit_workout_bar">
+
+        <LinearLayout
+            android:id="@+id/fragment_edit_workout_input_name_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/fragment_edit_workout_edit_icon"
+                android:layout_marginTop="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_edit"/>
+
+            <EditText
+                android:id="@+id/fragment_edit_workout_edit_text_name"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:textAlignment="center"
+                android:hint="Name"
+                android:maxLines="1"
+                android:maxLength="28"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:background="@android:color/transparent"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/fragment_edit_workout_line_below_name_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_line"
+            android:layout_below="@id/fragment_edit_workout_input_name_area"/>
+
+
+        <LinearLayout
+            android:id="@+id/fragment_edit_workout_input_count_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp">
+
+            <ImageView
+                android:id="@+id/fragment_edit_workout_timer_icon"
+                android:layout_marginTop="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_timer"/>
+
+            <EditText
+                android:id="@+id/fragment_edit_workout_rest_edit_text"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:textAlignment="center"
+                android:hint="Rest time in seconds"
+                android:maxLines="1"
+                android:maxLength="28"
+                android:imeOptions="actionDone"
+                android:inputType="number"
+                android:background="@android:color/transparent"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/fragment_edit_workout_line_below_count_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_line"
+            android:layout_below="@+id/fragment_edit_workout_input_count_area"/>
+
+
+        <RelativeLayout
+            android:id="@+id/fragment_edit_workout_add_exercise_area"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fragment_edit_workout_line_below_count_edit_text"
+            android:layout_marginTop="40dp">
+
+            <TextView
+                android:id="@+id/fragment_edit_workout_exercises_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@android:color/black"
+                android:text="@string/fragment_main_exercises_text"/>
+
+            <ImageView
+                android:id="@+id/fragment_edit_workout_add_exercise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_add"
+                android:layout_alignParentEnd="true"/>
+
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/fragment_edit_workout_rv"
+            android:layout_marginTop="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/fragment_edit_workout_add_exercise_area"/>
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
