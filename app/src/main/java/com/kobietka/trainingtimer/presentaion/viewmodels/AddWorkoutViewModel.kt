@@ -3,6 +3,7 @@ package com.kobietka.trainingtimer.presentaion.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kobietka.trainingtimer.data.WorkoutEntity
+import com.kobietka.trainingtimer.models.ClickId
 import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.repositories.ExerciseRepository
 import com.kobietka.trainingtimer.repositories.WorkoutRepository
@@ -19,7 +20,7 @@ class AddWorkoutViewModel
                     private val exerciseRepository: ExerciseRepository){
 
     private val compositeDisposable = CompositeDisposable()
-    private val deleteClicks = BehaviorSubject.create<Int>().toSerialized()
+    private val deleteClicks = BehaviorSubject.create<ClickId>().toSerialized()
     private val ids = BehaviorSubject.create<Int>().toSerialized()
 
     private val _name = MutableLiveData<String>()
@@ -51,7 +52,7 @@ class AddWorkoutViewModel
     }
 
     fun onDeleteClick(){
-        deleteClicks.onNext(0)
+        deleteClicks.onNext(ClickId.Delete)
     }
 
     fun saveWorkout(name: String, restTime: Int){

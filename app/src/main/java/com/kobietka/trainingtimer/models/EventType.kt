@@ -1,3 +1,3 @@
 package com.kobietka.trainingtimer.models
 
-data class EventType(val clickId: Int, val itemId: Int)
+data class EventType(val clickId: ClickId, val itemId: Int)

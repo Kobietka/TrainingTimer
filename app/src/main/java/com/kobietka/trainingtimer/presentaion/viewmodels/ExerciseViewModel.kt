@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.kobietka.trainingtimer.data.ExerciseEntity
+import com.kobietka.trainingtimer.models.ClickId
 import com.kobietka.trainingtimer.models.EventType
 import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.repositories.ExerciseRepository
@@ -27,8 +28,8 @@ class ExerciseViewModel
                     private val eventSubject: Subject<EventType>) {
 
     private val compositeDisposable = CompositeDisposable()
-    private val deleteClicks = BehaviorSubject.create<Int>().toSerialized()
-    private val editClicks = BehaviorSubject.create<Int>().toSerialized()
+    private val deleteClicks = BehaviorSubject.create<ClickId>().toSerialized()
+    private val editClicks = BehaviorSubject.create<ClickId>().toSerialized()
     private val ids = BehaviorSubject.create<Int>().toSerialized()
 
     private val _name = MutableLiveData<String>()
@@ -59,11 +60,11 @@ class ExerciseViewModel
     }
 
     fun onEditClick(){
-        editClicks.onNext(1)
+        editClicks.onNext(ClickId.EditExercise)
     }
 
     fun onDeleteClick(){
-        deleteClicks.onNext(0)
+        deleteClicks.onNext(ClickId.Delete)
     }
 
     fun switchId(id: Int){

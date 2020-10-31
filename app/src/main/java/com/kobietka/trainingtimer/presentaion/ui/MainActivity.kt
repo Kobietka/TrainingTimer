@@ -3,6 +3,7 @@ package com.kobietka.trainingtimer.presentaion.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.kobietka.trainingtimer.R
+import com.kobietka.trainingtimer.models.ClickId
 import com.kobietka.trainingtimer.models.EventType
 import com.kobietka.trainingtimer.presentaion.common.BaseActivity
 import com.kobietka.trainingtimer.presentaion.ui.fragmentaddexercise.ExerciseAddFragment
@@ -34,11 +35,11 @@ class MainActivity : BaseActivity() {
     }
 
     private fun launchEvents(eventType: EventType){
-        if(eventType.clickId == 1){
+        if(eventType.clickId == ClickId.EditExercise){
             this.supportFragmentManager.beginTransaction()
                 .replace(R.id.main_container, EditExerciseFragment())
                 .commit()
-        } else if(eventType.clickId == 2){
+        } else if(eventType.clickId == ClickId.EditWorkout){
             this.supportFragmentManager.beginTransaction()
                 .replace(R.id.main_container, EditWorkoutFragment())
                 .commit()

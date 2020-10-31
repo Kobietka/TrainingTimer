@@ -2,6 +2,7 @@ package com.kobietka.trainingtimer.presentaion.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.kobietka.trainingtimer.models.ClickId
 import com.kobietka.trainingtimer.models.EventType
 import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.repositories.ExerciseRepository
@@ -21,7 +22,7 @@ class EditWorkoutViewModel
 
     private val compositeDisposable = CompositeDisposable()
     private val ids = BehaviorSubject.create<Int>().toSerialized()
-    private val addClicks = BehaviorSubject.create<Int>().toSerialized()
+    private val addClicks = BehaviorSubject.create<ClickId>().toSerialized()
     private var workoutId = 0
 
     private val _name = MutableLiveData<String>()
