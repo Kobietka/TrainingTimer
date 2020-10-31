@@ -7,10 +7,11 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.models.MeasurementType
+import com.kobietka.trainingtimer.presentaion.viewmodels.AddWorkoutViewModel
 import com.kobietka.trainingtimer.presentaion.viewmodels.ExerciseViewModel
 
 
-class AddWorkoutViewHolder(itemView: View, val viewModel: ExerciseViewModel,
+class AddWorkoutViewHolder(itemView: View, val viewModel: AddWorkoutViewModel,
                            private val lifecycleOwner: LifecycleOwner) : RecyclerView.ViewHolder(itemView) {
 
     fun onAttach(){
