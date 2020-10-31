@@ -19,6 +19,7 @@ class AddWorkoutViewModel
                     private val exerciseRepository: ExerciseRepository){
 
     private val compositeDisposable = CompositeDisposable()
+    private val deleteClicks = BehaviorSubject.create<Int>().toSerialized()
     private val ids = BehaviorSubject.create<Int>().toSerialized()
 
     private val _name = MutableLiveData<String>()
@@ -26,6 +27,12 @@ class AddWorkoutViewModel
     private val _measurementType = MutableLiveData<MeasurementType>()
 
     private val exercises = mutableListOf<Int>()
+
+    init {
+        deleteClicks.withLatestFrom(ids, { clickId, exerciseId ->
+            exercises.remove(exerciseId)
+        }).subscribe()
+    }
 
     fun measurementValue(): LiveData<Int> {
         return _measurementValue
@@ -41,6 +48,10 @@ class AddWorkoutViewModel
 
     fun addExercise(id: Int){
         exercises.add(id)
+    }
+
+    fun onDeleteClick(){
+        deleteClicks.onNext(0)
     }
 
     fun saveWorkout(name: String, restTime: Int){
@@ -65,8 +76,10 @@ class AddWorkoutViewModel
     }
 
     fun switchId(id: Int){
-        loadExercise(id)
-        ids.onNext(id)
+        if(exercises.contains(id)) {
+            loadExercise(id)
+            ids.onNext(id)
+        }
     }
 
     private fun loadExercise(id: Int) {
@@ -78,6 +91,7 @@ class AddWorkoutViewModel
                     _name.value = it.name
                     _measurementValue.value = it.measurementValue
                     _measurementType.value = it.measurementType
+                    exercises.add(id)
                 }
         )
     }
