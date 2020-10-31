@@ -6,6 +6,7 @@ import android.widget.ImageView
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
+import com.kobietka.trainingtimer.presentaion.viewmodels.AddWorkoutViewModel
 import com.kobietka.trainingtimer.presentaion.viewmodels.ExerciseViewModel
 import com.kobietka.trainingtimer.repositories.ExerciseRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -17,7 +18,7 @@ import javax.inject.Provider
 
 class AddWorkoutAdapter
 @Inject constructor(private val repository: ExerciseRepository,
-                    private val modelProvider: Provider<ExerciseViewModel>) : RecyclerView.Adapter<AddWorkoutViewHolder>() {
+                    private val modelProvider: Provider<AddWorkoutViewModel>) : RecyclerView.Adapter<AddWorkoutViewHolder>() {
 
     var ids = listOf<Int>()
     private val compositeDisposable = CompositeDisposable()
@@ -38,9 +39,9 @@ class AddWorkoutAdapter
 
         val viewModel = modelProvider.get()
 
-        view.findViewById<ImageView>(R.id.fragment_create_workout_entry_delete_icon).setOnClickListener {
+        /*view.findViewById<ImageView>(R.id.fragment_create_workout_entry_delete_icon).setOnClickListener {
             viewModel.onDeleteClick()
-        }
+        }*/
 
         return AddWorkoutViewHolder(view, viewModel , lifecycleOwner)
     }
