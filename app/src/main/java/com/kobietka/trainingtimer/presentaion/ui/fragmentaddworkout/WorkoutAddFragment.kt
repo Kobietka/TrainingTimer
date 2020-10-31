@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
+import com.kobietka.trainingtimer.presentaion.ui.fragmentchooseexercise.ChooseExerciseFragment
 import com.kobietka.trainingtimer.presentaion.ui.fragmentworkouts.WorkoutsFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.AddWorkoutAdapter
 import com.kobietka.trainingtimer.presentaion.viewmodels.AddWorkoutViewModel
@@ -34,6 +35,12 @@ class WorkoutAddFragment : BaseFragment() {
 
         adapter.setLifeCycleOwner(viewLifecycleOwner)
         recyclerView.adapter = adapter
+
+        fragment_create_workout_add_exercise.setOnClickListener {
+            activity!!.supportFragmentManager.beginTransaction()
+                .replace(R.id.main_container, ChooseExerciseFragment())
+                .commit()
+        }
 
         fragment_create_workout_back_arrow.setOnClickListener {
             activity!!.supportFragmentManager.beginTransaction()
