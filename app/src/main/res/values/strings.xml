@@ -15,4 +15,6 @@
     <string name="fragment_edit_exercise_text">Edit exercise</string>
     <string name="fragment_workouts_exercises_text">exercises</string>
     <string name="fragment_create_workout_text">Create Workout</string>
+    <string name="fragment_edit_workout_text">Edit workout</string>
+    <string name="fragment_choose_exercise_text">Choose exercise</string>
 </resources>
