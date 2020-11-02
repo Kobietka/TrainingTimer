@@ -128,7 +128,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/fragment_create_workout_line_below_count_edit_text"
-            android:layout_marginTop="40dp">
+            android:layout_marginTop="40dp"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/fragment_create_workout_exercises_text"
@@ -151,6 +152,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/fragment_create_workout_rv"
             android:layout_marginTop="30dp"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/fragment_create_workout_add_exercise_area"/>
