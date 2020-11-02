@@ -1,10 +1,14 @@
 package com.kobietka.trainingtimer.presentaion.ui.rvs
 
+import android.view.DragEvent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
+import com.kobietka.trainingtimer.models.ClickId
+import com.kobietka.trainingtimer.models.WorkoutAddExerciseEvent
 import com.kobietka.trainingtimer.presentaion.viewmodels.ChooseExerciseViewModel
 import com.kobietka.trainingtimer.repositories.ExerciseRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -37,6 +41,10 @@ class ChooseExerciseAdapter
         val view = inflater.inflate(R.layout.recycler_view_choose_exercise_entry, parent, false)
 
         val viewModel = modelProvider.get()
+
+        view.findViewById<ImageView>(R.id.fragment_choose_exercise_entry_add_icon).setOnClickListener {
+            viewModel.onAddClick()
+        }
 
         return ChooseExerciseViewHolder(view, viewModel, lifecycleOwner)
     }
