@@ -8,7 +8,6 @@ import androidx.room.PrimaryKey
 data class WorkoutEntity(@PrimaryKey(autoGenerate = true) val id: Int?,
                          @ColumnInfo val name: String,
                          @ColumnInfo val restTime: Int,
-                         @ColumnInfo val exercises: MutableList<Int>,
                          @ColumnInfo val creationDate: String,
                          @ColumnInfo val totalRepetitionCount: Int,
                          @ColumnInfo val totalTimeCount: Int)
