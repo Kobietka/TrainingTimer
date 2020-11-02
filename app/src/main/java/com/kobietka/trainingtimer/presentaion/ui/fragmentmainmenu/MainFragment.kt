@@ -16,7 +16,7 @@ class MainFragment : BaseFragment() {
 
         fragment_main_workouts_elements.setOnClickListener {
             activity!!.supportFragmentManager.beginTransaction()
-                .replace(R.id.main_container, WorkoutsFragment())
+                .replace(R.id.main_container, WorkoutsFragment(), "fragment_workouts")
                 .commit()
         }
 
