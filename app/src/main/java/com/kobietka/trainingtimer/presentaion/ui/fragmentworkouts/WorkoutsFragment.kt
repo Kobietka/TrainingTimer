@@ -5,10 +5,12 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
+import com.kobietka.trainingtimer.models.EventType
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.fragmentaddworkout.WorkoutAddFragment
 import com.kobietka.trainingtimer.presentaion.ui.fragmentmainmenu.MainFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.WorkoutsAdapter
+import io.reactivex.subjects.Subject
 import kotlinx.android.synthetic.main.fragment_workouts.*
 import javax.inject.Inject
 
@@ -16,6 +18,7 @@ import javax.inject.Inject
 class WorkoutsFragment : BaseFragment() {
 
     @Inject lateinit var adapter: WorkoutsAdapter
+    @Inject lateinit var launchEvents: Subject<EventType>
     lateinit var recyclerView: RecyclerView
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
