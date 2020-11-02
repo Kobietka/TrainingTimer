@@ -1,9 +1,11 @@
 package com.kobietka.trainingtimer.presentaion.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kobietka.trainingtimer.models.ClickId
 import com.kobietka.trainingtimer.models.EventType
+import com.kobietka.trainingtimer.repositories.WorkoutRelationRepository
 import com.kobietka.trainingtimer.repositories.WorkoutRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -15,6 +17,7 @@ import javax.inject.Inject
 
 class WorkoutsViewModel
 @Inject constructor(private val workoutRepository: WorkoutRepository,
+                    private val relationsRepository: WorkoutRelationRepository,
                     private val eventSubject: Subject<EventType>){
 
     private val compositeDisposable = CompositeDisposable()
@@ -26,12 +29,20 @@ class WorkoutsViewModel
     private val _numberOfExercises = MutableLiveData<Int>()
 
     init {
+        compositeDisposable.add(
+            ids.subscribe(this::loadWorkout)
+        )
+
         editClicks.withLatestFrom(ids, { clickId, workoutId ->
             eventSubject.onNext(EventType(clickId, workoutId))
         }).subscribe()
 
         deleteClicks.withLatestFrom(ids, { clickId, workoutId ->
             workoutRepository.deleteById(workoutId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe()
+            relationsRepository.deleteByWorkoutId(workoutId)
         }).flatMapCompletable { it }.subscribe()
     }
 
@@ -47,7 +58,6 @@ class WorkoutsViewModel
     }
 
     fun switchId(id: Int){
-        loadWorkout(id)
         ids.onNext(id)
     }
 
@@ -58,7 +68,15 @@ class WorkoutsViewModel
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     _name.value = it.name
-                    _numberOfExercises.value = it.exercises.size
+                }
+        )
+
+        compositeDisposable.add(
+            relationsRepository.getExercisesByWorkoutId(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    _numberOfExercises.value = it.size
                 }
         )
     }
