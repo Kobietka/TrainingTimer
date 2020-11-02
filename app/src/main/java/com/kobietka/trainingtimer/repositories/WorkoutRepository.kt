@@ -35,4 +35,12 @@ class WorkoutRepository
         return workoutDao.getAllIds()
     }
 
+    fun updateName(id: Int, name: String): Completable {
+        return workoutDao.updateName(id, name)
+    }
+
+    fun updateRestTime(id: Int, restTime: Int): Completable {
+        return workoutDao.updateRestTime(id, restTime)
+    }
+
 }
