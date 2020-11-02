@@ -3,6 +3,7 @@ package com.kobietka.trainingtimer.di
 import android.app.Application
 import android.content.Context
 import com.kobietka.trainingtimer.models.EventType
+import com.kobietka.trainingtimer.models.WorkoutAddExerciseEvent
 import dagger.Module
 import dagger.Provides
 import io.reactivex.subjects.BehaviorSubject
@@ -23,6 +24,18 @@ class ApplicationModule(private val application: Application) {
     @Provides
     fun provideEventSubject(): Subject<EventType> {
         return BehaviorSubject.create<EventType>().toSerialized()
+    }
+
+    @Singleton
+    @Provides
+    fun provideWorkoutEvents(): Subject<WorkoutAddExerciseEvent> {
+        return BehaviorSubject.create<WorkoutAddExerciseEvent>().toSerialized()
+    }
+
+    @Singleton
+    @Provides
+    fun provideWorkoutIdSender(): Subject<Int> {
+        return BehaviorSubject.create<Int>().toSerialized()
     }
 
     
