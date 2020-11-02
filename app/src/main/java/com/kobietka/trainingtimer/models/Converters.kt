@@ -11,16 +11,18 @@ class Converters {
     fun toType(value: MeasurementType) = value.name
 
     @TypeConverter
-    fun fromListToString(ids: MutableList<Int>): String {
-        return if(ids.isEmpty()) "null"
-        else ids.joinToString(";")
+    fun fromListToString(exercises: MutableList<Int>): String {
+        return if(exercises.isEmpty()) "null"
+        else exercises.joinToString(";")
     }
 
     @TypeConverter
-    fun fromStringToList(idsString: String): MutableList<Int> {
-        return if(idsString == "null") mutableListOf()
-        else idsString.split(";")
-            .map { it.toInt() }.toMutableList()
+    fun fromStringToList(exercises: String): MutableList<Int> {
+        return if(exercises == "null") arrayListOf()
+        else {
+            exercises.split(";")
+                .map { it.toInt() }.toMutableList()
+        }
     }
 
 }
