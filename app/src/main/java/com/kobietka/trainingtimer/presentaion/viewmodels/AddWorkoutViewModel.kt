@@ -27,14 +27,6 @@ class AddWorkoutViewModel
     private val _measurementValue = MutableLiveData<Int>()
     private val _measurementType = MutableLiveData<MeasurementType>()
 
-    private val exercises = mutableListOf<Int>()
-
-    init {
-        deleteClicks.withLatestFrom(ids, { clickId, exerciseId ->
-            exercises.remove(exerciseId)
-        }).subscribe()
-    }
-
     fun measurementValue(): LiveData<Int> {
         return _measurementValue
     }
@@ -47,40 +39,9 @@ class AddWorkoutViewModel
         return _measurementType
     }
 
-    fun addExercise(id: Int){
-        exercises.add(id)
-    }
-
-    fun onDeleteClick(){
-        deleteClicks.onNext(ClickId.Delete)
-    }
-
-    fun saveWorkout(name: String, restTime: Int){
-
-        val calendar = Calendar.getInstance()
-        val creationDate = calendar.get(Calendar.DAY_OF_MONTH).toString() + "/" +
-                calendar.get(Calendar.MONTH).toString() + "/" +
-                calendar.get(Calendar.YEAR).toString()
-
-        workoutRepository.insertWorkout(WorkoutEntity(
-            null,
-            name,
-            restTime,
-            exercises,
-            creationDate,
-            0,
-            0
-        )).subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe()
-
-    }
-
     fun switchId(id: Int){
-        if(exercises.contains(id)) {
-            loadExercise(id)
-            ids.onNext(id)
-        }
+        loadExercise(id)
+        ids.onNext(id)
     }
 
     private fun loadExercise(id: Int) {
@@ -92,7 +53,6 @@ class AddWorkoutViewModel
                     _name.value = it.name
                     _measurementValue.value = it.measurementValue
                     _measurementType.value = it.measurementType
-                    exercises.add(id)
                 }
         )
     }
