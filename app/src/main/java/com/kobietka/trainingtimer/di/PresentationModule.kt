@@ -5,6 +5,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import com.kobietka.trainingtimer.models.EventType
+import com.kobietka.trainingtimer.models.WorkoutAddExerciseEvent
 import com.kobietka.trainingtimer.presentaion.common.BaseActivity
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.MainActivity
@@ -35,6 +36,16 @@ class PresentationModule(private val activity: BaseActivity? = null,
 
     @Provides
     fun provideLaunchEvents(subject: Subject<EventType>): Observable<EventType> {
+        return subject
+    }
+
+    @Provides
+    fun provideWorkoutEvents(subject: Subject<WorkoutAddExerciseEvent>): Observable<WorkoutAddExerciseEvent> {
+        return subject
+    }
+
+    @Provides
+    fun provideWorkoutIdSender(subject: Subject<Int>): Observable<Int> {
         return subject
     }
 
