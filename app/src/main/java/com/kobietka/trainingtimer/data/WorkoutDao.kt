@@ -29,4 +29,10 @@ interface WorkoutDao {
     @Query("SELECT id from workouts")
     fun getAllIds(): Observable<List<Int>>
 
+    @Query("UPDATE workouts SET name =:name where id= :id")
+    fun updateName(id: Int, name: String): Completable
+
+    @Query("UPDATE workouts SET restTime =:restTime where id= :id")
+    fun updateRestTime(id: Int, restTime: Int): Completable
+
 }
