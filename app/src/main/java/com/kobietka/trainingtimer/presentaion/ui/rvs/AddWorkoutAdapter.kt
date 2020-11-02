@@ -9,6 +9,8 @@ import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.viewmodels.AddWorkoutViewModel
 import com.kobietka.trainingtimer.presentaion.viewmodels.ExerciseViewModel
 import com.kobietka.trainingtimer.repositories.ExerciseRepository
+import com.kobietka.trainingtimer.repositories.WorkoutRelationRepository
+import com.kobietka.trainingtimer.repositories.WorkoutRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -17,16 +19,21 @@ import javax.inject.Provider
 
 
 class AddWorkoutAdapter
-@Inject constructor(private val repository: ExerciseRepository,
+@Inject constructor(private val repository: WorkoutRelationRepository,
                     private val modelProvider: Provider<AddWorkoutViewModel>) : RecyclerView.Adapter<AddWorkoutViewHolder>() {
 
     var ids = listOf<Int>()
     private val compositeDisposable = CompositeDisposable()
     lateinit var lifecycleOwner: LifecycleOwner
+    var workout = 0
 
     private fun updateList(idsList: List<Int>){
         ids = idsList
         this.notifyDataSetChanged()
+    }
+
+    fun setWorkoutId(id: Int){
+        workout = id
     }
 
     fun setLifeCycleOwner(lifecycleOwner: LifecycleOwner){
@@ -57,10 +64,12 @@ class AddWorkoutAdapter
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
         compositeDisposable.add(
-            repository.getAllIds()
+            repository.getRelationIdsByWorkoutId(workout)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::updateList)
+                .subscribe {
+                    updateList(it)
+                }
         )
     }
 
