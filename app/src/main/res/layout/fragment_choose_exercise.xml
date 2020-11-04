@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/ic_add"
             android:layout_alignParentEnd="true"
+            android:visibility="gone"
             android:layout_centerVertical="true"/>
 
     </RelativeLayout>
