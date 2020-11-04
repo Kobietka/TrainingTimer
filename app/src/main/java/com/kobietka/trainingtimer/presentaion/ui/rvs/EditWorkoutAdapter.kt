@@ -13,6 +13,7 @@ import com.kobietka.trainingtimer.presentaion.viewmodels.EditWorkoutViewModel
 import com.kobietka.trainingtimer.repositories.ExerciseRepository
 import com.kobietka.trainingtimer.repositories.WorkoutRelationRepository
 import com.kobietka.trainingtimer.repositories.WorkoutRepository
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -25,7 +26,7 @@ import javax.inject.Provider
 class EditWorkoutAdapter
 @Inject constructor(private val workoutRelationRepository: WorkoutRelationRepository,
                     private val modelProvider: Provider<EditWorkoutViewModel>,
-                    private val launchEvents: Subject<EventType>) : RecyclerView.Adapter<EditWorkoutViewHolder>() {
+                    private val launchEvents: Observable<EventType>) : RecyclerView.Adapter<EditWorkoutViewHolder>() {
 
     var ids = listOf<Int>()
     private val compositeDisposable = CompositeDisposable()
@@ -74,7 +75,7 @@ class EditWorkoutAdapter
         super.onAttachedToRecyclerView(recyclerView)
         workoutIds.withLatestFrom(launchEvents, { workoutId, eventType ->
             workoutRelationRepository.getRelationIdsByWorkoutId(workoutId)
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     updateList(it)
