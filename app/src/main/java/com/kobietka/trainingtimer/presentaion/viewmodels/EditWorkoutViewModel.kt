@@ -68,7 +68,7 @@ class EditWorkoutViewModel
     private fun loadRelation(id: Int){
         compositeDisposable.add(
             workoutRelationRepository.getById(id)
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     loadExercise(it)
@@ -79,7 +79,7 @@ class EditWorkoutViewModel
     private fun loadExercise(id: Int){
         compositeDisposable.add(
             exerciseRepository.getById(id)
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     _exerciseName.value = it.name
