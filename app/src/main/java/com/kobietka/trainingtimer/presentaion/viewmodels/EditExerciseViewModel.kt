@@ -16,7 +16,7 @@ import javax.inject.Inject
 class EditExerciseViewModel
 @Inject constructor(private val exerciseRepository: ExerciseRepository){
 
-    private val compositeDisposable = CompositeDisposable()
+    val compositeDisposable = CompositeDisposable()
     private var exerciseId = 0
 
     private val _name = MutableLiveData<String>()
