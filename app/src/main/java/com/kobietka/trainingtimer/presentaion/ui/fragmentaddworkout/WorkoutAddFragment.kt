@@ -5,6 +5,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
@@ -27,15 +29,17 @@ class WorkoutAddFragment : BaseFragment() {
 
     @Inject lateinit var addWorkoutViewModel: AddWorkoutUIViewModel
     @Inject lateinit var workoutEvents: Subject<WorkoutAddExerciseEvent>
+    lateinit var navController: NavController
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presentationComponent.inject(this)
 
+        val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = host.navController
+
         fragment_create_workout_back_arrow.setOnClickListener {
-            activity!!.supportFragmentManager.beginTransaction()
-                .replace(R.id.main_container, WorkoutsFragment())
-                .commit()
+            requireActivity().onBackPressed()
         }
 
         fragment_create_workout_add.setOnClickListener {
@@ -50,9 +54,7 @@ class WorkoutAddFragment : BaseFragment() {
 
         if(name != "" && restTime != ""){
             addWorkoutViewModel.saveWorkout(name, restTime.toInt())
-            activity!!.supportFragmentManager.beginTransaction()
-                .replace(R.id.main_container, WorkoutsFragment())
-                .commit()
+           navController.navigate(R.id.action_workoutAddFragment_to_workoutsFragment)
         } else Toast.makeText(activity, "Please fill all fields", Toast.LENGTH_LONG).show()
     }
 

@@ -3,12 +3,15 @@ package com.kobietka.trainingtimer.presentaion.ui.fragmenteditexercise
 import android.os.Bundle
 import android.view.View
 import android.widget.RadioButton
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.models.EventType
 import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.fragmentexercises.ExercisesFragment
 import com.kobietka.trainingtimer.presentaion.viewmodels.EditExerciseViewModel
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.Subject
 import kotlinx.android.synthetic.main.fragment_add_exercise.*
@@ -18,13 +21,17 @@ import javax.inject.Inject
 
 class EditExerciseFragment : BaseFragment() {
 
-    @Inject lateinit var launchEvents: Subject<EventType>
+    @Inject lateinit var launchEvents: Observable<EventType>
     @Inject lateinit var editExerciseViewModel: EditExerciseViewModel
     private val compositeDisposable = CompositeDisposable()
+    lateinit var navController: NavController
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presentationComponent.inject(this)
+
+        val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = host.navController
 
         compositeDisposable.add(
             launchEvents.subscribe {
@@ -34,9 +41,7 @@ class EditExerciseFragment : BaseFragment() {
         )
 
         fragment_edit_exercises_back_arrow.setOnClickListener {
-            activity!!.supportFragmentManager.beginTransaction()
-                .replace(R.id.main_container, ExercisesFragment())
-                .commit()
+            requireActivity().onBackPressed()
         }
 
         fragment_edit_exercises_add.setOnClickListener {
@@ -51,9 +56,7 @@ class EditExerciseFragment : BaseFragment() {
                     count.toInt()
                 )
 
-                activity!!.supportFragmentManager.beginTransaction()
-                    .replace(R.id.main_container, ExercisesFragment())
-                    .commit()
+                navController.navigate(R.id.action_editExerciseFragment_to_exercisesFragment)
             }
         }
         editExerciseViewModel.name().observe(viewLifecycleOwner, {
@@ -70,6 +73,12 @@ class EditExerciseFragment : BaseFragment() {
                 MeasurementType.Repetition -> fragment_edit_exercise_radio_button_time.isChecked = true
             }
         })
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        compositeDisposable.clear()
+        editExerciseViewModel.compositeDisposable.clear()
     }
 
     override fun getLayout(): Int {

@@ -3,6 +3,8 @@ package com.kobietka.trainingtimer.presentaion.ui.fragmentexercises
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
@@ -19,10 +21,14 @@ class ExercisesFragment : BaseFragment() {
 
     @Inject lateinit var adapter: ExercisesAdapter
     lateinit var recyclerView: RecyclerView
+    lateinit var navController: NavController
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presentationComponent.inject(this)
+
+        val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = host.navController
 
         recyclerView = view.findViewById(R.id.fragment_exercises_rv)
         recyclerView.layoutManager = LinearLayoutManager(
@@ -34,15 +40,11 @@ class ExercisesFragment : BaseFragment() {
         recyclerView.adapter = adapter
 
         fragment_exercises_back_arrow.setOnClickListener {
-            activity!!.supportFragmentManager.beginTransaction()
-                .replace(R.id.main_container, MainFragment())
-                .commit()
+            requireActivity().onBackPressed()
         }
 
         fragment_exercises_add.setOnClickListener {
-            activity!!.supportFragmentManager.beginTransaction()
-                .replace(R.id.main_container, ExerciseAddFragment())
-                .commit()
+            navController.navigate(R.id.action_exercisesFragment_to_exerciseAddFragment)
         }
 
     }

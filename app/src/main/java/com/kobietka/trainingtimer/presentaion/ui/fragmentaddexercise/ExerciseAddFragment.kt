@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.fragmentexercises.ExercisesFragment
@@ -18,15 +20,17 @@ import javax.inject.Inject
 class ExerciseAddFragment : BaseFragment() {
 
     @Inject lateinit var addExerciseViewModel: AddExerciseViewModel
+    lateinit var navController: NavController
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presentationComponent.inject(this)
 
+        val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = host.navController
+
         fragment_create_exercises_back_arrow.setOnClickListener {
-            activity!!.supportFragmentManager.beginTransaction()
-                .replace(R.id.main_container, ExercisesFragment())
-                .commit()
+            requireActivity().onBackPressed()
         }
 
         fragment_create_exercises_add.setOnClickListener {
@@ -41,9 +45,7 @@ class ExerciseAddFragment : BaseFragment() {
                     count.toInt()
                 )
 
-                activity!!.supportFragmentManager.beginTransaction()
-                    .replace(R.id.main_container, ExercisesFragment())
-                    .commit()
+                navController.navigate(R.id.action_exerciseAddFragment_to_exercisesFragment)
 
             } else Toast.makeText(activity, "Please fill all fields", Toast.LENGTH_LONG).show()
         }
