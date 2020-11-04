@@ -43,7 +43,7 @@ class ChooseExerciseViewModel
 
         addClicks.withLatestFrom(ids, workoutIds, { clickId, exerciseId, workoutId ->
             workoutRelationRepository.insert(WorkoutRelation(null, workoutId, exerciseId))
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     launchEvents.onNext(EventType(clickId, workoutId))
