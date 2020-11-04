@@ -65,14 +65,14 @@ class EditWorkoutUIViewModel
     private fun saveWorkout(workoutId: Int, name: String, restTime: Int){
         compositeDisposable.add(
             workoutRepository.updateName(workoutId, name)
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe()
         )
 
         compositeDisposable.add(
             workoutRepository.updateRestTime(workoutId, restTime)
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe()
         )
@@ -81,7 +81,7 @@ class EditWorkoutUIViewModel
     private fun loadWorkout(id: Int){
         compositeDisposable.add(
             workoutRepository.getById(id)
-                .subscribeOn(Schedulers.newThread())
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     _name.value = it.name
