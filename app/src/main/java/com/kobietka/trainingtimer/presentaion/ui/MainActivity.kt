@@ -54,6 +54,8 @@ class MainActivity : BaseActivity() {
             navController.navigate(R.id.action_editWorkoutFragment_to_chooseExerciseFragment)
         } else if(eventType.clickId == ClickId.EditWorkoutFromChoosing){
            navController.navigate(R.id.action_chooseExerciseFragment_to_editWorkoutFragment)
+        } else if(eventType.clickId == ClickId.Play) {
+            TODO("Waiting for timer fragment to be created")
         }
     }
 
