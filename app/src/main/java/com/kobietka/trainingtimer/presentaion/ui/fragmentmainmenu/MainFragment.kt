@@ -22,6 +22,10 @@ class MainFragment : BaseFragment() {
         val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = host.navController
 
+        fragment_main_train_element.setOnClickListener {
+            navController.navigate(R.id.action_mainFragment_to_trainFragment)
+        }
+
         fragment_main_workouts_elements.setOnClickListener {
             navController.navigate(R.id.action_mainFragment_to_workoutsFragment)
         }
