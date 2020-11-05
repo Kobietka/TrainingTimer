@@ -63,6 +63,7 @@ class EditWorkoutViewModel
 
     fun onDeleteClick(){
         deleteClicks.onNext(ClickId.Delete)
+        compositeDisposable.clear()
     }
 
     private fun loadRelation(id: Int){
