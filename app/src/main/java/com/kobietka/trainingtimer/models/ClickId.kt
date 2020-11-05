@@ -6,5 +6,6 @@ enum class ClickId {
     Delete,
     AddExercise,
     Save,
-    EditWorkoutFromChoosing
+    EditWorkoutFromChoosing,
+    Play
 }
