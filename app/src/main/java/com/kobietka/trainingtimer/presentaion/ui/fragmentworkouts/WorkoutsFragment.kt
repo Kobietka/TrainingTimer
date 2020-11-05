@@ -21,7 +21,6 @@ import javax.inject.Inject
 class WorkoutsFragment : BaseFragment() {
 
     @Inject lateinit var adapter: WorkoutsAdapter
-    @Inject lateinit var launchEvents: Observable<EventType>
     lateinit var recyclerView: RecyclerView
     lateinit var navController: NavController
 
