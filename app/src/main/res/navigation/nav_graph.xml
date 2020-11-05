@@ -22,6 +22,7 @@
             app:enterAnim="@transition/slide_in_right"
             app:exitAnim="@transition/slide_out_left"/>
     </fragment>
+
     <fragment
         android:id="@+id/workoutsFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmentworkouts.WorkoutsFragment"
@@ -43,11 +44,12 @@
         <action
             android:id="@+id/action_workoutsFragment_to_mainFragment"
             app:destination="@id/mainFragment"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right"
-            app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left"/>
+            app:popEnterAnim="@transition/slide_in_right"
+            app:popExitAnim="@transition/slide_out_left"
+            app:enterAnim="@transition/slide_in_left"
+            app:exitAnim="@transition/slide_out_right"/>
     </fragment>
+
     <fragment
         android:id="@+id/exercisesFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmentexercises.ExercisesFragment"
@@ -69,11 +71,12 @@
         <action
             android:id="@+id/action_exercisesFragment_to_mainFragment"
             app:destination="@id/mainFragment"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right"
-            app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left"/>
+            app:popEnterAnim="@transition/slide_in_right"
+            app:popExitAnim="@transition/slide_out_left"
+            app:enterAnim="@transition/slide_in_left"
+            app:exitAnim="@transition/slide_out_right"/>
     </fragment>
+
     <fragment
         android:id="@+id/editExerciseFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmenteditexercise.EditExerciseFragment"
@@ -86,6 +89,7 @@
             app:enterAnim="@transition/slide_in_left"
             app:exitAnim="@transition/slide_out_right"/>
     </fragment>
+
     <fragment
         android:id="@+id/exerciseAddFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmentaddexercise.ExerciseAddFragment"
@@ -98,6 +102,7 @@
             app:enterAnim="@transition/slide_in_left"
             app:exitAnim="@transition/slide_out_right"/>
     </fragment>
+
     <fragment
         android:id="@+id/editWorkoutFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmenteditworkout.EditWorkoutFragment"
@@ -119,6 +124,7 @@
             app:enterAnim="@transition/slide_in_left"
             app:exitAnim="@transition/slide_out_right"/>
     </fragment>
+
     <fragment
         android:id="@+id/workoutAddFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmentaddworkout.WorkoutAddFragment"
@@ -138,6 +144,7 @@
             app:enterAnim="@transition/slide_in_left"
             app:exitAnim="@transition/slide_out_right"/>
     </fragment>
+
     <fragment
         android:id="@+id/chooseExerciseFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmentchooseexercise.ChooseExerciseFragment"
@@ -150,4 +157,5 @@
             app:enterAnim="@transition/slide_in_left"
             app:exitAnim="@transition/slide_out_right" />
     </fragment>
+
 </navigation>
