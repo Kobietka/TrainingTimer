@@ -41,7 +41,7 @@ class EditExerciseFragment : BaseFragment() {
         )
 
         fragment_edit_exercises_back_arrow.setOnClickListener {
-            requireActivity().onBackPressed()
+            navController.navigate(R.id.action_editExerciseFragment_to_exercisesFragment)
         }
 
         fragment_edit_exercises_add.setOnClickListener {

@@ -84,7 +84,7 @@ class EditWorkoutFragment: BaseFragment() {
         }
 
         fragment_edit_workout_back_arrow.setOnClickListener {
-            requireActivity().onBackPressed()
+            navController.navigate(R.id.action_editWorkoutFragment_to_workoutsFragment)
             compositeDisposable.clear()
         }
 

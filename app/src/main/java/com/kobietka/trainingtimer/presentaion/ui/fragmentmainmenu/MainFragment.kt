@@ -19,7 +19,6 @@ class MainFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         presentationComponent.inject(this)
 
-        //navController = Navigation.findNavController(view)
         val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = host.navController
 

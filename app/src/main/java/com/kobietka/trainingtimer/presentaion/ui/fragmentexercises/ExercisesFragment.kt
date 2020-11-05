@@ -40,7 +40,7 @@ class ExercisesFragment : BaseFragment() {
         recyclerView.adapter = adapter
 
         fragment_exercises_back_arrow.setOnClickListener {
-            requireActivity().onBackPressed()
+            navController.navigate(R.id.action_exercisesFragment_to_mainFragment)
         }
 
         fragment_exercises_add.setOnClickListener {

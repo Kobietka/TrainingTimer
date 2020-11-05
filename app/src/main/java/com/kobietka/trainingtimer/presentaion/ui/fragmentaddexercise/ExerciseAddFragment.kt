@@ -30,7 +30,7 @@ class ExerciseAddFragment : BaseFragment() {
         navController = host.navController
 
         fragment_create_exercises_back_arrow.setOnClickListener {
-            requireActivity().onBackPressed()
+            navController.navigate(R.id.action_exerciseAddFragment_to_exercisesFragment)
         }
 
         fragment_create_exercises_add.setOnClickListener {

@@ -47,7 +47,7 @@ class WorkoutsFragment : BaseFragment() {
         }
 
         fragment_workouts_back_arrow.setOnClickListener {
-            requireActivity().onBackPressed()
+            navController.navigate(R.id.action_workoutsFragment_to_mainFragment)
         }
 
     }
