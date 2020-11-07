@@ -176,6 +176,27 @@
             app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
             app:exitAnim="@transition/slide_out_right"/>
+        <action
+            android:id="@+id/action_trainFragment_to_trainingScreenFragment"
+            app:destination="@id/trainingScreenFragment"
+            app:popEnterAnim="@transition/slide_in_left"
+            app:popExitAnim="@transition/slide_out_right"
+            app:enterAnim="@transition/slide_in_right"
+            app:exitAnim="@transition/slide_out_left"
+            app:popUpTo="@id/trainingScreenFragment"
+            app:popUpToInclusive="false"/>
+    </fragment>
+    <fragment
+        android:id="@+id/trainingScreenFragment"
+        android:name="com.kobietka.trainingtimer.presentaion.ui.fragmenttrainingscreen.TrainingScreenFragment"
+        android:label="TrainingScreenFragment" >
+        <action
+            android:id="@+id/action_trainingScreenFragment_to_trainFragment"
+            app:destination="@id/trainFragment"
+            app:popEnterAnim="@transition/slide_in_right"
+            app:popExitAnim="@transition/slide_out_left"
+            app:enterAnim="@transition/slide_in_left"
+            app:exitAnim="@transition/slide_out_right" />
     </fragment>
 
 </navigation>
