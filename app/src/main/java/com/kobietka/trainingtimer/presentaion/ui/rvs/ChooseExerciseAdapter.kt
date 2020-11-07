@@ -26,6 +26,7 @@ class ChooseExerciseAdapter
     var ids = listOf<Int>()
     private val compositeDisposable = CompositeDisposable()
     lateinit var lifecycleOwner: LifecycleOwner
+    lateinit var onAddClick: (position: Int) -> Unit
 
     private fun updateList(idsList: List<Int>){
         ids = idsList
@@ -36,21 +37,24 @@ class ChooseExerciseAdapter
         this.lifecycleOwner = lifecycleOwner
     }
 
+    fun setOnAddClickFunction(function: (position: Int) -> Unit){
+        onAddClick = function
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChooseExerciseViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.recycler_view_choose_exercise_entry, parent, false)
 
         val viewModel = modelProvider.get()
 
-        view.findViewById<ImageView>(R.id.fragment_choose_exercise_entry_add_icon).setOnClickListener {
-            viewModel.onAddClick()
-        }
-
         return ChooseExerciseViewHolder(view, viewModel, lifecycleOwner)
     }
 
     override fun onBindViewHolder(holder: ChooseExerciseViewHolder, position: Int) {
         holder.viewModel.switchId(ids[position])
+        holder.itemView.findViewById<ImageView>(R.id.fragment_choose_exercise_entry_add_icon).setOnClickListener {
+            onAddClick(ids[position])
+        }
     }
 
     override fun getItemCount(): Int {

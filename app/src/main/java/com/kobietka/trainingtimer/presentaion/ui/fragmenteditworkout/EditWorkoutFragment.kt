@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,32 +12,24 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.models.ClickId
 import com.kobietka.trainingtimer.models.EventType
-import com.kobietka.trainingtimer.models.WorkoutAddExerciseEvent
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
-import com.kobietka.trainingtimer.presentaion.ui.fragmentchooseexercise.ChooseExerciseFragment
-import com.kobietka.trainingtimer.presentaion.ui.fragmentworkouts.WorkoutsFragment
-import com.kobietka.trainingtimer.presentaion.ui.rvs.AddWorkoutAdapter
 import com.kobietka.trainingtimer.presentaion.ui.rvs.EditWorkoutAdapter
 import com.kobietka.trainingtimer.presentaion.viewmodels.EditWorkoutUIViewModel
-import com.kobietka.trainingtimer.presentaion.viewmodels.EditWorkoutViewModel
-import com.mikepenz.fastadapter.dsl.genericFastAdapter
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.Subject
-import kotlinx.android.synthetic.main.fragment_add_workout.*
 import kotlinx.android.synthetic.main.fragment_edit_workout.*
 import javax.inject.Inject
 
 
 class EditWorkoutFragment: BaseFragment() {
 
-    @Inject lateinit var launchEvents: Observable<EventType>
     @Inject lateinit var editWorkoutViewModel: EditWorkoutUIViewModel
     @Inject lateinit var adapter: EditWorkoutAdapter
-    @Inject lateinit var workoutIdSender: Subject<Int>
     lateinit var recyclerView: RecyclerView
-    private val compositeDisposable = CompositeDisposable()
     lateinit var navController: NavController
+
+    lateinit var workoutId: String
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,12 +39,10 @@ class EditWorkoutFragment: BaseFragment() {
         val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = host.navController
 
-        compositeDisposable.add(
-            launchEvents.subscribe {
-                if(it.clickId == ClickId.EditWorkout) editWorkoutViewModel.switchId(it.itemId)
-                if(it.clickId == ClickId.EditWorkoutFromChoosing) editWorkoutViewModel.switchId(it.itemId)
-            }
-        )
+        workoutId = requireArguments().getString("workoutId")!!
+        adapter.setWorkoutId(workoutId.toInt())
+        editWorkoutViewModel.switchId(workoutId.toInt())
+
 
         recyclerView = view.findViewById(R.id.fragment_edit_workout_rv)
         recyclerView.layoutManager = LinearLayoutManager(
@@ -61,6 +52,9 @@ class EditWorkoutFragment: BaseFragment() {
         )
 
         adapter.setLifeCycleOwner(viewLifecycleOwner)
+        adapter.setItemClick {
+            editWorkoutViewModel.deleteRelation(it)
+        }
         recyclerView.adapter = adapter
 
         fragment_edit_workout_add_exercise.setOnClickListener {
@@ -69,7 +63,8 @@ class EditWorkoutFragment: BaseFragment() {
 
             if(name != "" && restTime != ""){
                 editWorkoutViewModel.onSaveClick(name, restTime.toInt())
-                editWorkoutViewModel.onAddExerciseClick()
+                val bundle = bundleOf("workoutId" to workoutId)
+                navController.navigate(R.id.action_editWorkoutFragment_to_chooseExerciseFragment, bundle)
             } else Toast.makeText(activity, "Please fill all fields", Toast.LENGTH_LONG).show()
         }
 
@@ -85,7 +80,6 @@ class EditWorkoutFragment: BaseFragment() {
 
         fragment_edit_workout_back_arrow.setOnClickListener {
             navController.navigate(R.id.action_editWorkoutFragment_to_workoutsFragment)
-            compositeDisposable.clear()
         }
 
         editWorkoutViewModel.name().observe(viewLifecycleOwner, {
@@ -95,12 +89,6 @@ class EditWorkoutFragment: BaseFragment() {
         editWorkoutViewModel.restTime().observe(viewLifecycleOwner, {
             fragment_edit_workout_rest_edit_text.setText(it.toString())
         })
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        compositeDisposable.clear()
-        editWorkoutViewModel.compositeDisposable.clear()
     }
 
     override fun getLayout(): Int {

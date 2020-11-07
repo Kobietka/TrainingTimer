@@ -19,21 +19,18 @@ import javax.inject.Inject
 
 class TrainingScreenFragment : BaseFragment() {
 
-    @Inject lateinit var launchEvents: Observable<EventType>
-    val compositeDisposable = CompositeDisposable()
-    lateinit var navController: NavController
     @Inject lateinit var viewModel: TrainingScreenViewModel
+    lateinit var navController: NavController
+
+    var workoutId = 0
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presentationComponent.inject(this)
 
-        compositeDisposable.add(
-            launchEvents.subscribe {
-                if(it.clickId == ClickId.Play) viewModel.switchWorkoutId(it.itemId)
-            }
-        )
+        workoutId = requireArguments().getString("workoutId")!!.toInt()
+        viewModel.switchWorkoutId(workoutId)
 
         val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = host.navController

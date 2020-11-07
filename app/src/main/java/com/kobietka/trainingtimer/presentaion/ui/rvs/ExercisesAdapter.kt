@@ -22,6 +22,8 @@ class ExercisesAdapter
     var ids = listOf<Int>()
     private val compositeDisposable = CompositeDisposable()
     lateinit var lifecycleOwner: LifecycleOwner
+    lateinit var onEditClick: (position: Int) -> Unit
+    lateinit var onDeleteClick: (position: Int) -> Unit
 
     private fun updateList(idsList: List<Int>){
         ids = idsList
@@ -32,24 +34,31 @@ class ExercisesAdapter
         this.lifecycleOwner = lifecycleOwner
     }
 
+    fun onDeleteClicks(function: (position: Int) -> Unit){
+        onDeleteClick = function
+    }
+
+    fun onEditClicks(function: (position: Int) -> Unit){
+        onEditClick = function
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExerciseViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.recyclew_view_exercise_entry, parent, false)
 
         val viewModel = modelProvider.get()
 
-        view.findViewById<ImageView>(R.id.fragment_exercises_entry_delete_icon).setOnClickListener {
-            viewModel.onDeleteClick()
-        }
-        view.findViewById<ImageView>(R.id.fragment_exercises_entry_edit_icon).setOnClickListener {
-            viewModel.onEditClick()
-        }
-
         return ExerciseViewHolder(view, viewModel , lifecycleOwner)
     }
 
     override fun onBindViewHolder(holder: ExerciseViewHolder, position: Int) {
         holder.viewModel.switchId(ids[position])
+        holder.itemView.findViewById<ImageView>(R.id.fragment_exercises_entry_edit_icon).setOnClickListener {
+            onEditClick(ids[position])
+        }
+        holder.itemView.findViewById<ImageView>(R.id.fragment_exercises_entry_delete_icon).setOnClickListener {
+            onDeleteClick(ids[position])
+        }
     }
 
     override fun getItemCount(): Int {

@@ -21,24 +21,21 @@ import javax.inject.Inject
 
 class EditExerciseFragment : BaseFragment() {
 
-    @Inject lateinit var launchEvents: Observable<EventType>
     @Inject lateinit var editExerciseViewModel: EditExerciseViewModel
-    private val compositeDisposable = CompositeDisposable()
     lateinit var navController: NavController
+
+    var exerciseId = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         presentationComponent.inject(this)
 
+        exerciseId = requireArguments().getString("exerciseId")!!.toInt()
+        editExerciseViewModel.loadDataById(exerciseId)
+        editExerciseViewModel.setId(exerciseId)
+
         val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = host.navController
-
-        compositeDisposable.add(
-            launchEvents.subscribe {
-                editExerciseViewModel.loadDataById(it.itemId)
-                editExerciseViewModel.setId(it.itemId)
-            }
-        )
 
         fragment_edit_exercises_back_arrow.setOnClickListener {
             navController.navigate(R.id.action_editExerciseFragment_to_exercisesFragment)
@@ -73,12 +70,6 @@ class EditExerciseFragment : BaseFragment() {
                 MeasurementType.Repetition -> fragment_edit_exercise_radio_button_time.isChecked = true
             }
         })
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        compositeDisposable.clear()
-        editExerciseViewModel.compositeDisposable.clear()
     }
 
     override fun getLayout(): Int {

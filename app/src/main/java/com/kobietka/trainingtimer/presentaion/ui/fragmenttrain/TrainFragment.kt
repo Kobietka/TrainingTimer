@@ -2,6 +2,7 @@ package com.kobietka.trainingtimer.presentaion.ui.fragmenttrain
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,6 +35,10 @@ class TrainFragment : BaseFragment() {
         )
 
         adapter.setLifeCycleOwner(viewLifecycleOwner)
+        adapter.setPlayClicks {
+            val bundle = bundleOf("workoutId" to it.toString())
+            navController.navigate(R.id.action_trainFragment_to_trainingScreenFragment, bundle)
+        }
         recyclerView.adapter = adapter
 
         fragment_train_back_arrow.setOnClickListener {

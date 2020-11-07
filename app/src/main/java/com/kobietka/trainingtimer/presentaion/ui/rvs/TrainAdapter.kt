@@ -22,6 +22,7 @@ class TrainAdapter
     var ids = listOf<Int>()
     private val compositeDisposable = CompositeDisposable()
     lateinit var lifecycleOwner: LifecycleOwner
+    lateinit var playClick: (position: Int) -> Unit
 
     private fun updateList(idsList: List<Int>){
         ids = idsList
@@ -32,21 +33,24 @@ class TrainAdapter
         this.lifecycleOwner = lifecycleOwner
     }
 
+    fun setPlayClicks(function: (position: Int) -> Unit){
+        playClick = function
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrainViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.recycler_view_train_entry, parent, false)
 
         val viewModel = modelProvider.get()
 
-        view.findViewById<ImageView>(R.id.fragment_train_entry_play_icon).setOnClickListener {
-            viewModel.onPlayClick()
-        }
-
         return TrainViewHolder(view, viewModel, lifecycleOwner)
     }
 
     override fun onBindViewHolder(holder: TrainViewHolder, position: Int) {
         holder.viewModel.switchId(ids[position])
+        holder.itemView.findViewById<ImageView>(R.id.fragment_train_entry_play_icon).setOnClickListener {
+            playClick(ids[position])
+        }
     }
 
     override fun getItemCount(): Int {

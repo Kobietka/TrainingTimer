@@ -2,6 +2,7 @@ package com.kobietka.trainingtimer.presentaion.ui.fragmentexercises
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -13,6 +14,7 @@ import com.kobietka.trainingtimer.presentaion.ui.fragmentaddexercise.ExerciseAdd
 import com.kobietka.trainingtimer.presentaion.ui.fragmentmainmenu.MainFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.ExercisesAdapter
 import com.kobietka.trainingtimer.presentaion.viewmodels.ExerciseViewModel
+import com.kobietka.trainingtimer.presentaion.viewmodels.ExercisesUIViewModel
 import kotlinx.android.synthetic.main.fragment_exercises.*
 import javax.inject.Inject
 
@@ -20,6 +22,7 @@ import javax.inject.Inject
 class ExercisesFragment : BaseFragment() {
 
     @Inject lateinit var adapter: ExercisesAdapter
+    @Inject lateinit var viewModel: ExercisesUIViewModel
     lateinit var recyclerView: RecyclerView
     lateinit var navController: NavController
 
@@ -37,6 +40,16 @@ class ExercisesFragment : BaseFragment() {
             false)
 
         adapter.setLifeCycleOwner(viewLifecycleOwner)
+
+        adapter.onEditClicks {
+            val bundle = bundleOf("exerciseId" to it.toString())
+            navController.navigate(R.id.action_exercisesFragment_to_editExerciseFragment, bundle)
+        }
+
+        adapter.onDeleteClicks {
+            viewModel.deleteExercise(it)
+        }
+
         recyclerView.adapter = adapter
 
         fragment_exercises_back_arrow.setOnClickListener {
