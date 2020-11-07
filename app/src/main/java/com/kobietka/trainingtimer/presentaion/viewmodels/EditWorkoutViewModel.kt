@@ -23,7 +23,7 @@ class EditWorkoutViewModel
 @Inject constructor(private val workoutRelationRepository: WorkoutRelationRepository,
                     private val exerciseRepository: ExerciseRepository){
 
-    private val compositeDisposable = CompositeDisposable()
+    val compositeDisposable = CompositeDisposable()
     private val relationIds = BehaviorSubject.create<Int>().toSerialized()
     private val deleteClicks = BehaviorSubject.create<ClickId>().toSerialized()
 
@@ -63,7 +63,6 @@ class EditWorkoutViewModel
 
     fun onDeleteClick(){
         deleteClicks.onNext(ClickId.Delete)
-        compositeDisposable.clear()
     }
 
     private fun loadRelation(id: Int){
