@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import com.kobietka.trainingtimer.models.Converters
 
 
-@Database(entities = [WorkoutEntity::class, ExerciseEntity::class, WorkoutRelation::class], version = 14)
+@Database(entities = [WorkoutEntity::class, ExerciseEntity::class, WorkoutRelation::class], version = 15)
 @TypeConverters(Converters::class)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun workoutDao(): WorkoutDao
