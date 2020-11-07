@@ -88,6 +88,9 @@
         android:id="@+id/editExerciseFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmenteditexercise.EditExerciseFragment"
         android:label="EditExerciseFragment" >
+
+        <argument android:name="exerciseId" android:defaultValue="None"/>
+
         <action
             android:id="@+id/action_editExerciseFragment_to_exercisesFragment"
             app:destination="@id/exercisesFragment"
@@ -114,6 +117,9 @@
         android:id="@+id/editWorkoutFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmenteditworkout.EditWorkoutFragment"
         android:label="EditWorkoutFragment" >
+
+        <argument android:name="workoutId" android:defaultValue="None"/>
+
         <action
             android:id="@+id/action_editWorkoutFragment_to_chooseExerciseFragment"
             app:destination="@id/chooseExerciseFragment"
@@ -156,6 +162,9 @@
         android:id="@+id/chooseExerciseFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmentchooseexercise.ChooseExerciseFragment"
         android:label="ChooseExerciseFragment" >
+
+        <argument android:name="workoutId" android:defaultValue="None"/>
+
         <action
             android:id="@+id/action_chooseExerciseFragment_to_editWorkoutFragment"
             app:destination="@id/editWorkoutFragment"
@@ -190,6 +199,9 @@
         android:id="@+id/trainingScreenFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmenttrainingscreen.TrainingScreenFragment"
         android:label="TrainingScreenFragment" >
+
+        <argument android:name="workoutId" android:defaultValue="None"/>
+
         <action
             android:id="@+id/action_trainingScreenFragment_to_trainFragment"
             app:destination="@id/trainFragment"
