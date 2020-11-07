@@ -9,6 +9,7 @@ import com.kobietka.trainingtimer.presentaion.ui.fragmenteditworkout.EditWorkout
 import com.kobietka.trainingtimer.presentaion.ui.fragmentexercises.ExercisesFragment
 import com.kobietka.trainingtimer.presentaion.ui.fragmentmainmenu.MainFragment
 import com.kobietka.trainingtimer.presentaion.ui.fragmenttrain.TrainFragment
+import com.kobietka.trainingtimer.presentaion.ui.fragmenttrainingscreen.TrainingScreenFragment
 import com.kobietka.trainingtimer.presentaion.ui.fragmentworkouts.WorkoutsFragment
 import dagger.Subcomponent
 
@@ -25,4 +26,5 @@ interface PresentationComponent {
     fun inject(editWorkoutFragment: EditWorkoutFragment)
     fun inject(chooseExerciseFragment: ChooseExerciseFragment)
     fun inject(trainFragment: TrainFragment)
+    fun inject(trainingScreenFragment: TrainingScreenFragment)
 }
