@@ -118,7 +118,7 @@
     </FrameLayout>
 
     <FrameLayout
-        android:id="@+id/fragment_main_statistics_element"
+        android:id="@+id/fragment_main_history_element"
         android:layout_width="match_parent"
         android:layout_height="140dp"
         android:layout_marginTop="25dp"
@@ -129,22 +129,22 @@
         android:layout_below="@id/fragment_main_exercises_element">
 
         <TextView
-            android:id="@+id/fragment_main_statistics_text_view"
+            android:id="@+id/fragment_main_history_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="25dp"
-            android:text="@string/fragment_main_statistics_text"
+            android:text="@string/fragment_main_history_text"
             android:textColor="@android:color/black"
             android:textSize="25sp"/>
 
         <TextView
-            android:id="@+id/fragment_main_statistics_description_text_view"
+            android:id="@+id/fragment_main_history_description_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="75dp"
-            android:text="@string/fragment_main_statistics_description"
+            android:text="@string/fragment_main_history_description"
             android:textStyle="normal"
             android:textColor="@android:color/black"
             android:textSize="15sp"/>
