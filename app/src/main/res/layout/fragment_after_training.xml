@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_after_training_screen">
+
+    <RelativeLayout
+        android:id="@+id/fragment_after_training_screen_bar"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/fragment_after_training_screen_bar"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="25dp">
+
+        <TextView
+            android:id="@+id/fragment_after_training_screen_greeting_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:textSize="30sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:id="@+id/fragment_after_training_screen_completed1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fragment_after_training_screen_greeting_text"
+            android:textColor="@android:color/black"
+            android:text="@string/fragment_after_training_screen_completed1"
+            android:textSize="25sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"/>
+
+        <LinearLayout
+            android:id="@+id/fragment_after_training_screen_completed_texts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/fragment_after_training_screen_completed1">
+
+            <TextView
+                android:id="@+id/fragment_after_training_screen_completed2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:text="@string/fragment_after_training_screen_workout_text"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/fragment_after_training_screen_amount_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:textStyle="bold"
+                android:textSize="25sp"/>
+
+            <TextView
+                android:id="@+id/fragment_after_training_screen_completed3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/black"
+                android:text="@string/fragment_after_training_screen_times_text"
+                android:textSize="25sp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/fragment_after_training_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fragment_after_training_screen_completed_texts"
+            android:layout_centerHorizontal="true"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="20dp"
+            android:textSize="25sp"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fragment_after_training_screen_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            app:fabCustomSize="80dp"
+            app:borderWidth="0dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="70dp"
+            android:src="@drawable/ic_done"
+            android:backgroundTint="#c4c4c4"
+            android:contentDescription="Confirm button" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
