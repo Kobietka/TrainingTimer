@@ -3,6 +3,7 @@ package com.kobietka.trainingtimer.presentaion.ui.fragmenttrainingscreen
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -62,8 +63,9 @@ class TrainingScreenFragment : BaseFragment() {
             }
         })
 
-        viewModel.onTrainingEnd {
-            navController.navigate(R.id.action_trainingScreenFragment_to_trainFragment)
+        viewModel.onTrainingEnd { time, workoutId ->
+            val bundle = bundleOf("time" to time, "workoutId" to workoutId)
+            navController.navigate(R.id.action_trainingScreenFragment_to_afterTrainingFragment, bundle)
         }
 
         fragment_training_screen_fab.setOnClickListener {
