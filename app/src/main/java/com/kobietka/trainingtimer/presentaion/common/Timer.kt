@@ -11,6 +11,7 @@ class Timer {
     private lateinit var onPause: () -> Unit
     private lateinit var onResume: () -> Unit
     private lateinit var onStart: () -> Unit
+    private lateinit var onCountUpStop: (time: Int) -> Unit
 
     var isPaused = false
     var wasRunning = false
@@ -18,6 +19,15 @@ class Timer {
     var isRunning = false
     var timeLeftThisCycle = 0
     var timeLeft = 0
+    var isCountDownTimerRunning = true
+    var countUpTime = 0
+
+    suspend fun countUp(){
+        while(isCountDownTimerRunning){
+            countUpTime++
+            delay(1000)
+        }
+    }
 
     suspend fun start(seconds: Int){
         withContext(Dispatchers.Main){
@@ -42,6 +52,11 @@ class Timer {
                 onFinish.invoke(isRest)
             }
         }
+    }
+
+    fun stopCountUp(){
+        onCountUpStop.invoke(countUpTime)
+        isCountDownTimerRunning = false
     }
 
     fun pause(){
@@ -76,6 +91,10 @@ class Timer {
 
     fun onResume(function: () -> Unit){
         onResume = function
+    }
+
+    fun setOnCountUpStop(function: (time: Int) -> Unit) {
+        onCountUpStop = function
     }
 
 }
