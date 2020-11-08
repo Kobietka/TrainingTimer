@@ -3,6 +3,7 @@ package com.kobietka.trainingtimer.di
 import com.kobietka.trainingtimer.presentaion.ui.MainActivity
 import com.kobietka.trainingtimer.presentaion.ui.fragmentaddexercise.ExerciseAddFragment
 import com.kobietka.trainingtimer.presentaion.ui.fragmentaddworkout.WorkoutAddFragment
+import com.kobietka.trainingtimer.presentaion.ui.fragmentaftertraining.AfterTrainingFragment
 import com.kobietka.trainingtimer.presentaion.ui.fragmentchooseexercise.ChooseExerciseFragment
 import com.kobietka.trainingtimer.presentaion.ui.fragmenteditexercise.EditExerciseFragment
 import com.kobietka.trainingtimer.presentaion.ui.fragmenteditworkout.EditWorkoutFragment
@@ -29,4 +30,5 @@ interface PresentationComponent {
     fun inject(trainFragment: TrainFragment)
     fun inject(trainingScreenFragment: TrainingScreenFragment)
     fun inject(historyFragment: HistoryFragment)
+    fun inject(afterTrainingFragment: AfterTrainingFragment)
 }
