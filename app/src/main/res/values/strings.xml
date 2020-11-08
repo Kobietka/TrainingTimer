@@ -17,4 +17,7 @@
     <string name="fragment_create_workout_text">Create Workout</string>
     <string name="fragment_edit_workout_text">Edit workout</string>
     <string name="fragment_choose_exercise_text">Choose exercise</string>
+    <string name="fragment_after_training_screen_completed1">You have completed this</string>
+    <string name="fragment_after_training_screen_workout_text">workout</string>
+    <string name="fragment_after_training_screen_times_text">times</string>
 </resources>
