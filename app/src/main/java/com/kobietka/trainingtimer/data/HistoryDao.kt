@@ -20,4 +20,7 @@ interface HistoryDao {
     @Query("SELECT * FROM history where id = :id")
     fun getById(id: Int): Maybe<HistoryEntity>
 
+    @Query("SELECT * FROM history where workoutId = :id")
+    fun getAllEntriesByWorkoutId(id: Int): Observable<List<HistoryEntity>>
+
 }

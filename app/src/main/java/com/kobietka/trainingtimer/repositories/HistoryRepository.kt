@@ -23,4 +23,8 @@ class HistoryRepository
         return historyDao.getById(id)
     }
 
+    fun getAllEntriesByWorkoutId(id: Int): Observable<List<HistoryEntity>> {
+        return historyDao.getAllEntriesByWorkoutId(id)
+    }
+
 }
