@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/fragment_history">
+
+    <RelativeLayout
+        android:id="@+id/fragment_history_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+
+        <ImageView
+            android:id="@+id/fragment_history_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_back_arrow"
+            android:layout_marginTop="1dp"/>
+
+        <TextView
+            android:id="@+id/fragment_history_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/fragment_history_back_arrow"
+            android:text="@string/fragment_main_history_text"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:layout_marginStart="15dp" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragment_history_rv"
+        android:layout_below="@+id/fragment_history_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="20dp"/>
+
+
+</RelativeLayout>
