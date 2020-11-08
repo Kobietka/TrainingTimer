@@ -22,8 +22,8 @@ class HistoryAdapter
     var ids = listOf<Int>()
     lateinit var lifecycleOwner: LifecycleOwner
 
-    fun updateList(list: List<Int>){
-        ids = list
+    private fun updateList(list: List<Int>){
+        ids = list.reversed()
         notifyDataSetChanged()
     }
 
