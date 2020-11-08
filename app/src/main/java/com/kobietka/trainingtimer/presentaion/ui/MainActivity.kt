@@ -23,40 +23,10 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
 
-    @Inject lateinit var launchEvents: Observable<EventType>
-    private val compositeDisposable = CompositeDisposable()
-    lateinit var navController: NavController
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         presentationComponent.inject(this)
-
-        val host = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        navController = host.navController
-
-        compositeDisposable.add(
-            launchEvents.subscribe(this::launchEvents)
-        )
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        compositeDisposable.clear()
-    }
-
-    private fun launchEvents(eventType: EventType){
-        if(eventType.clickId == ClickId.EditExercise){
-            navController.navigate(R.id.action_exercisesFragment_to_editExerciseFragment)
-        } else if(eventType.clickId == ClickId.EditWorkout){
-            navController.navigate(R.id.action_workoutsFragment_to_editWorkoutFragment)
-        } else if(eventType.clickId == ClickId.AddExercise) {
-            navController.navigate(R.id.action_editWorkoutFragment_to_chooseExerciseFragment)
-        } else if(eventType.clickId == ClickId.EditWorkoutFromChoosing){
-           navController.navigate(R.id.action_chooseExerciseFragment_to_editWorkoutFragment)
-        } else if(eventType.clickId == ClickId.Play) {
-            navController.navigate(R.id.action_trainFragment_to_trainingScreenFragment)
-        }
     }
 
 }

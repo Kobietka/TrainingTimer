@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.kobietka.trainingtimer.models.ClickId
 import com.kobietka.trainingtimer.models.EventType
 import com.kobietka.trainingtimer.presentaion.ui.rvs.EditWorkoutAdapter
+import com.kobietka.trainingtimer.repositories.WorkoutRelationRepository
 import com.kobietka.trainingtimer.repositories.WorkoutRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -16,13 +17,13 @@ import javax.inject.Inject
 
 
 class EditWorkoutUIViewModel
-@Inject constructor(private val workoutRepository: WorkoutRepository, private val launchEvents: Subject<EventType>){
+@Inject constructor(private val workoutRepository: WorkoutRepository,
+                    private val workoutRelationRepository: WorkoutRelationRepository){
 
     val compositeDisposable = CompositeDisposable()
     val ids = BehaviorSubject.create<Int>().toSerialized()
     private val names = BehaviorSubject.create<String>().toSerialized()
     private val restTimes = BehaviorSubject.create<Int>().toSerialized()
-    private val addExercise = BehaviorSubject.create<ClickId>().toSerialized()
 
     private val _name = MutableLiveData<String>()
     private val _restTime = MutableLiveData<Int>()
@@ -31,10 +32,6 @@ class EditWorkoutUIViewModel
         compositeDisposable.add(
             ids.subscribe(this::loadWorkout)
         )
-
-        addExercise.withLatestFrom(ids, { clickId, workoutId ->
-            launchEvents.onNext(EventType(clickId, workoutId))
-        }).subscribe()
 
         restTimes.withLatestFrom(ids, names, { restTime, id, name ->
             saveWorkout(id, name, restTime)
@@ -53,13 +50,18 @@ class EditWorkoutUIViewModel
         ids.onNext(id)
     }
 
-    fun onAddExerciseClick(){
-        addExercise.onNext(ClickId.AddExercise)
-    }
-
     fun onSaveClick(name: String, restTime: Int){
         names.onNext(name)
         restTimes.onNext(restTime)
+    }
+
+    fun deleteRelation(id: Int){
+        compositeDisposable.add(
+            workoutRelationRepository.deleteById(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe()
+        )
     }
 
     private fun saveWorkout(workoutId: Int, name: String, restTime: Int){

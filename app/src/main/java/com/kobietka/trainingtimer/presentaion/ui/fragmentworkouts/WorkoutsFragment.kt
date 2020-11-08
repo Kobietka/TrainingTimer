@@ -2,6 +2,7 @@ package com.kobietka.trainingtimer.presentaion.ui.fragmentworkouts
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +13,7 @@ import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.fragmentaddworkout.WorkoutAddFragment
 import com.kobietka.trainingtimer.presentaion.ui.fragmentmainmenu.MainFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.WorkoutsAdapter
+import com.kobietka.trainingtimer.presentaion.viewmodels.WorkoutsUIViewModel
 import io.reactivex.Observable
 import io.reactivex.subjects.Subject
 import kotlinx.android.synthetic.main.fragment_workouts.*
@@ -21,6 +23,7 @@ import javax.inject.Inject
 class WorkoutsFragment : BaseFragment() {
 
     @Inject lateinit var adapter: WorkoutsAdapter
+    @Inject lateinit var viewModel: WorkoutsUIViewModel
     lateinit var recyclerView: RecyclerView
     lateinit var navController: NavController
 
@@ -39,6 +42,13 @@ class WorkoutsFragment : BaseFragment() {
         )
 
         adapter.setLifeCycleOwner(viewLifecycleOwner)
+        adapter.onEditClicks {
+            val bundle = bundleOf("workoutId" to it.toString())
+            navController.navigate(R.id.action_workoutsFragment_to_editWorkoutFragment, bundle)
+        }
+        adapter.onDeleteClicks {
+            viewModel.deleteWorkout(it)
+        }
         recyclerView.adapter = adapter
 
         fragment_workouts_add.setOnClickListener {

@@ -3,11 +3,13 @@ package com.kobietka.trainingtimer.presentaion.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kobietka.trainingtimer.data.ExerciseEntity
+import com.kobietka.trainingtimer.data.HistoryEntity
 import com.kobietka.trainingtimer.data.WorkoutEntity
 import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.presentaion.common.TimeToString
 import com.kobietka.trainingtimer.presentaion.common.Timer
 import com.kobietka.trainingtimer.repositories.ExerciseRepository
+import com.kobietka.trainingtimer.repositories.HistoryRepository
 import com.kobietka.trainingtimer.repositories.WorkoutRelationRepository
 import com.kobietka.trainingtimer.repositories.WorkoutRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -18,6 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
+import java.util.*
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -25,7 +28,8 @@ import kotlin.properties.Delegates
 class TrainingScreenViewModel
 @Inject constructor(private val relationRepository: WorkoutRelationRepository,
                     private val exercisesRepository: ExerciseRepository,
-                    private val workoutRepository: WorkoutRepository){
+                    private val workoutRepository: WorkoutRepository,
+                    private val historyRepository: HistoryRepository){
 
 
     lateinit var onTrainingEndFunction: () -> Unit
@@ -91,6 +95,10 @@ class TrainingScreenViewModel
                     lastWasBreak = true
                 } else {
                     if(currentExerciseNumber == exercisesIdsList.size){
+                        historyRepository.insert(HistoryEntity(null, currentWorkout.id!!, getCurrentDate()))
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe()
                         onTrainingEndFunction.invoke()
                         clearComposite()
                     } else {
@@ -129,6 +137,10 @@ class TrainingScreenViewModel
             } else timer.pause()
         } else {
             if(currentExerciseNumber == exercisesIdsList.size){
+                historyRepository.insert(HistoryEntity(null, currentWorkout.id!!, getCurrentDate()))
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe()
                 onTrainingEndFunction.invoke()
                 clearComposite()
             } else {
@@ -256,6 +268,13 @@ class TrainingScreenViewModel
                     _fabGone.value = true
                 }
         )
+    }
+
+    fun getCurrentDate(): String {
+        val calendar = Calendar.getInstance()
+        return calendar.get(Calendar.DAY_OF_MONTH).toString() + "/" +
+                calendar.get(Calendar.MONTH).toString() + "/" +
+                calendar.get(Calendar.YEAR).toString()
     }
 
 }

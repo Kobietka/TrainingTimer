@@ -34,6 +34,10 @@ class MainFragment : BaseFragment() {
             navController.navigate(R.id.action_mainFragment_to_exercisesFragment)
         }
 
+        fragment_main_history_element.setOnClickListener {
+            navController.navigate(R.id.action_mainFragment_to_historyFragment)
+        }
+
     }
 
     override fun getLayout(): Int {

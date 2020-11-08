@@ -2,10 +2,7 @@ package com.kobietka.trainingtimer.di
 
 import android.content.Context
 import androidx.room.Room
-import com.kobietka.trainingtimer.data.AppDatabase
-import com.kobietka.trainingtimer.data.ExerciseDao
-import com.kobietka.trainingtimer.data.WorkoutDao
-import com.kobietka.trainingtimer.data.WorkoutRelationDao
+import com.kobietka.trainingtimer.data.*
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named
@@ -37,6 +34,11 @@ class DatabaseModule {
     @Provides
     fun provideWorkoutRelationDao(appDatabase: AppDatabase): WorkoutRelationDao {
         return appDatabase.workoutRelationDao()
+    }
+
+    @Provides
+    fun provideHistoryDao(appDatabase: AppDatabase): HistoryDao {
+        return appDatabase.historyDao()
     }
 
 }

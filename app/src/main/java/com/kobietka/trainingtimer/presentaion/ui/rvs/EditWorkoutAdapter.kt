@@ -2,13 +2,16 @@ package com.kobietka.trainingtimer.presentaion.ui.rvs
 
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.models.ClickId
 import com.kobietka.trainingtimer.models.EventType
+import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.presentaion.viewmodels.EditWorkoutViewModel
 import com.kobietka.trainingtimer.repositories.ExerciseRepository
 import com.kobietka.trainingtimer.repositories.WorkoutRelationRepository
@@ -22,25 +25,15 @@ import io.reactivex.subjects.Subject
 import javax.inject.Inject
 import javax.inject.Provider
 
-
 class EditWorkoutAdapter
 @Inject constructor(private val workoutRelationRepository: WorkoutRelationRepository,
-                    private val modelProvider: Provider<EditWorkoutViewModel>,
-                    private val launchEvents: Observable<EventType>) : RecyclerView.Adapter<EditWorkoutViewHolder>() {
+                    private val modelProvider: Provider<EditWorkoutViewModel>) : RecyclerView.Adapter<EditWorkoutViewHolder>() {
 
     var ids = listOf<Int>()
     private val compositeDisposable = CompositeDisposable()
     lateinit var lifecycleOwner: LifecycleOwner
-    private val workoutIds = BehaviorSubject.create<Int>().toSerialized()
-
-    init {
-        compositeDisposable.add(
-            launchEvents.subscribe {
-                if(it.clickId == ClickId.EditWorkout) workoutIds.onNext(it.itemId)
-                if(it.clickId == ClickId.EditWorkoutFromChoosing) workoutIds.onNext(it.itemId)
-            }
-        )
-    }
+    lateinit var onItemClick: (position: Int) -> Unit
+    var workoutID = 0
 
     private fun updateList(idsList: List<Int>){
         ids = idsList
@@ -51,20 +44,28 @@ class EditWorkoutAdapter
         this.lifecycleOwner = lifecycleOwner
     }
 
+    fun setWorkoutId(id: Int){
+        workoutID = id
+    }
+
+    fun setItemClick(function: (position: Int) -> Unit){
+        onItemClick = function
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EditWorkoutViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val view = inflater.inflate(R.layout.recycler_view_edit_workout_entry, parent, false)
 
         val viewModel = modelProvider.get()
-        view.findViewById<ImageView>(R.id.fragment_edit_workout_entry_delete_icon).setOnClickListener {
-            viewModel.onDeleteClick()
-        }
 
         return EditWorkoutViewHolder(view, viewModel, lifecycleOwner)
     }
 
     override fun onBindViewHolder(holder: EditWorkoutViewHolder, position: Int) {
         holder.viewModel.switchId(ids[position])
+        holder.itemView.findViewById<ImageView>(R.id.fragment_edit_workout_entry_delete_icon).setOnClickListener {
+            onItemClick(ids[position])
+        }
     }
 
     override fun getItemCount(): Int {
@@ -73,14 +74,14 @@ class EditWorkoutAdapter
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
-        workoutIds.withLatestFrom(launchEvents, { workoutId, eventType ->
-            workoutRelationRepository.getRelationIdsByWorkoutId(workoutId)
+        compositeDisposable.add(
+            workoutRelationRepository.getRelationIdsByWorkoutId(workoutID)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     updateList(it)
                 }
-        }).subscribe()
+        )
     }
 
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
@@ -97,5 +98,4 @@ class EditWorkoutAdapter
         super.onViewDetachedFromWindow(holder)
         holder.onDetach()
     }
-
 }

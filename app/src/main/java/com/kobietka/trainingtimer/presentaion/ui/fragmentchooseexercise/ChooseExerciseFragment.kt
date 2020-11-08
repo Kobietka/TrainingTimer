@@ -1,7 +1,9 @@
 package com.kobietka.trainingtimer.presentaion.ui.fragmentchooseexercise
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,13 +25,12 @@ import javax.inject.Inject
 
 class ChooseExerciseFragment : BaseFragment() {
 
-    val compositeDisposable = CompositeDisposable()
     @Inject lateinit var adapter: ChooseExerciseAdapter
-    @Inject lateinit var launchEvents: Observable<EventType>
-    @Inject lateinit var workoutIdSender: Subject<Int>
+    @Inject lateinit var viewModel: ChooseExerciseUIViewModel
     lateinit var recyclerView: RecyclerView
     private lateinit var navController: NavController
-    @Inject lateinit var viewModel: ChooseExerciseUIViewModel
+
+    var currentWorkoutId = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,17 +39,12 @@ class ChooseExerciseFragment : BaseFragment() {
         val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = host.navController
 
-        compositeDisposable.add(
-            launchEvents.subscribe {
-                if(it.clickId == ClickId.AddExercise){
-                    workoutIdSender.onNext(it.itemId)
-                    viewModel.switchWorkoutId(it.itemId)
-                }
-            }
-        )
+        currentWorkoutId = requireArguments().getString("workoutId")!!.toInt()
+        viewModel.switchWorkoutId(currentWorkoutId)
 
         fragment_choose_exercise_back_arrow.setOnClickListener {
-            viewModel.onBackPressed()
+            val bundle = bundleOf("workoutId" to currentWorkoutId.toString())
+            navController.navigate(R.id.action_chooseExerciseFragment_to_editWorkoutFragment, bundle)
         }
 
         recyclerView = view.findViewById(R.id.fragment_choose_exercise_rv)
@@ -59,13 +55,13 @@ class ChooseExerciseFragment : BaseFragment() {
         )
 
         adapter.setLifeCycleOwner(viewLifecycleOwner)
+        adapter.setOnAddClickFunction {
+            viewModel.switchExerciseId(it)
+            val bundle = bundleOf("workoutId" to currentWorkoutId.toString())
+            navController.navigate(R.id.action_chooseExerciseFragment_to_editWorkoutFragment, bundle)
+        }
         recyclerView.adapter = adapter
 
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        compositeDisposable.clear()
     }
 
     override fun getLayout(): Int {
