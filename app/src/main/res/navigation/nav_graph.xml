@@ -216,6 +216,13 @@
             app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
             app:exitAnim="@transition/slide_out_right" />
+        <action
+            android:id="@+id/action_trainingScreenFragment_to_afterTrainingFragment"
+            app:destination="@id/afterTrainingFragment"
+            app:popEnterAnim="@transition/slide_in_left"
+            app:popExitAnim="@transition/slide_out_right"
+            app:enterAnim="@transition/slide_in_right"
+            app:exitAnim="@transition/slide_out_left"/>
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
@@ -228,6 +235,24 @@
             app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
             app:exitAnim="@transition/slide_out_right"/>
+    </fragment>
+    <fragment
+        android:id="@+id/afterTrainingFragment"
+        android:name="com.kobietka.trainingtimer.presentaion.ui.fragmentaftertraining.AfterTrainingFragment"
+        android:label="AfterTrainingFragment" >
+
+        <argument android:name="workoutId" android:defaultValue="None"/>
+        <argument android:name="time" android:defaultValue="None"/>
+
+        <action
+            android:id="@+id/action_afterTrainingFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popEnterAnim="@transition/slide_in_right"
+            app:popExitAnim="@transition/slide_out_left"
+            app:enterAnim="@transition/slide_in_left"
+            app:exitAnim="@transition/slide_out_right"
+            app:popUpTo="@id/afterTrainingFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 
 </navigation>
