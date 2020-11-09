@@ -6,5 +6,6 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "history")
 data class HistoryEntity(@PrimaryKey val id: Int?,
+                         @ColumnInfo val workoutName: String,
                          @ColumnInfo val workoutId: Int,
                          @ColumnInfo val completeDate: String)
