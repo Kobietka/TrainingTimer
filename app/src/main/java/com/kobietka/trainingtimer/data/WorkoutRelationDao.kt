@@ -33,4 +33,7 @@ interface WorkoutRelationDao {
     @Query("DELETE FROM workoutRelation where id = :id")
     fun deleteById(id: Int): Completable
 
+    @Query("SELECT workoutId FROM workoutRelation where exerciseId = :id")
+    fun getByExerciseId(id: Int): Observable<List<Int>>
+
 }

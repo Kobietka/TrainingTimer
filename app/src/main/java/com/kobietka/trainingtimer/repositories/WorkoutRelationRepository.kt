@@ -40,4 +40,8 @@ class WorkoutRelationRepository
         return workoutRelationDao.getRelationIdsByWorkoutId(workoutId)
     }
 
+    fun getByExerciseId(id: Int): Observable<List<Int>> {
+        return workoutRelationDao.getByExerciseId(id)
+    }
+
 }
