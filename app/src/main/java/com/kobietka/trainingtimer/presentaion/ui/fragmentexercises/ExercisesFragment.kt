@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.fragmentaddexercise.ExerciseAddFragment
@@ -49,11 +50,24 @@ class ExercisesFragment : BaseFragment() {
             navController.navigate(R.id.action_exercisesFragment_to_editExerciseFragment, bundle)
         }
 
-        adapter.onDeleteClicks {
-            viewModel.deleteExercise(it)
+        adapter.onDeleteClicks { exerciseId ->
+            viewModel.checkIfExerciseIsInWorkouts(exerciseId)
         }
 
         recyclerView.adapter = adapter
+
+        viewModel.setIsInWorkout { exist, exerciseId ->
+            if(!exist){
+                viewModel.deleteExercise(exerciseId)
+            } else {
+                Snackbar.make(view,
+                    "Deleting will also delete this exercise from all existing workouts",
+                    Snackbar.LENGTH_LONG)
+                    .setAction("Delete") { _ ->
+                        viewModel.deleteExercise(exerciseId)
+                    }.show()
+            }
+        }
 
         viewModel.textIfNoExercises().observe(viewLifecycleOwner, {
             if(!it) fragment_exercises_text_if_no_exercises.visibility = View.GONE
