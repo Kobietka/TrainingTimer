@@ -26,7 +26,6 @@ class HistoryViewModel
         compositeDisposable.add(
             ids.subscribe {
                 loadHistory(it)
-                loadWorkout(it)
             }
         )
     }
@@ -43,17 +42,6 @@ class HistoryViewModel
         ids.onNext(id)
     }
 
-    private fun loadWorkout(id: Int){
-        compositeDisposable.add(
-            workoutRepository.getById(id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    _name.value = it.name
-                }
-        )
-    }
-
     private fun loadHistory(id: Int){
         compositeDisposable.add(
             historyRepository.getById(id)
@@ -61,6 +49,7 @@ class HistoryViewModel
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     _completeDate.value = it.completeDate
+                    _name.value = it.workoutName
                 }
         )
     }
