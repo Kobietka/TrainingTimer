@@ -99,7 +99,7 @@ class TrainingScreenViewModel
                 } else {
                     if(currentExerciseNumber == exercisesIdsList.size){
                         overallTimer.stopCountUp()
-                        historyRepository.insert(HistoryEntity(null, currentWorkout.id!!, getCurrentDate()))
+                        historyRepository.insert(HistoryEntity(null, currentWorkout.name, currentWorkout.id!!, getCurrentDate()))
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe()
@@ -146,7 +146,7 @@ class TrainingScreenViewModel
         } else {
             if(currentExerciseNumber == exercisesIdsList.size){
                 overallTimer.stopCountUp()
-                historyRepository.insert(HistoryEntity(null, currentWorkout.id!!, getCurrentDate()))
+                historyRepository.insert(HistoryEntity(null, currentWorkout.name, currentWorkout.id!!, getCurrentDate()))
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe()
