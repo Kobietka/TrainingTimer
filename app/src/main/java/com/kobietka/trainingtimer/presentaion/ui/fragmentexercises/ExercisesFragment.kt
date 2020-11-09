@@ -3,6 +3,7 @@ package com.kobietka.trainingtimer.presentaion.ui.fragmentexercises
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
+import androidx.core.view.isGone
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
@@ -33,6 +34,8 @@ class ExercisesFragment : BaseFragment() {
         val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = host.navController
 
+        viewModel.loadExercises()
+
         recyclerView = view.findViewById(R.id.fragment_exercises_rv)
         recyclerView.layoutManager = LinearLayoutManager(
             activity,
@@ -51,6 +54,10 @@ class ExercisesFragment : BaseFragment() {
         }
 
         recyclerView.adapter = adapter
+
+        viewModel.textIfNoExercises().observe(viewLifecycleOwner, {
+            if(!it) fragment_exercises_text_if_no_exercises.visibility = View.GONE
+        })
 
         fragment_exercises_back_arrow.setOnClickListener {
             navController.navigate(R.id.action_exercisesFragment_to_mainFragment)
