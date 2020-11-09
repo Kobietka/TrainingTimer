@@ -61,7 +61,7 @@
             app:popEnterAnim="@transition/slide_in_right"
             app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
-            app:exitAnim="@transition/slide_out_right"/>
+            app:exitAnim="@transition/slide_out_right" />
     </fragment>
 
     <fragment
@@ -104,7 +104,9 @@
             app:popEnterAnim="@transition/slide_in_right"
             app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
-            app:exitAnim="@transition/slide_out_right"/>
+            app:exitAnim="@transition/slide_out_right"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/exercisesFragment"/>
     </fragment>
 
     <fragment
@@ -117,7 +119,9 @@
             app:popEnterAnim="@transition/slide_in_right"
             app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
-            app:exitAnim="@transition/slide_out_right"/>
+            app:exitAnim="@transition/slide_out_right"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/exerciseAddFragment"/>
     </fragment>
 
     <fragment
@@ -133,16 +137,16 @@
             app:popEnterAnim="@transition/slide_in_left"
             app:popExitAnim="@transition/slide_out_right"
             app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left"
-            app:popUpTo="@id/editWorkoutFragment"
-            app:popUpToInclusive="true"/>
+            app:exitAnim="@transition/slide_out_left" />
         <action
             android:id="@+id/action_editWorkoutFragment_to_workoutsFragment"
             app:destination="@id/workoutsFragment"
             app:popEnterAnim="@transition/slide_in_right"
             app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
-            app:exitAnim="@transition/slide_out_right"/>
+            app:exitAnim="@transition/slide_out_right"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/workoutsFragment"/>
     </fragment>
 
     <fragment
@@ -162,7 +166,9 @@
             app:popEnterAnim="@transition/slide_in_right"
             app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
-            app:exitAnim="@transition/slide_out_right"/>
+            app:exitAnim="@transition/slide_out_right"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/workoutAddFragment"/>
     </fragment>
 
     <fragment
@@ -178,7 +184,9 @@
             app:popEnterAnim="@transition/slide_in_right"
             app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
-            app:exitAnim="@transition/slide_out_right" />
+            app:exitAnim="@transition/slide_out_right"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/editWorkoutFragment"/>
     </fragment>
 
     <fragment
@@ -215,7 +223,9 @@
             app:popEnterAnim="@transition/slide_in_right"
             app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
-            app:exitAnim="@transition/slide_out_right" />
+            app:exitAnim="@transition/slide_out_right"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/trainingScreenFragment"/>
         <action
             android:id="@+id/action_trainingScreenFragment_to_afterTrainingFragment"
             app:destination="@id/afterTrainingFragment"
@@ -236,6 +246,7 @@
             app:enterAnim="@transition/slide_in_left"
             app:exitAnim="@transition/slide_out_right"/>
     </fragment>
+
     <fragment
         android:id="@+id/afterTrainingFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmentaftertraining.AfterTrainingFragment"
@@ -251,7 +262,7 @@
             app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
             app:exitAnim="@transition/slide_out_right"
-            app:popUpTo="@id/afterTrainingFragment"
+            app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="true"/>
     </fragment>
 
