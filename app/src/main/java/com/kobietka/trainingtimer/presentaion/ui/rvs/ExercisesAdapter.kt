@@ -3,6 +3,7 @@ package com.kobietka.trainingtimer.presentaion.ui.rvs
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
@@ -53,10 +54,10 @@ class ExercisesAdapter
 
     override fun onBindViewHolder(holder: ExerciseViewHolder, position: Int) {
         holder.viewModel.switchId(ids[position])
-        holder.itemView.findViewById<ImageView>(R.id.fragment_exercises_entry_edit_icon).setOnClickListener {
+        holder.itemView.findViewById<LinearLayout>(R.id.fragment_exercises_entry_edit_icon).setOnClickListener {
             onEditClick(ids[position])
         }
-        holder.itemView.findViewById<ImageView>(R.id.fragment_exercises_entry_delete_icon).setOnClickListener {
+        holder.itemView.findViewById<LinearLayout>(R.id.fragment_exercises_entry_delete_icon).setOnClickListener {
             onDeleteClick(ids[position])
         }
     }

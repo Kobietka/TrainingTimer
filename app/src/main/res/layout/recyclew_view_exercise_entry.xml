@@ -55,19 +55,36 @@
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="20dp">
 
-        <ImageView
-            android:id="@+id/fragment_exercises_entry_edit_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/ic_edit"
-            android:layout_marginEnd="30dp" />
 
-        <ImageView
-            android:id="@+id/fragment_exercises_entry_delete_icon"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_delete"
-            android:layout_toEndOf="@+id/fragment_exercises_entry_edit_icon"/>
+            android:id="@+id/fragment_exercises_entry_edit_icon"
+            android:background="@drawable/button_background_white"
+            android:layout_marginEnd="15dp">
+
+            <ImageView
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_edit" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_exercises_entry_delete_icon"
+            android:background="@drawable/button_background_white"
+            android:layout_toEndOf="@+id/fragment_exercises_entry_edit_icon">
+
+            <ImageView
+                android:layout_margin="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_delete" />
+
+        </LinearLayout>
 
     </RelativeLayout>
 

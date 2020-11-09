@@ -49,15 +49,16 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/fragment_train_entry_icons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginEnd="30dp">
+        android:layout_marginEnd="30dp"
+        android:id="@+id/fragment_train_entry_play_icon"
+        android:background="@drawable/button_background_white">
 
         <ImageView
-            android:id="@+id/fragment_train_entry_play_icon"
+            android:layout_margin="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/ic_play" />

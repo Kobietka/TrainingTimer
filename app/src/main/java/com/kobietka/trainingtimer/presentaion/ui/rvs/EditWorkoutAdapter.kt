@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
@@ -63,7 +64,7 @@ class EditWorkoutAdapter
 
     override fun onBindViewHolder(holder: EditWorkoutViewHolder, position: Int) {
         holder.viewModel.switchId(ids[position])
-        holder.itemView.findViewById<ImageView>(R.id.fragment_edit_workout_entry_delete_icon).setOnClickListener {
+        holder.itemView.findViewById<RelativeLayout>(R.id.fragment_edit_workout_entry_delete_icon).setOnClickListener {
             onItemClick(ids[position])
         }
     }

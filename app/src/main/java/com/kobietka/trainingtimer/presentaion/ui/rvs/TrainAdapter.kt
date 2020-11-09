@@ -3,6 +3,7 @@ package com.kobietka.trainingtimer.presentaion.ui.rvs
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
@@ -48,7 +49,7 @@ class TrainAdapter
 
     override fun onBindViewHolder(holder: TrainViewHolder, position: Int) {
         holder.viewModel.switchId(ids[position])
-        holder.itemView.findViewById<ImageView>(R.id.fragment_train_entry_play_icon).setOnClickListener {
+        holder.itemView.findViewById<RelativeLayout>(R.id.fragment_train_entry_play_icon).setOnClickListener {
             playClick(ids[position])
         }
     }
