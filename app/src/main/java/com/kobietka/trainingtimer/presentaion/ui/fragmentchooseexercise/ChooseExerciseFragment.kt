@@ -39,6 +39,8 @@ class ChooseExerciseFragment : BaseFragment() {
         val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = host.navController
 
+        viewModel.loadExercises()
+
         currentWorkoutId = requireArguments().getString("workoutId")!!.toInt()
         viewModel.switchWorkoutId(currentWorkoutId)
 
@@ -53,6 +55,10 @@ class ChooseExerciseFragment : BaseFragment() {
             RecyclerView.VERTICAL,
             false
         )
+
+        viewModel.textIfNoExercises().observe(viewLifecycleOwner, {
+            if(!it) fragment_choose_exercise_text_if_no_exercises.visibility = View.GONE
+        })
 
         adapter.setLifeCycleOwner(viewLifecycleOwner)
         adapter.setOnAddClickFunction {

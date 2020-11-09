@@ -42,6 +42,18 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/fragment_choose_exercise_text_if_no_exercises"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="normal"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="@string/fragment_choose_exercise_no_exercises_text"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragment_choose_exercise_rv"
         android:layout_below="@+id/fragment_choose_exercise_bar"
