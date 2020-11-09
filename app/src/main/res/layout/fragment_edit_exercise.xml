@@ -167,7 +167,7 @@
                 android:textAlignment="center"
                 android:hint="Count"
                 android:maxLines="1"
-                android:maxLength="28"
+                android:maxLength="6"
                 android:imeOptions="actionDone"
                 android:inputType="number"
                 android:background="@android:color/transparent"/>
