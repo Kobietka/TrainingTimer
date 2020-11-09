@@ -34,6 +34,8 @@ class WorkoutsFragment : BaseFragment() {
         val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = host.navController
 
+        viewModel.loadWorkouts()
+
         recyclerView = view.findViewById(R.id.fragment_workouts_rv)
         recyclerView.layoutManager = LinearLayoutManager(
             activity,
@@ -42,14 +44,20 @@ class WorkoutsFragment : BaseFragment() {
         )
 
         adapter.setLifeCycleOwner(viewLifecycleOwner)
+
         adapter.onEditClicks {
             val bundle = bundleOf("workoutId" to it.toString())
             navController.navigate(R.id.action_workoutsFragment_to_editWorkoutFragment, bundle)
         }
+
         adapter.onDeleteClicks {
             viewModel.deleteWorkout(it)
         }
         recyclerView.adapter = adapter
+
+        viewModel.textIfNoWorkouts().observe(viewLifecycleOwner, {
+            if(!it) fragment_workouts_text_if_no_exercises.visibility = View.GONE
+        })
 
         fragment_workouts_add.setOnClickListener {
             navController.navigate(R.id.action_workoutsFragment_to_workoutAddFragment)
