@@ -48,6 +48,10 @@ class TrainingScreenFragment : BaseFragment() {
             fragment_training_screen_time_or_repetition.text = it
         })
 
+        viewModel.nextExercise().observe(viewLifecycleOwner, {
+            fragment_training_screen_next_exercise.text = it
+        })
+
         viewModel.fabGone().observe(viewLifecycleOwner, {
             if(it) fragment_training_screen_fab.visibility = View.GONE
             else fragment_training_screen_fab.visibility = View.VISIBLE

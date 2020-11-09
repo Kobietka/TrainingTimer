@@ -62,6 +62,7 @@ class TrainingScreenViewModel
     private val _timeOrRep = MutableLiveData<String>()
     private val _playOrPause = MutableLiveData<Boolean>()
     private val _fabGone = MutableLiveData<Boolean>()
+    private val _nextExercise = MutableLiveData<String>()
 
     init {
 
@@ -85,6 +86,7 @@ class TrainingScreenViewModel
         timer.onFinish {
             if(firstRun){
                 switchExerciseId(exercisesIdsList[0])
+                _nextExercise.value = ""
                 _fabGone.value = false
                 firstRun = false
             } else {
@@ -92,6 +94,9 @@ class TrainingScreenViewModel
                     _exerciseName.value = "Break"
                     _exerciseNumber.value = "It's time to rest!"
                     _timeOrRep.value = converter.convert(currentWorkout.restTime)
+                    if(currentExerciseNumber < exercisesIdsList.size){
+                        loadNextExerciseName(exercisesIdsList[currentExerciseNumber])
+                    }
                     CoroutineScope(IO).launch {
                         timer.start(currentWorkout.restTime)
                     }
@@ -106,6 +111,7 @@ class TrainingScreenViewModel
                         onTrainingEndFunction.invoke(overallTime, currentWorkout.id.toString())
                         clearComposite()
                     } else {
+                        _nextExercise.value = ""
                         switchExerciseId(exercisesIdsList[currentExerciseNumber])
                         currentExerciseNumber++
                     }
@@ -153,11 +159,13 @@ class TrainingScreenViewModel
                 onTrainingEndFunction.invoke(overallTime, currentWorkout.id.toString())
                 clearComposite()
             } else {
-
                 if(!lastWasBreak){
                     _exerciseName.value = "Break"
                     _exerciseNumber.value = "It's time to rest!"
                     _timeOrRep.value = converter.convert(currentWorkout.restTime)
+                    if(currentExerciseNumber <= exercisesIdsList.size){
+                        loadNextExerciseName(exercisesIdsList[currentExerciseNumber])
+                    }
                     CoroutineScope(IO).launch {
                         timer.start(currentWorkout.restTime)
                     }
@@ -171,6 +179,7 @@ class TrainingScreenViewModel
                         }
                     } else timer.pause()
                     if(!timer.isRunning && !timer.isPaused){
+                        _nextExercise.value = ""
                         switchExerciseId(exercisesIdsList[currentExerciseNumber])
                         currentExerciseNumber++
                     }
@@ -181,6 +190,10 @@ class TrainingScreenViewModel
 
     fun fabGone(): LiveData<Boolean> {
         return _fabGone
+    }
+
+    fun nextExercise(): LiveData<String> {
+        return _nextExercise
     }
 
     fun exerciseName(): LiveData<String> {
@@ -261,6 +274,17 @@ class TrainingScreenViewModel
         )
     }
 
+    private fun loadNextExerciseName(id: Int) {
+        compositeDisposable.add(
+            exercisesRepository.getById(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe{
+                    _nextExercise.value = "Next: ${it.name}"
+                }
+        )
+    }
+
     private fun loadExercises(workoutId: Int){
         compositeDisposable.add(
             relationRepository.getExercisesByWorkoutId(workoutId)
@@ -271,6 +295,7 @@ class TrainingScreenViewModel
                     _exerciseName.value = "Get Ready"
                     _exerciseNumber.value = "Training will start soon"
                     _timeOrRep.value = converter.convert(5)
+                    loadNextExerciseName(exercisesIdsList[0])
                     CoroutineScope(IO).launch {
                         timer.start(5)
                     }

@@ -34,7 +34,6 @@
             android:id="@+id/fragment_training_screen_exercise_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Jumping rope"
             android:textStyle="bold"
             android:textColor="@android:color/black"
             android:textSize="30sp"
@@ -52,11 +51,20 @@
             android:layout_marginTop="10dp"/>
 
         <TextView
+            android:id="@+id/fragment_training_screen_next_exercise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/fragment_training_screen_exercise_count"
+            android:textColor="#c4c4c4"
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
             android:id="@+id/fragment_training_screen_time_or_repetition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/fragment_training_screen_exercise_count"
-            android:text="0:30"
             android:textColor="@android:color/black"
             android:textSize="80sp"
             android:layout_centerHorizontal="true"
