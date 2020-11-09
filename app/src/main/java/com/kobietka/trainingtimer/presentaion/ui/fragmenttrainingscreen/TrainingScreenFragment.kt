@@ -3,6 +3,7 @@ package com.kobietka.trainingtimer.presentaion.ui.fragmenttrainingscreen
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.navigation.NavController
@@ -70,6 +71,11 @@ class TrainingScreenFragment : BaseFragment() {
         viewModel.onTrainingEnd { time, workoutId ->
             val bundle = bundleOf("time" to time, "workoutId" to workoutId)
             navController.navigate(R.id.action_trainingScreenFragment_to_afterTrainingFragment, bundle)
+        }
+
+        viewModel.onWorkoutZeroExercises {
+            Toast.makeText(activity, "Cannot start while workout has 0 exercises", Toast.LENGTH_LONG).show()
+            navController.navigate(R.id.action_trainingScreenFragment_to_trainFragment)
         }
 
         fragment_training_screen_fab.setOnClickListener {

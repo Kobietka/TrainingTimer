@@ -34,6 +34,7 @@ class TrainingScreenViewModel
 
 
     lateinit var onTrainingEndFunction: (time: String, workoutId: String) -> Unit
+    lateinit var onWorkoutHaveZeroExercises: () -> Unit
 
     lateinit var nextMeasurementType: MeasurementType
     lateinit var nextName: String
@@ -245,6 +246,10 @@ class TrainingScreenViewModel
         onTrainingEndFunction = function
     }
 
+    fun onWorkoutZeroExercises(function: () -> Unit){
+        onWorkoutHaveZeroExercises = function
+    }
+
     fun clearComposite(){
         compositeDisposable.clear()
     }
@@ -291,17 +296,20 @@ class TrainingScreenViewModel
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    exercisesIdsList = it
-                    _exerciseName.value = "Get Ready"
-                    _exerciseNumber.value = "Training will start soon"
-                    _timeOrRep.value = converter.convert(5)
-                    loadNextExerciseName(exercisesIdsList[0])
-                    CoroutineScope(IO).launch {
-                        timer.start(5)
-                    }
-                    _fabGone.value = true
-                    CoroutineScope(IO).launch {
-                        overallTimer.countUp()
+                    if(it.isEmpty()) onWorkoutHaveZeroExercises.invoke()
+                    else {
+                        exercisesIdsList = it
+                        _exerciseName.value = "Get Ready"
+                        _exerciseNumber.value = "Training will start soon"
+                        _timeOrRep.value = converter.convert(5)
+                        loadNextExerciseName(exercisesIdsList[0])
+                        CoroutineScope(IO).launch {
+                            timer.start(5)
+                        }
+                        _fabGone.value = true
+                        CoroutineScope(IO).launch {
+                            overallTimer.countUp()
+                        }
                     }
                 }
         )
