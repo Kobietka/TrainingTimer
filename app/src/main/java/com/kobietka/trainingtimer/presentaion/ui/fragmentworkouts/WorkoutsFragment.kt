@@ -51,7 +51,7 @@ class WorkoutsFragment : BaseFragment() {
             navController.navigate(R.id.action_workoutsFragment_to_editWorkoutFragment, bundle)
         }
 
-        adapter.onDeleteClicks {workoutId ->
+        adapter.onDeleteClicks { workoutId ->
             Snackbar.make(view, "Delete this workout? This action is not reversible", Snackbar.LENGTH_LONG)
                 .setAction("DELETE") {
                     viewModel.deleteWorkout(workoutId)
