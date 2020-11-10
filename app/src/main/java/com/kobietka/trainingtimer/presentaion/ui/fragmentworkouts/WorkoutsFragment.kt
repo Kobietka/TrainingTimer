@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.models.EventType
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
@@ -50,8 +51,11 @@ class WorkoutsFragment : BaseFragment() {
             navController.navigate(R.id.action_workoutsFragment_to_editWorkoutFragment, bundle)
         }
 
-        adapter.onDeleteClicks {
-            viewModel.deleteWorkout(it)
+        adapter.onDeleteClicks {workoutId ->
+            Snackbar.make(view, "Delete this workout? This action is not reversible", Snackbar.LENGTH_LONG)
+                .setAction("DELETE") {
+                    viewModel.deleteWorkout(workoutId)
+                }.show()
         }
         recyclerView.adapter = adapter
 
