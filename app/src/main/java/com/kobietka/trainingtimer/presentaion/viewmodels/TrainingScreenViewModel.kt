@@ -1,8 +1,11 @@
 package com.kobietka.trainingtimer.presentaion.viewmodels
 
+import android.content.Context
+import android.media.MediaPlayer
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.data.ExerciseEntity
 import com.kobietka.trainingtimer.data.HistoryEntity
 import com.kobietka.trainingtimer.data.WorkoutEntity
@@ -23,6 +26,7 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Named
 import kotlin.properties.Delegates
 
 
@@ -30,7 +34,8 @@ class TrainingScreenViewModel
 @Inject constructor(private val relationRepository: WorkoutRelationRepository,
                     private val exercisesRepository: ExerciseRepository,
                     private val workoutRepository: WorkoutRepository,
-                    private val historyRepository: HistoryRepository){
+                    private val historyRepository: HistoryRepository,
+                    @Named("ApplicationContext") private val appContext: Context){
 
 
     lateinit var onTrainingEndFunction: (time: String, workoutId: String) -> Unit
@@ -86,6 +91,8 @@ class TrainingScreenViewModel
 
         timer.onFinish {
             if(firstRun){
+                val mp = MediaPlayer.create(appContext, R.raw.trainingtimersound)
+                mp.start()
                 switchExerciseId(exercisesIdsList[0])
                 _nextExercise.value = ""
                 _fabGone.value = false
@@ -95,6 +102,8 @@ class TrainingScreenViewModel
                     _exerciseName.value = "Break"
                     _exerciseNumber.value = "It's time to rest!"
                     _timeOrRep.value = converter.convert(currentWorkout.restTime)
+                    val mp = MediaPlayer.create(appContext, R.raw.trainingtimersound)
+                    mp.start()
                     if(currentExerciseNumber < exercisesIdsList.size){
                         loadNextExerciseName(exercisesIdsList[currentExerciseNumber])
                     }
@@ -104,6 +113,8 @@ class TrainingScreenViewModel
                     lastWasBreak = true
                 } else {
                     if(currentExerciseNumber == exercisesIdsList.size){
+                        val mp = MediaPlayer.create(appContext, R.raw.trainingtimersound)
+                        mp.start()
                         overallTimer.stopCountUp()
                         historyRepository.insert(HistoryEntity(null, currentWorkout.name, currentWorkout.id!!, getCurrentDate()))
                             .subscribeOn(Schedulers.io())
@@ -115,6 +126,8 @@ class TrainingScreenViewModel
                         _nextExercise.value = ""
                         switchExerciseId(exercisesIdsList[currentExerciseNumber])
                         currentExerciseNumber++
+                        val mp = MediaPlayer.create(appContext, R.raw.trainingtimersound)
+                        mp.start()
                     }
                 }
             }
@@ -152,6 +165,8 @@ class TrainingScreenViewModel
             } else timer.pause()
         } else {
             if(currentExerciseNumber == exercisesIdsList.size){
+                val mp = MediaPlayer.create(appContext, R.raw.trainingtimersound)
+                mp.start()
                 overallTimer.stopCountUp()
                 historyRepository.insert(HistoryEntity(null, currentWorkout.name, currentWorkout.id!!, getCurrentDate()))
                     .subscribeOn(Schedulers.io())
@@ -164,6 +179,8 @@ class TrainingScreenViewModel
                     _exerciseName.value = "Break"
                     _exerciseNumber.value = "It's time to rest!"
                     _timeOrRep.value = converter.convert(currentWorkout.restTime)
+                    val mp = MediaPlayer.create(appContext, R.raw.trainingtimersound)
+                    mp.start()
                     if(currentExerciseNumber <= exercisesIdsList.size){
                         loadNextExerciseName(exercisesIdsList[currentExerciseNumber])
                     }
@@ -183,6 +200,8 @@ class TrainingScreenViewModel
                         _nextExercise.value = ""
                         switchExerciseId(exercisesIdsList[currentExerciseNumber])
                         currentExerciseNumber++
+                        val mp = MediaPlayer.create(appContext, R.raw.trainingtimersound)
+                        mp.start()
                     }
                 }
             }
