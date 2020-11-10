@@ -66,8 +66,8 @@ class EditExerciseFragment : BaseFragment() {
 
         editExerciseViewModel.measurementType().observe(viewLifecycleOwner, {
             when(it!!){
-                MeasurementType.Time -> fragment_edit_exercise_radio_button_repetition.isChecked = true
-                MeasurementType.Repetition -> fragment_edit_exercise_radio_button_time.isChecked = true
+                MeasurementType.Time -> fragment_edit_exercise_radio_button_time.isChecked = true
+                MeasurementType.Repetition -> fragment_edit_exercise_radio_button_repetition.isChecked = true
             }
         })
     }
