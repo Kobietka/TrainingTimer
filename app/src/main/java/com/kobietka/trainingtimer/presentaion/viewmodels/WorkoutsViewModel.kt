@@ -17,12 +17,9 @@ import javax.inject.Inject
 
 class WorkoutsViewModel
 @Inject constructor(private val workoutRepository: WorkoutRepository,
-                    private val relationsRepository: WorkoutRelationRepository,
-                    private val eventSubject: Subject<EventType>){
+                    private val relationsRepository: WorkoutRelationRepository){
 
     private val compositeDisposable = CompositeDisposable()
-    private val deleteClicks = BehaviorSubject.create<ClickId>().toSerialized()
-    private val editClicks = BehaviorSubject.create<ClickId>().toSerialized()
     private val ids = BehaviorSubject.create<Int>().toSerialized()
 
     private val _name = MutableLiveData<String>()
@@ -32,30 +29,10 @@ class WorkoutsViewModel
         compositeDisposable.add(
             ids.subscribe(this::loadWorkout)
         )
-
-        editClicks.withLatestFrom(ids, { clickId, workoutId ->
-            eventSubject.onNext(EventType(clickId, workoutId))
-        }).subscribe()
-
-        deleteClicks.withLatestFrom(ids, { clickId, workoutId ->
-            workoutRepository.deleteById(workoutId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe()
-            relationsRepository.deleteByWorkoutId(workoutId)
-        }).flatMapCompletable { it }.subscribe()
     }
 
     fun name(): LiveData<String> = _name
     fun numberOfExercises(): LiveData<Int> = _numberOfExercises
-
-    fun onEditClick(){
-        editClicks.onNext(ClickId.EditWorkout)
-    }
-
-    fun onDeleteClick(){
-        deleteClicks.onNext(ClickId.Delete)
-    }
 
     fun switchId(id: Int){
         ids.onNext(id)

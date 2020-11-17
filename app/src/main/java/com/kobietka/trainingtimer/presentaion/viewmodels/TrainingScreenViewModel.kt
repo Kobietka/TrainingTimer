@@ -2,7 +2,6 @@ package com.kobietka.trainingtimer.presentaion.viewmodels
 
 import android.content.Context
 import android.media.MediaPlayer
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kobietka.trainingtimer.R
@@ -16,6 +15,7 @@ import com.kobietka.trainingtimer.repositories.ExerciseRepository
 import com.kobietka.trainingtimer.repositories.HistoryRepository
 import com.kobietka.trainingtimer.repositories.WorkoutRelationRepository
 import com.kobietka.trainingtimer.repositories.WorkoutRepository
+import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -26,7 +26,6 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
-import javax.inject.Named
 import kotlin.properties.Delegates
 
 
@@ -35,7 +34,7 @@ class TrainingScreenViewModel
                     private val exercisesRepository: ExerciseRepository,
                     private val workoutRepository: WorkoutRepository,
                     private val historyRepository: HistoryRepository,
-                    @Named("ApplicationContext") private val appContext: Context){
+                    @ApplicationContext val appContext: Context){
 
 
     lateinit var onTrainingEndFunction: (time: String, workoutId: String) -> Unit

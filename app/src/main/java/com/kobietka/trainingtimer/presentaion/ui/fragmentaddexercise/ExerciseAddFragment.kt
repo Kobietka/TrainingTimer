@@ -10,13 +10,15 @@ import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.fragmentexercises.ExercisesFragment
 import com.kobietka.trainingtimer.presentaion.viewmodels.AddExerciseViewModel
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add_exercise.*
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.*
 import javax.inject.Inject
 
-
+@AndroidEntryPoint
 class ExerciseAddFragment : BaseFragment() {
 
     @Inject lateinit var addExerciseViewModel: AddExerciseViewModel
@@ -24,7 +26,6 @@ class ExerciseAddFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presentationComponent.inject(this)
 
         val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = host.navController

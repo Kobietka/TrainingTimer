@@ -8,10 +8,13 @@ import androidx.navigation.fragment.NavHostFragment
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.viewmodels.AfterTrainingViewModel
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_after_training.*
 import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class AfterTrainingFragment : BaseFragment() {
 
     @Inject lateinit var viewModel: AfterTrainingViewModel
@@ -21,7 +24,6 @@ class AfterTrainingFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presentationComponent.inject(this)
 
         workoutId = requireArguments().getString("workoutId")!!
         time = requireArguments().getString("time")!!

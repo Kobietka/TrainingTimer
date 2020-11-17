@@ -18,10 +18,7 @@ import io.reactivex.subjects.Subject
 import javax.inject.Inject
 
 class ChooseExerciseViewModel
-@Inject constructor(private val workoutRelationRepository: WorkoutRelationRepository,
-                    private val exerciseRepository: ExerciseRepository,
-                    private val workoutIdSender: Subject<Int>,
-                    private val launchEvents: Subject<EventType>){
+@Inject constructor(private val exerciseRepository: ExerciseRepository){
 
     private val compositeDisposable = CompositeDisposable()
     private val addClicks = BehaviorSubject.create<ClickId>().toSerialized()
@@ -34,24 +31,8 @@ class ChooseExerciseViewModel
 
     init {
         compositeDisposable.add(
-            workoutIdSender.subscribe(this::switchWorkoutId)
-        )
-
-        compositeDisposable.add(
             ids.subscribe(this::loadExercise)
         )
-
-        addClicks.withLatestFrom(ids, workoutIds, { clickId, exerciseId, workoutId ->
-            workoutRelationRepository.insert(WorkoutRelation(null, workoutId, exerciseId))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    launchEvents.onNext(EventType(clickId, workoutId))
-                }
-
-        }).subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe()
     }
 
     fun measurementValue(): LiveData<Int> {
@@ -64,14 +45,6 @@ class ChooseExerciseViewModel
 
     fun measurementType(): LiveData<MeasurementType> {
         return _measurementType
-    }
-
-    private fun switchWorkoutId(id: Int){
-        workoutIds.onNext(id)
-    }
-
-    fun onAddClick(){
-        addClicks.onNext(ClickId.EditWorkoutFromChoosing)
     }
 
     fun switchId(id: Int){

@@ -15,12 +15,10 @@ import javax.inject.Inject
 
 class TrainViewModel
 @Inject constructor(private val workoutRepository: WorkoutRepository,
-                    private val relationRepository: WorkoutRelationRepository,
-                    private val launchEvents: Subject<EventType>){
+                    private val relationRepository: WorkoutRelationRepository){
 
     private val compositeDisposable = CompositeDisposable()
     private val ids = BehaviorSubject.create<Int>().toSerialized()
-    private val playClicks = BehaviorSubject.create<ClickId>()
 
     private val _name = MutableLiveData<String>()
     private val _numberOfExercises = MutableLiveData<Int>()
@@ -32,15 +30,6 @@ class TrainViewModel
         compositeDisposable.add(
             ids.subscribe(this::loadWorkout)
         )
-
-        playClicks.withLatestFrom(ids, { clickId, workoutId ->
-            launchEvents.onNext(EventType(clickId, workoutId))
-        }).subscribe()
-
-    }
-
-    fun onPlayClick(){
-        playClicks.onNext(ClickId.Play)
     }
 
     fun switchId(id: Int){

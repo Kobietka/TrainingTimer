@@ -15,12 +15,17 @@ import com.kobietka.trainingtimer.presentaion.ui.fragmentaddworkout.WorkoutAddFr
 import com.kobietka.trainingtimer.presentaion.ui.fragmentmainmenu.MainFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.WorkoutsAdapter
 import com.kobietka.trainingtimer.presentaion.viewmodels.WorkoutsUIViewModel
+import dagger.hilt.EntryPoint
+import dagger.hilt.InstallIn
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.components.ActivityComponent
 import io.reactivex.Observable
 import io.reactivex.subjects.Subject
 import kotlinx.android.synthetic.main.fragment_workouts.*
 import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class WorkoutsFragment : BaseFragment() {
 
     @Inject lateinit var adapter: WorkoutsAdapter
@@ -30,7 +35,6 @@ class WorkoutsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presentationComponent.inject(this)
 
         val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = host.navController

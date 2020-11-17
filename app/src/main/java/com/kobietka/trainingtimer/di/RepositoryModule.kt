@@ -6,9 +6,12 @@ import com.kobietka.trainingtimer.repositories.ExerciseRepository
 import com.kobietka.trainingtimer.repositories.WorkoutRepository
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Singleton
 
 
+@InstallIn(ApplicationComponent::class)
 @Module
 class RepositoryModule {
 

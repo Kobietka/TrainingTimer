@@ -18,6 +18,8 @@ import com.kobietka.trainingtimer.presentaion.ui.fragmentworkouts.WorkoutsFragme
 import com.kobietka.trainingtimer.presentaion.ui.rvs.AddWorkoutAdapter
 import com.kobietka.trainingtimer.presentaion.viewmodels.AddWorkoutUIViewModel
 import com.kobietka.trainingtimer.presentaion.viewmodels.AddWorkoutViewModel
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.Subject
 import kotlinx.android.synthetic.main.fragment_add_exercise.*
@@ -25,15 +27,14 @@ import kotlinx.android.synthetic.main.fragment_add_workout.*
 import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class WorkoutAddFragment : BaseFragment() {
 
     @Inject lateinit var addWorkoutViewModel: AddWorkoutUIViewModel
-    @Inject lateinit var workoutEvents: Subject<WorkoutAddExerciseEvent>
     lateinit var navController: NavController
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presentationComponent.inject(this)
 
         val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = host.navController
@@ -54,7 +55,7 @@ class WorkoutAddFragment : BaseFragment() {
 
         if(name != "" && restTime != ""){
             addWorkoutViewModel.saveWorkout(name, restTime.toInt())
-           navController.navigate(R.id.action_workoutAddFragment_to_workoutsFragment)
+            navController.navigate(R.id.action_workoutAddFragment_to_workoutsFragment)
         } else Toast.makeText(activity, "Please fill all fields", Toast.LENGTH_LONG).show()
     }
 

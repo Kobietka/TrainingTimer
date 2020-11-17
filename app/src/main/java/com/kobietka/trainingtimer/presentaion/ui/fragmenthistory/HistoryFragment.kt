@@ -9,10 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.HistoryAdapter
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_history.*
 import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class HistoryFragment : BaseFragment() {
 
     @Inject lateinit var adapter: HistoryAdapter
@@ -21,7 +24,6 @@ class HistoryFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presentationComponent.inject(this)
 
         val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = host.navController

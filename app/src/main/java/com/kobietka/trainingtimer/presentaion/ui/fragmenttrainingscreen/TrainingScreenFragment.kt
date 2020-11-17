@@ -13,12 +13,15 @@ import com.kobietka.trainingtimer.models.ClickId
 import com.kobietka.trainingtimer.models.EventType
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.viewmodels.TrainingScreenViewModel
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_training_screen.*
 import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class TrainingScreenFragment : BaseFragment() {
 
     @Inject lateinit var viewModel: TrainingScreenViewModel
@@ -29,7 +32,6 @@ class TrainingScreenFragment : BaseFragment() {
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presentationComponent.inject(this)
 
         workoutId = requireArguments().getString("workoutId")!!.toInt()
         viewModel.switchWorkoutId(workoutId)

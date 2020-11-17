@@ -15,6 +15,8 @@ import com.kobietka.trainingtimer.models.WorkoutAddExerciseEvent
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.ChooseExerciseAdapter
 import com.kobietka.trainingtimer.presentaion.viewmodels.ChooseExerciseUIViewModel
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.Subject
@@ -22,7 +24,7 @@ import kotlinx.android.synthetic.main.fragment_choose_exercise.*
 import javax.inject.Inject
 
 
-
+@AndroidEntryPoint
 class ChooseExerciseFragment : BaseFragment() {
 
     @Inject lateinit var adapter: ChooseExerciseAdapter
@@ -34,7 +36,6 @@ class ChooseExerciseFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presentationComponent.inject(this)
 
         val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = host.navController

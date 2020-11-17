@@ -15,6 +15,8 @@ import com.kobietka.trainingtimer.models.EventType
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.EditWorkoutAdapter
 import com.kobietka.trainingtimer.presentaion.viewmodels.EditWorkoutUIViewModel
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.Subject
@@ -22,6 +24,7 @@ import kotlinx.android.synthetic.main.fragment_edit_workout.*
 import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class EditWorkoutFragment: BaseFragment() {
 
     @Inject lateinit var editWorkoutViewModel: EditWorkoutUIViewModel
@@ -34,7 +37,6 @@ class EditWorkoutFragment: BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presentationComponent.inject(this)
 
         val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = host.navController

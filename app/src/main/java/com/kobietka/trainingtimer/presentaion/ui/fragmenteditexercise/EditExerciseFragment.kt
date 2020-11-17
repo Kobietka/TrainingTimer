@@ -11,6 +11,8 @@ import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.fragmentexercises.ExercisesFragment
 import com.kobietka.trainingtimer.presentaion.viewmodels.EditExerciseViewModel
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.subjects.Subject
@@ -19,6 +21,7 @@ import kotlinx.android.synthetic.main.fragment_edit_exercise.*
 import javax.inject.Inject
 
 
+@AndroidEntryPoint
 class EditExerciseFragment : BaseFragment() {
 
     @Inject lateinit var editExerciseViewModel: EditExerciseViewModel
@@ -28,7 +31,6 @@ class EditExerciseFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presentationComponent.inject(this)
 
         exerciseId = requireArguments().getString("exerciseId")!!.toInt()
         editExerciseViewModel.loadDataById(exerciseId)

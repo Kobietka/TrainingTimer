@@ -5,15 +5,19 @@ import androidx.room.Room
 import com.kobietka.trainingtimer.data.*
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Named
 import javax.inject.Singleton
 
-@Module(includes = [ApplicationModule::class])
+@InstallIn(ApplicationComponent::class)
+@Module
 class DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideDatabase(@Named("ApplicationContext") context: Context): AppDatabase {
+    fun provideDatabase(@ApplicationContext context: Context): AppDatabase {
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java,

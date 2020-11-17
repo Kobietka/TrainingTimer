@@ -24,28 +24,14 @@ import javax.inject.Inject
 
 
 class ExerciseViewModel
-@Inject constructor(private val exerciseRepository: ExerciseRepository,
-                    private val eventSubject: Subject<EventType>) {
+@Inject constructor(private val exerciseRepository: ExerciseRepository) {
 
     private val compositeDisposable = CompositeDisposable()
-    private val deleteClicks = BehaviorSubject.create<ClickId>().toSerialized()
-    private val editClicks = BehaviorSubject.create<ClickId>().toSerialized()
     private val ids = BehaviorSubject.create<Int>().toSerialized()
 
     private val _name = MutableLiveData<String>()
     private val _measurementValue = MutableLiveData<Int>()
     private val _measurementType = MutableLiveData<MeasurementType>()
-
-
-    init {
-        editClicks.withLatestFrom(ids, { clickId, exerciseId ->
-            eventSubject.onNext(EventType(clickId, exerciseId))
-        }).subscribe()
-
-        deleteClicks.withLatestFrom(ids, { clickId, exerciseId ->
-            exerciseRepository.deleteById(exerciseId)
-        }).flatMapCompletable { it }.subscribe()
-    }
 
     fun measurementValue(): LiveData<Int> {
         return _measurementValue
@@ -57,14 +43,6 @@ class ExerciseViewModel
 
     fun measurementType(): LiveData<MeasurementType> {
         return _measurementType
-    }
-
-    fun onEditClick(){
-        editClicks.onNext(ClickId.EditExercise)
-    }
-
-    fun onDeleteClick(){
-        deleteClicks.onNext(ClickId.Delete)
     }
 
     fun switchId(id: Int){

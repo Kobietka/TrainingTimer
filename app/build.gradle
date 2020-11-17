@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
 
 android {
     compileSdkVersion 30
@@ -47,6 +49,11 @@ dependencies {
     testImplementation "io.mockk:mockk:1.10.2"
 
     testImplementation 'junit:junit:4.13.1'
+
+    //Hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+
 
     //Lifecycle extensions
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
