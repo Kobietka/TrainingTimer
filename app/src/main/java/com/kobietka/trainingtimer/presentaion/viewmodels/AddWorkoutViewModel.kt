@@ -2,7 +2,6 @@ package com.kobietka.trainingtimer.presentaion.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.kobietka.trainingtimer.data.WorkoutEntity
 import com.kobietka.trainingtimer.models.ClickId
 import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.repositories.ExerciseRepository
@@ -11,7 +10,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
-import java.util.*
 import javax.inject.Inject
 
 

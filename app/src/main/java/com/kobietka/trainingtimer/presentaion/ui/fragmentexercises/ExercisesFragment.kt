@@ -3,8 +3,6 @@ package com.kobietka.trainingtimer.presentaion.ui.fragmentexercises
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
-import androidx.core.view.isGone
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,12 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
-import com.kobietka.trainingtimer.presentaion.ui.fragmentaddexercise.ExerciseAddFragment
-import com.kobietka.trainingtimer.presentaion.ui.fragmentmainmenu.MainFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.ExercisesAdapter
-import com.kobietka.trainingtimer.presentaion.viewmodels.ExerciseViewModel
 import com.kobietka.trainingtimer.presentaion.viewmodels.ExercisesUIViewModel
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_exercises.*
 import javax.inject.Inject

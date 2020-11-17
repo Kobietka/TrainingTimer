@@ -1,25 +1,13 @@
 package com.kobietka.trainingtimer.presentaion.viewmodels
 
-import android.annotation.SuppressLint
-import android.util.Log
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.LiveDataReactiveStreams
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.kobietka.trainingtimer.data.ExerciseEntity
-import com.kobietka.trainingtimer.models.ClickId
-import com.kobietka.trainingtimer.models.EventType
 import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.repositories.ExerciseRepository
-import io.reactivex.Completable
-import io.reactivex.Maybe
-import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
-import io.reactivex.subjects.Subject
 import javax.inject.Inject
 
 

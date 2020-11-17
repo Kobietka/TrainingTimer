@@ -4,7 +4,6 @@ import androidx.room.Room
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4
 import com.kobietka.trainingtimer.data.AppDatabase
-import com.kobietka.trainingtimer.data.ExerciseDao
 import com.kobietka.trainingtimer.data.ExerciseEntity
 import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.repositories.ExerciseRepository
@@ -12,7 +11,6 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
-import java.util.*
 
 
 @RunWith(AndroidJUnit4::class)

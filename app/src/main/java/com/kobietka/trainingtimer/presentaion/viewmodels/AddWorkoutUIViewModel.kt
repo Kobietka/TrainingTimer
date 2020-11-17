@@ -2,7 +2,6 @@ package com.kobietka.trainingtimer.presentaion.viewmodels
 
 import com.kobietka.trainingtimer.data.WorkoutEntity
 import com.kobietka.trainingtimer.presentaion.ui.rvs.AddWorkoutAdapter
-import com.kobietka.trainingtimer.presentaion.ui.rvs.EditWorkoutAdapter
 import com.kobietka.trainingtimer.repositories.WorkoutRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

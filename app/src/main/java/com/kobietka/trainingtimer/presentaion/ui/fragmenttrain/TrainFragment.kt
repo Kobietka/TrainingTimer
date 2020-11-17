@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.TrainAdapter
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_train.*
 import javax.inject.Inject

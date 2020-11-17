@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.presentaion.viewmodels.AddWorkoutViewModel
-import com.kobietka.trainingtimer.presentaion.viewmodels.ExerciseViewModel
 
 
 class AddWorkoutViewHolder(itemView: View, val viewModel: AddWorkoutViewModel,

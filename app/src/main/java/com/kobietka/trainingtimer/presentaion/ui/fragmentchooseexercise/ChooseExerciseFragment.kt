@@ -1,7 +1,6 @@
 package com.kobietka.trainingtimer.presentaion.ui.fragmentchooseexercise
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
@@ -9,17 +8,10 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
-import com.kobietka.trainingtimer.models.ClickId
-import com.kobietka.trainingtimer.models.EventType
-import com.kobietka.trainingtimer.models.WorkoutAddExerciseEvent
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.ChooseExerciseAdapter
 import com.kobietka.trainingtimer.presentaion.viewmodels.ChooseExerciseUIViewModel
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
-import io.reactivex.Observable
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.subjects.Subject
 import kotlinx.android.synthetic.main.fragment_choose_exercise.*
 import javax.inject.Inject
 

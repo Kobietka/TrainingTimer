@@ -8,14 +8,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
-import com.kobietka.trainingtimer.presentaion.ui.fragmentexercises.ExercisesFragment
 import com.kobietka.trainingtimer.presentaion.viewmodels.AddExerciseViewModel
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add_exercise.*
-import java.time.LocalDate
-import java.time.ZoneId
-import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint

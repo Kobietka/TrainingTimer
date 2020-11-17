@@ -1,13 +1,9 @@
 package com.kobietka.trainingtimer.presentaion.viewmodels
 
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.kobietka.trainingtimer.data.ExerciseEntity
 import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.repositories.ExerciseRepository
-import io.reactivex.Maybe
-import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

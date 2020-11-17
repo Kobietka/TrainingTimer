@@ -2,15 +2,11 @@ package com.kobietka.trainingtimer.presentaion.ui.rvs
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.viewmodels.AddWorkoutViewModel
-import com.kobietka.trainingtimer.presentaion.viewmodels.ExerciseViewModel
-import com.kobietka.trainingtimer.repositories.ExerciseRepository
 import com.kobietka.trainingtimer.repositories.WorkoutRelationRepository
-import com.kobietka.trainingtimer.repositories.WorkoutRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

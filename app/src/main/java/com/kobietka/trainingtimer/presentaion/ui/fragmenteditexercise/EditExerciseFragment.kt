@@ -6,17 +6,10 @@ import android.widget.RadioButton
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.kobietka.trainingtimer.R
-import com.kobietka.trainingtimer.models.EventType
 import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
-import com.kobietka.trainingtimer.presentaion.ui.fragmentexercises.ExercisesFragment
 import com.kobietka.trainingtimer.presentaion.viewmodels.EditExerciseViewModel
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
-import io.reactivex.Observable
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.subjects.Subject
-import kotlinx.android.synthetic.main.fragment_add_exercise.*
 import kotlinx.android.synthetic.main.fragment_edit_exercise.*
 import javax.inject.Inject
 

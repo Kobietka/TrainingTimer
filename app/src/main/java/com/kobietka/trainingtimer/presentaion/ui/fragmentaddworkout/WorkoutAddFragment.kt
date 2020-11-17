@@ -3,26 +3,12 @@ package com.kobietka.trainingtimer.presentaion.ui.fragmentaddworkout
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
-import com.kobietka.trainingtimer.models.ClickId
-import com.kobietka.trainingtimer.models.WorkoutAddExerciseEvent
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
-import com.kobietka.trainingtimer.presentaion.ui.fragmentchooseexercise.ChooseExerciseFragment
-import com.kobietka.trainingtimer.presentaion.ui.fragmentworkouts.WorkoutsFragment
-import com.kobietka.trainingtimer.presentaion.ui.rvs.AddWorkoutAdapter
 import com.kobietka.trainingtimer.presentaion.viewmodels.AddWorkoutUIViewModel
-import com.kobietka.trainingtimer.presentaion.viewmodels.AddWorkoutViewModel
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.subjects.Subject
-import kotlinx.android.synthetic.main.fragment_add_exercise.*
 import kotlinx.android.synthetic.main.fragment_add_workout.*
 import javax.inject.Inject
 

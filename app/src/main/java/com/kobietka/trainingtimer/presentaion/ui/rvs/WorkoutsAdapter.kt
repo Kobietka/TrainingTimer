@@ -2,7 +2,6 @@ package com.kobietka.trainingtimer.presentaion.ui.rvs
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView

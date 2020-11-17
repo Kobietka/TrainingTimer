@@ -3,15 +3,12 @@ package com.kobietka.trainingtimer.presentaion.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kobietka.trainingtimer.data.WorkoutRelation
-import com.kobietka.trainingtimer.models.ClickId
-import com.kobietka.trainingtimer.models.EventType
 import com.kobietka.trainingtimer.repositories.ExerciseRepository
 import com.kobietka.trainingtimer.repositories.WorkoutRelationRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
-import io.reactivex.subjects.Subject
 import javax.inject.Inject
 
 
