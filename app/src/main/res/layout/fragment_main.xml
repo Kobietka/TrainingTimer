@@ -12,7 +12,7 @@
         android:id="@+id/main_app_bar_layout">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
+            android:id="@+id/fragment_exercises_top_app_bar"
             android:background="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
