@@ -23,4 +23,5 @@
     <string name="fragment_exercises_text_if_no_exercises">Create exercise by clicking +</string>
     <string name="fragment_workouts_text_if_no_workouts">Create workout by clicking +</string>
     <string name="fragment_choose_exercise_no_exercises_text">No exercises found, create them first</string>
+    <string name="dots">Dots</string>
 </resources>
