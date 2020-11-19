@@ -6,157 +6,153 @@
     android:id="@+id/fragment_main"
     android:background="@color/surface">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <RelativeLayout
+        android:id="@+id/fragment_edit_workout_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/main_app_bar_layout">
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/fragment_exercises_top_app_bar"
-            android:background="@android:color/white"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:title="@string/app_name"
-            app:menu="@menu/main_top_app_bar" />
+        <TextView
+            android:id="@+id/fragment_edit_workout_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="23sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+    </RelativeLayout>
 
-    <FrameLayout
-        android:id="@+id/fragment_main_train_element"
-        android:layout_width="match_parent"
-        android:layout_height="140dp"
+    <LinearLayout
+        android:layout_below="@id/fragment_edit_workout_bar"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/fragment_main_button"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/main_app_bar_layout">
-
-        <TextView
-            android:id="@+id/fragment_main_train_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
-            android:text="@string/fragment_main_train_text"
-            android:textColor="@android:color/black"
-            android:textSize="25sp"/>
-
-        <TextView
-            android:id="@+id/fragment_main_train_description_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="75dp"
-            android:text="@string/fragment_main_train_description"
-            android:textStyle="normal"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"/>
-
-    </FrameLayout>
-
-    <FrameLayout
-        android:id="@+id/fragment_main_workouts_elements"
+        android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/fragment_main_button"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/fragment_main_train_element">
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_main_container"
+        android:orientation="horizontal"
+        android:weightSum="100">
 
-        <TextView
-            android:id="@+id/fragment_main_workouts_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
-            android:text="@string/fragment_main_workouts_text"
-            android:textColor="@android:color/black"
-            android:textSize="25sp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="100"
+            android:layout_weight="49"
+            android:layout_marginEnd="4dp">
 
-        <TextView
-            android:id="@+id/fragment_main_workouts_description_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="75dp"
-            android:text="@string/fragment_main_workouts_description"
-            android:textStyle="normal"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/fragment_main_train_element"
+                android:background="@drawable/fragment_main_button"
+                android:layout_weight="30">
 
-    </FrameLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-    <FrameLayout
-        android:id="@+id/fragment_main_exercises_element"
-        android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/fragment_main_button"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/fragment_main_workouts_elements">
+            </FrameLayout>
 
-        <TextView
-            android:id="@+id/fragment_main_exercises_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
-            android:text="@string/fragment_main_exercises_text"
-            android:textColor="@android:color/black"
-            android:textSize="25sp"/>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/fragment_main_exercises_element"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/fragment_main_button"
+                android:layout_weight="40">
 
-        <TextView
-            android:id="@+id/fragment_main_exercises_description_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="75dp"
-            android:text="@string/fragment_main_exercises_description"
-            android:textStyle="normal"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-    </FrameLayout>
+            </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/fragment_main_history_element"
-        android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/fragment_main_button"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/fragment_main_exercises_element">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/fragment_main_button"
+                android:layout_weight="30">
 
-        <TextView
-            android:id="@+id/fragment_main_history_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
-            android:text="@string/fragment_main_history_text"
-            android:textColor="@android:color/black"
-            android:textSize="25sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/fragment_main_history_description_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="75dp"
-            android:text="@string/fragment_main_history_description"
-            android:textStyle="normal"
-            android:textColor="@android:color/black"
-            android:textSize="15sp"/>
+            </FrameLayout>
 
-    </FrameLayout>
+        </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginStart="4dp"
+            android:weightSum="100"
+            android:layout_weight="52">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:id="@+id/fragment_main_workouts_element"
+                android:background="@drawable/fragment_main_button"
+                android:layout_weight="41">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:id="@+id/fragment_main_history_element"
+                android:background="@drawable/fragment_main_button"
+                android:layout_weight="30">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/fragment_main_button"
+                android:layout_weight="15">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/fragment_main_button"
+                android:layout_weight="14">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
 
 
 </RelativeLayout>
