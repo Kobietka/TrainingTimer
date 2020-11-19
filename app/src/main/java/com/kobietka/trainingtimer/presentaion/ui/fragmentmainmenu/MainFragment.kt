@@ -24,7 +24,7 @@ class MainFragment : BaseFragment() {
             navController.navigate(R.id.action_mainFragment_to_trainFragment)
         }
 
-        fragment_main_workouts_elements.setOnClickListener {
+        fragment_main_workouts_element.setOnClickListener {
             navController.navigate(R.id.action_mainFragment_to_workoutsFragment)
         }
 
