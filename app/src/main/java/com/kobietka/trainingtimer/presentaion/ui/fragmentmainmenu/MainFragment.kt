@@ -2,7 +2,9 @@ package com.kobietka.trainingtimer.presentaion.ui.fragmentmainmenu
 
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import androidx.navigation.NavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.NavHostFragment
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
@@ -21,19 +23,31 @@ class MainFragment : BaseFragment() {
         navController = host.navController
 
         fragment_main_train_element.setOnClickListener {
-            navController.navigate(R.id.action_mainFragment_to_trainFragment)
+            val extras = FragmentNavigatorExtras(
+                view.findViewById<FrameLayout>(R.id.fragment_main_train_element) to "fragment_main_train"
+            )
+            navController.navigate(R.id.action_mainFragment_to_trainFragment, null, null, extras)
         }
 
         fragment_main_workouts_element.setOnClickListener {
-            navController.navigate(R.id.action_mainFragment_to_workoutsFragment)
+            val extras = FragmentNavigatorExtras(
+                view.findViewById<FrameLayout>(R.id.fragment_main_workouts_element) to "fragment_main_workouts"
+            )
+            navController.navigate(R.id.action_mainFragment_to_workoutsFragment, null, null, extras)
         }
 
         fragment_main_exercises_element.setOnClickListener {
-            navController.navigate(R.id.action_mainFragment_to_exercisesFragment)
+            val extras = FragmentNavigatorExtras(
+                view.findViewById<FrameLayout>(R.id.fragment_main_exercises_element) to "fragment_main_exercises"
+            )
+            navController.navigate(R.id.action_mainFragment_to_exercisesFragment, null, null, extras)
         }
 
         fragment_main_history_element.setOnClickListener {
-            navController.navigate(R.id.action_mainFragment_to_historyFragment)
+            val extras = FragmentNavigatorExtras(
+                view.findViewById<FrameLayout>(R.id.fragment_main_history_element) to "fragment_main_history"
+            )
+            navController.navigate(R.id.action_mainFragment_to_historyFragment, null, null, extras)
         }
 
     }
