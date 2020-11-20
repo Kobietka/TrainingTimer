@@ -1,5 +1,6 @@
 package com.kobietka.trainingtimer.presentaion.ui.fragmentexercises
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -8,6 +9,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.transition.MaterialContainerTransform
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.ExercisesAdapter
@@ -24,6 +26,16 @@ class ExercisesFragment : BaseFragment() {
     @Inject lateinit var viewModel: ExercisesUIViewModel
     lateinit var recyclerView: RecyclerView
     lateinit var navController: NavController
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = MaterialContainerTransform().apply {
+            drawingViewId = R.id.nav_host_fragment
+            duration = 500
+            scrimColor = Color.TRANSPARENT
+            setAllContainerColors(resources.getColor(R.color.white))
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -70,7 +82,8 @@ class ExercisesFragment : BaseFragment() {
         })
 
         fragment_exercises_back_arrow.setOnClickListener {
-            navController.navigate(R.id.action_exercisesFragment_to_mainFragment)
+            requireActivity().onBackPressed()
+            //avController.navigate(R.id.action_exercisesFragment_to_mainFragment)
         }
 
         fragment_exercises_add.setOnClickListener {

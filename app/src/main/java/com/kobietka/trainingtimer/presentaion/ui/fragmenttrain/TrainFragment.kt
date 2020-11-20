@@ -1,5 +1,6 @@
 package com.kobietka.trainingtimer.presentaion.ui.fragmenttrain
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
@@ -7,10 +8,12 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.transition.MaterialContainerTransform
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.TrainAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.android.synthetic.main.fragment_train.*
 import javax.inject.Inject
 
@@ -21,6 +24,16 @@ class TrainFragment : BaseFragment() {
     @Inject lateinit var adapter: TrainAdapter
     lateinit var recyclerView: RecyclerView
     lateinit var navController: NavController
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = MaterialContainerTransform().apply {
+            drawingViewId = R.id.nav_host_fragment
+            duration = 500
+            scrimColor = Color.TRANSPARENT
+            setAllContainerColors(resources.getColor(R.color.white))
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -43,7 +56,8 @@ class TrainFragment : BaseFragment() {
         recyclerView.adapter = adapter
 
         fragment_train_back_arrow.setOnClickListener {
-            navController.navigate(R.id.action_trainFragment_to_mainFragment)
+            requireActivity().onBackPressed()
+            //navController.navigate(R.id.action_trainFragment_to_mainFragment)
         }
     }
 
