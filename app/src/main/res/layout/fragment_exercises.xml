@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_exercises"
-    android:background="@color/surface">
+    android:background="@color/surface"
+    android:transitionName="fragment_main_exercises">
 
     <RelativeLayout
         android:id="@+id/fragment_exercises_app_bar"

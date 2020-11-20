@@ -49,6 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/fragment_main_train_element"
+                android:transitionName="fragment_main_train"
                 android:background="@drawable/fragment_main_button"
                 android:layout_weight="30">
 
@@ -69,7 +70,8 @@
                 android:id="@+id/fragment_main_exercises_element"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/fragment_main_button"
-                android:layout_weight="40">
+                android:layout_weight="40"
+                android:transitionName="fragment_main_exercises">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -88,6 +90,7 @@
                 android:layout_marginTop="8dp"
                 android:id="@+id/fragment_main_history_element"
                 android:background="@drawable/fragment_main_button"
+                android:transitionName="fragment_main_history"
                 android:layout_weight="30">
 
                 <TextView
@@ -116,6 +119,7 @@
                 android:layout_height="0dp"
                 android:id="@+id/fragment_main_workouts_element"
                 android:background="@drawable/fragment_main_button"
+                android:transitionName="fragment_main_workouts"
                 android:layout_weight="41">
 
                 <TextView
