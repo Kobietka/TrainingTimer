@@ -10,58 +10,50 @@
         <action
             android:id="@+id/action_mainFragment_to_workoutsFragment"
             app:destination="@id/workoutsFragment"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right"
-            app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left"/>
+            app:popUpTo="@id/workoutsFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_mainFragment_to_exercisesFragment"
             app:destination="@id/exercisesFragment"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right"
-            app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left"/>
+            app:popUpTo="@id/exercisesFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_mainFragment_to_trainFragment"
             app:destination="@id/trainFragment"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right"
-            app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left"/>
+            app:popUpTo="@id/trainFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_mainFragment_to_historyFragment"
             app:destination="@id/historyFragment"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right"
-            app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left"/>
+            app:popUpTo="@id/historyFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
         android:id="@+id/workoutsFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmentworkouts.WorkoutsFragment"
-        android:label="WorkoutsFragment" >
+        android:label="WorkoutsFragment">
         <action
             android:id="@+id/action_workoutsFragment_to_workoutAddFragment"
             app:destination="@id/workoutAddFragment"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right"
             app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left"/>
+            app:exitAnim="@transition/slide_out_left"
+            app:popEnterAnim="@transition/slide_in_left"
+            app:popExitAnim="@transition/slide_out_right" />
         <action
             android:id="@+id/action_workoutsFragment_to_editWorkoutFragment"
             app:destination="@id/editWorkoutFragment"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right"
             app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left"/>
+            app:exitAnim="@transition/slide_out_left"
+            app:popEnterAnim="@transition/slide_in_left"
+            app:popExitAnim="@transition/slide_out_right" />
         <action
             android:id="@+id/action_workoutsFragment_to_mainFragment"
             app:destination="@id/mainFragment"
-            app:popEnterAnim="@transition/slide_in_right"
-            app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
-            app:exitAnim="@transition/slide_out_right" />
+            app:exitAnim="@transition/slide_out_right"
+            app:popEnterAnim="@transition/slide_in_right"
+            app:popExitAnim="@transition/slide_out_left" />
     </fragment>
 
     <fragment
