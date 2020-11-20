@@ -33,7 +33,8 @@ class EditExerciseFragment : BaseFragment() {
         navController = host.navController
 
         fragment_edit_exercises_back_arrow.setOnClickListener {
-            navController.navigate(R.id.action_editExerciseFragment_to_exercisesFragment)
+            requireActivity().onBackPressed()
+            //navController.navigate(R.id.action_editExerciseFragment_to_exercisesFragment)
         }
 
         fragment_edit_exercises_add.setOnClickListener {
@@ -48,7 +49,8 @@ class EditExerciseFragment : BaseFragment() {
                     count.toInt()
                 )
 
-                navController.navigate(R.id.action_editExerciseFragment_to_exercisesFragment)
+                requireActivity().onBackPressed()
+                //navController.navigate(R.id.action_editExerciseFragment_to_exercisesFragment)
             }
         }
         editExerciseViewModel.name().observe(viewLifecycleOwner, {

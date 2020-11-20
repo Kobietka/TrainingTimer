@@ -71,7 +71,8 @@ class TrainingScreenFragment : BaseFragment() {
 
         viewModel.onWorkoutZeroExercises {
             Toast.makeText(activity, "Cannot start while workout has 0 exercises", Toast.LENGTH_LONG).show()
-            navController.navigate(R.id.action_trainingScreenFragment_to_trainFragment)
+            requireActivity().onBackPressed()
+            //navController.navigate(R.id.action_trainingScreenFragment_to_trainFragment)
         }
 
         fragment_training_screen_fab.setOnClickListener {
@@ -80,7 +81,8 @@ class TrainingScreenFragment : BaseFragment() {
 
         fragment_training_screen_back_arrow.setOnClickListener {
             viewModel.clearComposite()
-            navController.navigate(R.id.action_trainingScreenFragment_to_trainFragment)
+            requireActivity().onBackPressed()
+            //navController.navigate(R.id.action_trainingScreenFragment_to_trainFragment)
         }
 
     }

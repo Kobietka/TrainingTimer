@@ -26,7 +26,8 @@ class ExerciseAddFragment : BaseFragment() {
         navController = host.navController
 
         fragment_create_exercises_back_arrow.setOnClickListener {
-            navController.navigate(R.id.action_exerciseAddFragment_to_exercisesFragment)
+            requireActivity().onBackPressed()
+            //navController.navigate(R.id.action_exerciseAddFragment_to_exercisesFragment)
         }
 
         fragment_create_exercises_add.setOnClickListener {
@@ -41,7 +42,8 @@ class ExerciseAddFragment : BaseFragment() {
                     count.toInt()
                 )
 
-                navController.navigate(R.id.action_exerciseAddFragment_to_exercisesFragment)
+                requireActivity().onBackPressed()
+                //navController.navigate(R.id.action_exerciseAddFragment_to_exercisesFragment)
 
             } else Toast.makeText(activity, "Please fill all fields", Toast.LENGTH_LONG).show()
         }

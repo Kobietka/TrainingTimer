@@ -26,7 +26,8 @@ class WorkoutAddFragment : BaseFragment() {
         navController = host.navController
 
         fragment_create_workout_back_arrow.setOnClickListener {
-            navController.navigate(R.id.action_workoutAddFragment_to_workoutsFragment)
+            requireActivity().onBackPressed()
+            //navController.navigate(R.id.action_workoutAddFragment_to_workoutsFragment)
         }
 
         fragment_create_workout_add.setOnClickListener {

@@ -74,7 +74,8 @@ class EditWorkoutFragment: BaseFragment() {
         }
 
         fragment_edit_workout_back_arrow.setOnClickListener {
-            navController.navigate(R.id.action_editWorkoutFragment_to_workoutsFragment)
+            requireActivity().onBackPressed()
+            //navController.navigate(R.id.action_editWorkoutFragment_to_workoutsFragment)
         }
 
         editWorkoutViewModel.name().observe(viewLifecycleOwner, {
