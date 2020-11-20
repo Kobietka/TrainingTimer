@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/fragment_workouts"
-    android:transitionName="fragment_main_workouts">
+    android:transitionName="fragment_main_workouts"
+    android:background="@color/surface">
 
     <RelativeLayout
         android:id="@+id/fragment_workouts_bar"

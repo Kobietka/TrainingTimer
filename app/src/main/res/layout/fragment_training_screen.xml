@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fragment_training_screen"
-    android:keepScreenOn="true">
+    android:keepScreenOn="true"
+    android:background="@color/surface">
 
     <RelativeLayout
         android:id="@+id/fragment_training_screen_bar"
