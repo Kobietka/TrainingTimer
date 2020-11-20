@@ -134,7 +134,8 @@
             app:exitAnim="@transition/slide_out_right"
             app:popEnterAnim="@transition/slide_in_right"
             app:popExitAnim="@transition/slide_out_left"
-            app:popUpTo="@id/workoutsFragment" />
+            app:popUpTo="@id/editWorkoutFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
