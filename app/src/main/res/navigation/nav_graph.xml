@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/mainFragment">
 
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmentmainmenu.MainFragment"
-        android:label="MainFragment" >
+        android:label="MainFragment">
         <action
             android:id="@+id/action_mainFragment_to_workoutsFragment"
             app:destination="@id/workoutsFragment"
@@ -49,11 +50,7 @@
             app:popExitAnim="@transition/slide_out_right" />
         <action
             android:id="@+id/action_workoutsFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
-            app:enterAnim="@transition/slide_in_left"
-            app:exitAnim="@transition/slide_out_right"
-            app:popEnterAnim="@transition/slide_in_right"
-            app:popExitAnim="@transition/slide_out_left" />
+            app:destination="@id/mainFragment" />
     </fragment>
 
     <fragment
@@ -63,82 +60,81 @@
         <action
             android:id="@+id/action_exercisesFragment_to_editExerciseFragment"
             app:destination="@id/editExerciseFragment"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right"
             app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left"/>
+            app:exitAnim="@transition/slide_out_left"
+            app:popEnterAnim="@transition/slide_in_left"
+            app:popExitAnim="@transition/slide_out_right" />
         <action
             android:id="@+id/action_exercisesFragment_to_exerciseAddFragment"
             app:destination="@id/exerciseAddFragment"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right"
             app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left"/>
+            app:exitAnim="@transition/slide_out_left"
+            app:popEnterAnim="@transition/slide_in_left"
+            app:popExitAnim="@transition/slide_out_right" />
         <action
             android:id="@+id/action_exercisesFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
-            app:popEnterAnim="@transition/slide_in_right"
-            app:popExitAnim="@transition/slide_out_left"
-            app:enterAnim="@transition/slide_in_left"
-            app:exitAnim="@transition/slide_out_right"/>
+            app:destination="@id/mainFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/editExerciseFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmenteditexercise.EditExerciseFragment"
-        android:label="EditExerciseFragment" >
+        android:label="EditExerciseFragment">
 
-        <argument android:name="exerciseId" android:defaultValue="None"/>
+        <argument
+            android:name="exerciseId"
+            android:defaultValue="None" />
 
         <action
             android:id="@+id/action_editExerciseFragment_to_exercisesFragment"
             app:destination="@id/exercisesFragment"
-            app:popEnterAnim="@transition/slide_in_right"
-            app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
             app:exitAnim="@transition/slide_out_right"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/exercisesFragment"/>
+            app:popEnterAnim="@transition/slide_in_right"
+            app:popExitAnim="@transition/slide_out_left"
+            app:popUpTo="@id/exercisesFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
         android:id="@+id/exerciseAddFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmentaddexercise.ExerciseAddFragment"
-        android:label="ExerciseAddFragment" >
+        android:label="ExerciseAddFragment">
         <action
             android:id="@+id/action_exerciseAddFragment_to_exercisesFragment"
             app:destination="@id/exercisesFragment"
-            app:popEnterAnim="@transition/slide_in_right"
-            app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
             app:exitAnim="@transition/slide_out_right"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/exerciseAddFragment"/>
+            app:popEnterAnim="@transition/slide_in_right"
+            app:popExitAnim="@transition/slide_out_left"
+            app:popUpTo="@id/exerciseAddFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
         android:id="@+id/editWorkoutFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmenteditworkout.EditWorkoutFragment"
-        android:label="EditWorkoutFragment" >
+        android:label="EditWorkoutFragment">
 
-        <argument android:name="workoutId" android:defaultValue="None"/>
+        <argument
+            android:name="workoutId"
+            android:defaultValue="None" />
 
         <action
             android:id="@+id/action_editWorkoutFragment_to_chooseExerciseFragment"
             app:destination="@id/chooseExerciseFragment"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right"
             app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left" />
+            app:exitAnim="@transition/slide_out_left"
+            app:popEnterAnim="@transition/slide_in_left"
+            app:popExitAnim="@transition/slide_out_right" />
         <action
             android:id="@+id/action_editWorkoutFragment_to_workoutsFragment"
             app:destination="@id/workoutsFragment"
-            app:popEnterAnim="@transition/slide_in_right"
-            app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
             app:exitAnim="@transition/slide_out_right"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/workoutsFragment"/>
+            app:popEnterAnim="@transition/slide_in_right"
+            app:popExitAnim="@transition/slide_out_left"
+            app:popUpTo="@id/workoutsFragment" />
     </fragment>
 
     <fragment
@@ -148,114 +144,113 @@
         <action
             android:id="@+id/action_workoutAddFragment_to_chooseExerciseFragment"
             app:destination="@id/chooseExerciseFragment"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right"
             app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left" />
+            app:exitAnim="@transition/slide_out_left"
+            app:popEnterAnim="@transition/slide_in_left"
+            app:popExitAnim="@transition/slide_out_right" />
         <action
             android:id="@+id/action_workoutAddFragment_to_workoutsFragment"
             app:destination="@id/workoutsFragment"
-            app:popEnterAnim="@transition/slide_in_right"
-            app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
             app:exitAnim="@transition/slide_out_right"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/workoutAddFragment"/>
+            app:popEnterAnim="@transition/slide_in_right"
+            app:popExitAnim="@transition/slide_out_left"
+            app:popUpTo="@id/workoutAddFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/chooseExerciseFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmentchooseexercise.ChooseExerciseFragment"
-        android:label="ChooseExerciseFragment" >
+        android:label="ChooseExerciseFragment">
 
-        <argument android:name="workoutId" android:defaultValue="None"/>
+        <argument
+            android:name="workoutId"
+            android:defaultValue="None" />
 
         <action
             android:id="@+id/action_chooseExerciseFragment_to_editWorkoutFragment"
             app:destination="@id/editWorkoutFragment"
-            app:popEnterAnim="@transition/slide_in_right"
-            app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
             app:exitAnim="@transition/slide_out_right"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/editWorkoutFragment"/>
+            app:popEnterAnim="@transition/slide_in_right"
+            app:popExitAnim="@transition/slide_out_left"
+            app:popUpTo="@id/editWorkoutFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment
         android:id="@+id/trainFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmenttrain.TrainFragment"
-        android:label="TrainFragment" >
+        android:label="TrainFragment">
         <action
             android:id="@+id/action_trainFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
-            app:popEnterAnim="@transition/slide_in_right"
-            app:popExitAnim="@transition/slide_out_left"
-            app:enterAnim="@transition/slide_in_left"
-            app:exitAnim="@transition/slide_out_right"/>
+            app:destination="@id/mainFragment" />
         <action
             android:id="@+id/action_trainFragment_to_trainingScreenFragment"
             app:destination="@id/trainingScreenFragment"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right"
             app:enterAnim="@transition/slide_in_right"
             app:exitAnim="@transition/slide_out_left"
+            app:popEnterAnim="@transition/slide_in_left"
+            app:popExitAnim="@transition/slide_out_right"
             app:popUpTo="@id/trainingScreenFragment"
-            app:popUpToInclusive="false"/>
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/trainingScreenFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmenttrainingscreen.TrainingScreenFragment"
-        android:label="TrainingScreenFragment" >
+        android:label="TrainingScreenFragment">
 
-        <argument android:name="workoutId" android:defaultValue="None"/>
+        <argument
+            android:name="workoutId"
+            android:defaultValue="None" />
 
         <action
             android:id="@+id/action_trainingScreenFragment_to_trainFragment"
             app:destination="@id/trainFragment"
-            app:popEnterAnim="@transition/slide_in_right"
-            app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
             app:exitAnim="@transition/slide_out_right"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/trainingScreenFragment"/>
+            app:popEnterAnim="@transition/slide_in_right"
+            app:popExitAnim="@transition/slide_out_left"
+            app:popUpTo="@id/trainingScreenFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_trainingScreenFragment_to_afterTrainingFragment"
             app:destination="@id/afterTrainingFragment"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right"
             app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left"/>
+            app:exitAnim="@transition/slide_out_left"
+            app:popEnterAnim="@transition/slide_in_left"
+            app:popExitAnim="@transition/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmenthistory.HistoryFragment"
-        android:label="HistoryFragment" >
+        android:label="HistoryFragment">
         <action
             android:id="@+id/action_historyFragment_to_mainFragment"
-            app:destination="@id/mainFragment"
-            app:popEnterAnim="@transition/slide_in_right"
-            app:popExitAnim="@transition/slide_out_left"
-            app:enterAnim="@transition/slide_in_left"
-            app:exitAnim="@transition/slide_out_right"/>
+            app:destination="@id/mainFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/afterTrainingFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmentaftertraining.AfterTrainingFragment"
-        android:label="AfterTrainingFragment" >
+        android:label="AfterTrainingFragment">
 
-        <argument android:name="workoutId" android:defaultValue="None"/>
-        <argument android:name="time" android:defaultValue="None"/>
+        <argument
+            android:name="workoutId"
+            android:defaultValue="None" />
+        <argument
+            android:name="time"
+            android:defaultValue="None" />
 
         <action
             android:id="@+id/action_afterTrainingFragment_to_mainFragment"
             app:destination="@id/mainFragment"
-            app:popEnterAnim="@transition/slide_in_right"
-            app:popExitAnim="@transition/slide_out_left"
             app:enterAnim="@transition/slide_in_left"
             app:exitAnim="@transition/slide_out_right"
+            app:popEnterAnim="@transition/slide_in_right"
+            app:popExitAnim="@transition/slide_out_left"
             app:popUpTo="@id/mainFragment"
-            app:popUpToInclusive="true"/>
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>
