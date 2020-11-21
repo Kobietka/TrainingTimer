@@ -9,6 +9,7 @@ import com.google.android.material.transition.MaterialContainerTransform
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.ActiveGoalAdapter
+import com.kobietka.trainingtimer.presentaion.ui.rvs.CompletedGoalAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_goals.*
 import javax.inject.Inject
@@ -16,8 +17,10 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class GoalsFragment : BaseFragment() {
 
-    @Inject lateinit var adapter: ActiveGoalAdapter
-    private lateinit var recyclerView: RecyclerView
+    @Inject lateinit var activeAdapter: ActiveGoalAdapter
+    @Inject lateinit var completedAdapter: CompletedGoalAdapter
+    private lateinit var activeRecyclerView: RecyclerView
+    private lateinit var completedRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,23 +35,36 @@ class GoalsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter.setLifeCycleOwner(viewLifecycleOwner)
-        recyclerView = view.findViewById(R.id.fragment_goals_active_rv)
-        recyclerView.layoutManager = LinearLayoutManager(
+        activeAdapter.setLifeCycleOwner(viewLifecycleOwner)
+        activeRecyclerView = view.findViewById(R.id.fragment_goals_active_rv)
+        activeRecyclerView.layoutManager = LinearLayoutManager(
             activity,
             RecyclerView.VERTICAL,
             false
         )
-        recyclerView.adapter = adapter
+        activeRecyclerView.adapter = activeAdapter
+
+        completedAdapter.setLifeCycleOwner(viewLifecycleOwner)
+        completedRecyclerView = view.findViewById(R.id.fragment_goals_completed_rv)
+        completedRecyclerView.layoutManager = LinearLayoutManager(
+            activity,
+            RecyclerView.VERTICAL,
+            false
+        )
+        completedRecyclerView.adapter = completedAdapter
 
         fragment_goals_active_button.setOnClickListener {
             fragment_goals_completed_button.background = resources.getDrawable(R.drawable.list_element_not_activated)
             it.background = resources.getDrawable(R.drawable.list_element)
+            activeRecyclerView.visibility = View.VISIBLE
+            completedRecyclerView.visibility = View.GONE
         }
 
         fragment_goals_completed_button.setOnClickListener {
             fragment_goals_active_button.background = resources.getDrawable(R.drawable.list_element_not_activated)
             it.background = resources.getDrawable(R.drawable.list_element)
+            activeRecyclerView.visibility = View.GONE
+            completedRecyclerView.visibility = View.VISIBLE
         }
 
         fragment_goals_back_arrow.setOnClickListener {
