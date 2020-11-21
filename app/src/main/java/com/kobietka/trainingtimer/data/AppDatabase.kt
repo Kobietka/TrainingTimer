@@ -6,11 +6,15 @@ import androidx.room.TypeConverters
 import com.kobietka.trainingtimer.models.Converters
 
 
-@Database(entities = [WorkoutEntity::class, ExerciseEntity::class, WorkoutRelation::class, HistoryEntity::class], version = 17)
+@Database(entities = [WorkoutEntity::class, ExerciseEntity::class,
+    WorkoutRelation::class, HistoryEntity::class,
+    ActiveGoal::class, CompletedGoal::class], version = 18)
 @TypeConverters(Converters::class)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun workoutDao(): WorkoutDao
     abstract fun exerciseDao(): ExerciseDao
     abstract fun workoutRelationDao(): WorkoutRelationDao
     abstract fun historyDao(): HistoryDao
+    abstract fun activeGoalDao(): ActiveGoalDao
+    abstract fun completedGoalDao(): CompletedGoalDao
 }
