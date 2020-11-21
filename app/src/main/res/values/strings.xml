@@ -26,4 +26,6 @@
     <string name="dots">Dots</string>
     <string name="add_icon">add icon</string>
     <string name="fragment_main_goals_text">Goals</string>
+    <string name="fragment_create_goal_text">Create goal</string>
+    <string name="fragment_create_goal_attach_text">Attach to workout (optional)</string>
 </resources>
