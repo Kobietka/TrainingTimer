@@ -8,6 +8,7 @@ import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.viewmodels.ActiveGoalViewModel
 import com.kobietka.trainingtimer.presentaion.viewmodels.CompletedGoalViewModel
 import com.kobietka.trainingtimer.repositories.ActiveGoalRepository
+import com.kobietka.trainingtimer.repositories.CompletedGoalRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -15,7 +16,7 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 class CompletedGoalAdapter
-@Inject constructor(private val completedGoalRepository: ActiveGoalRepository,
+@Inject constructor(private val completedGoalRepository: CompletedGoalRepository,
                     private val viewModelProvider: Provider<CompletedGoalViewModel>): RecyclerView.Adapter<CompletedGoalViewHolder>() {
 
     private val compositeDisposable = CompositeDisposable()
