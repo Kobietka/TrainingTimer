@@ -28,6 +28,11 @@
             app:destination="@id/historyFragment"
             app:popUpTo="@id/historyFragment"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_mainFragment_to_goalsFragment"
+            app:destination="@id/goalsFragment"
+            app:popUpTo="@id/goalsFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment
@@ -253,5 +258,9 @@
             app:popUpTo="@id/mainFragment"
             app:popUpToInclusive="true" />
     </fragment>
+    <fragment
+        android:id="@+id/goalsFragment"
+        android:name="com.kobietka.trainingtimer.presentaion.ui.fragmentgoals.GoalsFragment"
+        android:label="GoalsFragment" />
 
 </navigation>
