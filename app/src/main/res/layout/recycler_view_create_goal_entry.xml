@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_element"
+    android:layout_marginBottom="10dp">
+
+    <TextView
+        android:layout_marginStart="20dp"
+        android:padding="10dp"
+        android:id="@+id/fragment_create_goal_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:ellipsize="end"
+        android:text="Workout"
+        android:maxLines="1"
+        android:layout_alignParentStart="true"
+        android:textColor="@android:color/black"
+        android:layout_marginEnd="10dp"/>
+
+</RelativeLayout>
