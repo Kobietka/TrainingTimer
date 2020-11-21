@@ -3,6 +3,8 @@ package com.kobietka.trainingtimer.presentaion.ui.fragmentgoals
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.transition.MaterialContainerTransform
@@ -11,6 +13,7 @@ import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.ActiveGoalAdapter
 import com.kobietka.trainingtimer.presentaion.ui.rvs.CompletedGoalAdapter
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_add_goal.*
 import kotlinx.android.synthetic.main.fragment_goals.*
 import javax.inject.Inject
 
@@ -21,6 +24,7 @@ class GoalsFragment : BaseFragment() {
     @Inject lateinit var completedAdapter: CompletedGoalAdapter
     private lateinit var activeRecyclerView: RecyclerView
     private lateinit var completedRecyclerView: RecyclerView
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +39,11 @@ class GoalsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        navController = host.navController
+
         activeAdapter.setLifeCycleOwner(viewLifecycleOwner)
+
         activeRecyclerView = view.findViewById(R.id.fragment_goals_active_rv)
         activeRecyclerView.layoutManager = LinearLayoutManager(
             activity,
@@ -65,6 +73,10 @@ class GoalsFragment : BaseFragment() {
             it.background = resources.getDrawable(R.drawable.list_element)
             activeRecyclerView.visibility = View.GONE
             completedRecyclerView.visibility = View.VISIBLE
+        }
+
+        fragment_goals_add.setOnClickListener {
+            navController.navigate(R.id.action_goalsFragment_to_createGoalFragment)
         }
 
         fragment_goals_back_arrow.setOnClickListener {
