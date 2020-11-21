@@ -44,4 +44,14 @@ class DatabaseModule {
         return appDatabase.historyDao()
     }
 
+    @Provides
+    fun provideActiveGoalDao(appDatabase: AppDatabase): ActiveGoalDao {
+        return appDatabase.activeGoalDao()
+    }
+
+    @Provides
+    fun provideCompletedGoalDao(appDatabase: AppDatabase): CompletedGoalDao {
+        return appDatabase.completedGoalDao()
+    }
+
 }
