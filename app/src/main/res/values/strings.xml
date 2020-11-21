@@ -25,4 +25,5 @@
     <string name="fragment_choose_exercise_no_exercises_text">No exercises found, create them first</string>
     <string name="dots">Dots</string>
     <string name="add_icon">add icon</string>
+    <string name="fragment_main_goals_text">Goals</string>
 </resources>
