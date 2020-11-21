@@ -50,6 +50,13 @@ class MainFragment : BaseFragment() {
             navController.navigate(R.id.action_mainFragment_to_historyFragment, null, null, extras)
         }
 
+        fragment_main_goals_element.setOnClickListener {
+            val extras = FragmentNavigatorExtras(
+                view.findViewById<FrameLayout>(R.id.fragment_main_goals_element) to "fragment_main_goals"
+            )
+            navController.navigate(R.id.action_mainFragment_to_goalsFragment, null, null, extras)
+        }
+
     }
 
     override fun getLayout(): Int {
