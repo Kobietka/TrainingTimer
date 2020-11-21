@@ -261,6 +261,14 @@
     <fragment
         android:id="@+id/goalsFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmentgoals.GoalsFragment"
-        android:label="GoalsFragment" />
+        android:label="GoalsFragment" >
+        <action
+            android:id="@+id/action_goalsFragment_to_createGoalFragment"
+            app:destination="@id/createGoalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createGoalFragment"
+        android:name="com.kobietka.trainingtimer.presentaion.ui.fragmentcreategoal.CreateGoalFragment"
+        android:label="CreateGoalFragment" />
 
 </navigation>
