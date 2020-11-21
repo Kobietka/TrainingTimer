@@ -3,14 +3,21 @@ package com.kobietka.trainingtimer.presentaion.ui.fragmentgoals
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.transition.MaterialContainerTransform
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
+import com.kobietka.trainingtimer.presentaion.ui.rvs.ActiveGoalAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_goals.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class GoalsFragment : BaseFragment() {
+
+    @Inject lateinit var adapter: ActiveGoalAdapter
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +31,15 @@ class GoalsFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        adapter.setLifeCycleOwner(viewLifecycleOwner)
+        recyclerView = view.findViewById(R.id.fragment_goals_active_rv)
+        recyclerView.layoutManager = LinearLayoutManager(
+            activity,
+            RecyclerView.VERTICAL,
+            false
+        )
+        recyclerView.adapter = adapter
 
         fragment_goals_active_button.setOnClickListener {
             fragment_goals_completed_button.background = resources.getDrawable(R.drawable.list_element_not_activated)
