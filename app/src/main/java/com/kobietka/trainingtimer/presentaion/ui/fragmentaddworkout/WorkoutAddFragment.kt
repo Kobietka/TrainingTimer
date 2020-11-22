@@ -42,7 +42,8 @@ class WorkoutAddFragment : BaseFragment() {
 
         if(name != "" && restTime != ""){
             addWorkoutViewModel.saveWorkout(name, restTime.toInt())
-            navController.navigate(R.id.action_workoutAddFragment_to_workoutsFragment)
+            requireActivity().onBackPressed()
+            //navController.navigate(R.id.action_workoutAddFragment_to_workoutsFragment)
         } else Toast.makeText(activity, "Please fill all fields", Toast.LENGTH_LONG).show()
     }
 
