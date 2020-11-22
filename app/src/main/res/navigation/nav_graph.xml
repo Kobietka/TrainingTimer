@@ -265,10 +265,23 @@
         <action
             android:id="@+id/action_goalsFragment_to_createGoalFragment"
             app:destination="@id/createGoalFragment" />
+        <action
+            android:id="@+id/action_goalsFragment_to_editGoalFragment"
+            app:destination="@id/editGoalFragment" />
     </fragment>
     <fragment
         android:id="@+id/createGoalFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragmentcreategoal.CreateGoalFragment"
         android:label="CreateGoalFragment" />
+    <fragment
+        android:id="@+id/editGoalFragment"
+        android:name="com.kobietka.trainingtimer.presentaion.ui.fragmenteditgoal.EditGoalFragment"
+        android:label="EditGoalFragment" >
+
+        <argument
+            android:name="goalId"
+            android:defaultValue="None"/>
+
+    </fragment>
 
 </navigation>
