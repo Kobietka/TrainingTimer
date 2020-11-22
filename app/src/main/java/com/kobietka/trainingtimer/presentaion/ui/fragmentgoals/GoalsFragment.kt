@@ -3,11 +3,14 @@ package com.kobietka.trainingtimer.presentaion.ui.fragmentgoals
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.navigation.NavController
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.transition.MaterialContainerTransform
+import com.google.android.material.transition.MaterialSharedAxis
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.ActiveGoalAdapter
@@ -34,6 +37,8 @@ class GoalsFragment : BaseFragment() {
             scrimColor = Color.TRANSPARENT
             setAllContainerColors(resources.getColor(R.color.white))
         }
+
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -50,6 +55,12 @@ class GoalsFragment : BaseFragment() {
             RecyclerView.VERTICAL,
             false
         )
+
+        activeAdapter.setOnItemClick { id ->
+            val bundle = bundleOf("goalId" to id.toString())
+            navController.navigate(R.id.action_goalsFragment_to_editGoalFragment, bundle)
+        }
+
         activeRecyclerView.adapter = activeAdapter
 
         completedAdapter.setLifeCycleOwner(viewLifecycleOwner)
