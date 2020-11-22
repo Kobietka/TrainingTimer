@@ -24,6 +24,18 @@ class ActiveGoalRepository
         return activeGoalDao.getAllIds()
     }
 
+    fun getAllGoals(): Maybe<List<ActiveGoal>> {
+        return activeGoalDao.getAllGoals()
+    }
+
+    fun deleteById(id: Int): Completable {
+        return activeGoalDao.deleteById(id)
+    }
+
+    fun updateProgress(current: Int, goalId: Int): Completable {
+        return activeGoalDao.updateProgress(current, goalId)
+    }
+
     fun updateName(name: String, id: Int): Completable {
         return activeGoalDao.updateName(name, id)
     }

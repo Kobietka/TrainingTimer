@@ -18,14 +18,23 @@ interface ActiveGoalDao {
     @Query("SELECT * FROM activeGoal WHERE id = :id")
     fun getById(id: Int): Maybe<ActiveGoal>
 
+    @Query("SELECT * FROM activeGoal")
+    fun getAllGoals(): Maybe<List<ActiveGoal>>
+
     @Query("SELECT id FROM activeGoal")
     fun getAllIds(): Observable<List<Int>>
+
+    @Query("DELETE FROM activeGoal WHERE id = :id")
+    fun deleteById(id: Int): Completable
 
     @Query("UPDATE activeGoal SET name = :name WHERE id = :goalId")
     fun updateName(name: String, goalId: Int): Completable
 
     @Query("UPDATE activeGoal SET goal = :goal WHERE id = :goalId")
     fun updateGoal(goal: Int, goalId: Int): Completable
+
+    @Query("UPDATE activeGoal SET currentProgress = :current WHERE id = :goalId")
+    fun updateProgress(current: Int, goalId: Int): Completable
 
     @Query("UPDATE activeGoal SET type = :type WHERE id = :goalId")
     fun updateType(type: MeasurementType, goalId: Int): Completable
