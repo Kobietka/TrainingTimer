@@ -64,8 +64,8 @@ class TrainingScreenFragment : BaseFragment() {
             }
         })
 
-        viewModel.onTrainingEnd { time, workoutId ->
-            val bundle = bundleOf("time" to time, "workoutId" to workoutId)
+        viewModel.onTrainingEnd { time, repetitions, workoutId ->
+            val bundle = bundleOf("time" to time, "workoutId" to workoutId, "repetitions" to repetitions)
             navController.navigate(R.id.action_trainingScreenFragment_to_afterTrainingFragment, bundle)
         }
 

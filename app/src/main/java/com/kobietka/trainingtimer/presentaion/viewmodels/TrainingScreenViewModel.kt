@@ -37,7 +37,7 @@ class TrainingScreenViewModel
                     @ApplicationContext val appContext: Context){
 
 
-    lateinit var onTrainingEndFunction: (time: String, workoutId: String) -> Unit
+    lateinit var onTrainingEndFunction: (time: String, numberOfRepetitions: String, workoutId: String) -> Unit
     lateinit var onWorkoutHaveZeroExercises: () -> Unit
 
     lateinit var nextMeasurementType: MeasurementType
@@ -46,7 +46,8 @@ class TrainingScreenViewModel
     var nextMeasurementValue by Delegates.notNull<Int>()
     var lastWasBreak = true
     var firstRun = true
-    var overallTime = ""
+    var overallTime = 0
+    var totalAmountOfRepetitions = 0
 
     private val timer = Timer()
     private val overallTimer = Timer()
@@ -119,7 +120,7 @@ class TrainingScreenViewModel
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe()
-                        onTrainingEndFunction.invoke(overallTime, currentWorkout.id.toString())
+                        onTrainingEndFunction.invoke(overallTime.toString(), totalAmountOfRepetitions.toString(), currentWorkout.id.toString())
                         clearComposite()
                     } else {
                         _nextExercise.value = ""
@@ -133,7 +134,7 @@ class TrainingScreenViewModel
         }
 
         overallTimer.setOnCountUpStop {
-            overallTime = converter.convert(it)
+            overallTime = it
         }
 
         timer.onStart {
@@ -171,7 +172,7 @@ class TrainingScreenViewModel
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe()
-                onTrainingEndFunction.invoke(overallTime, currentWorkout.id.toString())
+                onTrainingEndFunction.invoke(overallTime.toString(), totalAmountOfRepetitions.toString(), currentWorkout.id.toString())
                 clearComposite()
             } else {
                 if(!lastWasBreak){
@@ -260,7 +261,7 @@ class TrainingScreenViewModel
         }
     }
 
-    fun onTrainingEnd(function: (time: String, workoutId: String) -> Unit){
+    fun onTrainingEnd(function: (time: String, repetitions: String, workoutId: String) -> Unit){
         onTrainingEndFunction = function
     }
 
@@ -281,6 +282,7 @@ class TrainingScreenViewModel
                     nextMeasurementType = it.measurementType
                     nextName = it.name
                     nextMeasurementValue = it.measurementValue
+                    if(it.measurementType == MeasurementType.Repetition) totalAmountOfRepetitions += it.measurementValue
                     bind()
                 }
         )

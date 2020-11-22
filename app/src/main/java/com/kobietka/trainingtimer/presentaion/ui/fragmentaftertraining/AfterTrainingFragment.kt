@@ -19,15 +19,18 @@ class AfterTrainingFragment : BaseFragment() {
     lateinit var navController: NavController
     lateinit var workoutId: String
     lateinit var time: String
+    lateinit var repetitions: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         workoutId = requireArguments().getString("workoutId")!!
         time = requireArguments().getString("time")!!
+        repetitions = requireArguments().getString("repetitions")!!
 
-        viewModel.switchWorkoutId(workoutId.toInt())
         viewModel.setTime(time)
+        viewModel.setRepetitions(repetitions)
+        viewModel.switchWorkoutId(workoutId.toInt())
         viewModel.randomGreeting()
 
         val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
@@ -43,6 +46,10 @@ class AfterTrainingFragment : BaseFragment() {
 
         viewModel.greeting().observe(viewLifecycleOwner, {
             fragment_after_training_screen_greeting_text.text = it
+        })
+
+        viewModel.repetitions().observe(viewLifecycleOwner, {
+            fragment_after_training_repetitions.text = it
         })
 
         fragment_after_training_screen_fab.setOnClickListener {

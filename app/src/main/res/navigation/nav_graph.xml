@@ -248,6 +248,10 @@
             android:name="time"
             android:defaultValue="None" />
 
+        <argument
+            android:name="repetitions"
+            android:defaultValue="None"/>
+
         <action
             android:id="@+id/action_afterTrainingFragment_to_mainFragment"
             app:destination="@id/mainFragment"
