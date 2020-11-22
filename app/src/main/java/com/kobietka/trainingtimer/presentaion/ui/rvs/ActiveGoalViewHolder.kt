@@ -12,6 +12,8 @@ import com.kobietka.trainingtimer.presentaion.viewmodels.ActiveGoalViewModel
 class ActiveGoalViewHolder(itemView: View, val viewModel: ActiveGoalViewModel, private val lifecycleOwner: LifecycleOwner) : RecyclerView.ViewHolder(itemView) {
 
     fun onAttach(){
+        val progressBar = itemView.findViewById<ProgressBar>(R.id.active_goal_progress_bar)
+
         viewModel.name().observe(lifecycleOwner, {
             itemView.findViewById<TextView>(R.id.active_goal_name).text = it
         })
@@ -26,11 +28,11 @@ class ActiveGoalViewHolder(itemView: View, val viewModel: ActiveGoalViewModel, p
 
         viewModel.goal().observe(lifecycleOwner, {
             itemView.findViewById<TextView>(R.id.active_goal_progress_end).text = it
-            itemView.findViewById<ProgressBar>(R.id.active_goal_progress_bar).max = it.toInt()
+            progressBar.max = it.toInt()
         })
 
         viewModel.currentProgress().observe(lifecycleOwner, {
-            itemView.findViewById<ProgressBar>(R.id.active_goal_progress_bar).progress = it.toInt()
+            progressBar.progress = it.toInt()
         })
     }
 
