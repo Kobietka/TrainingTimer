@@ -24,15 +24,15 @@ class CompletedGoalViewHolder(itemView: View, val viewModel: CompletedGoalViewMo
         })
 
         viewModel.goal().observe(lifecycleOwner, {
-            itemView.findViewById<TextView>(R.id.completed_goal_value).text = it
+            itemView.findViewById<TextView>(R.id.completed_goal_value).text = "Goal: $it"
         })
 
         viewModel.creationDate().observe(lifecycleOwner, {
-            itemView.findViewById<TextView>(R.id.completed_goal_creation_date).text = it
+            itemView.findViewById<TextView>(R.id.completed_goal_creation_date).text = "Creation date: $it"
         })
 
         viewModel.completionDate().observe(lifecycleOwner, {
-            itemView.findViewById<TextView>(R.id.completed_goal_completion_date).text = it
+            itemView.findViewById<TextView>(R.id.completed_goal_completion_date).text = "Completion date: $it"
         })
 
     }
