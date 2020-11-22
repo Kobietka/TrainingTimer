@@ -2,6 +2,7 @@ package com.kobietka.trainingtimer.repositories
 
 import com.kobietka.trainingtimer.data.ActiveGoal
 import com.kobietka.trainingtimer.data.ActiveGoalDao
+import com.kobietka.trainingtimer.models.MeasurementType
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Observable
@@ -21,6 +22,22 @@ class ActiveGoalRepository
 
     fun getAllIds(): Observable<List<Int>> {
         return activeGoalDao.getAllIds()
+    }
+
+    fun updateName(name: String, id: Int): Completable {
+        return activeGoalDao.updateName(name, id)
+    }
+
+    fun updateGoal(goal: Int, id: Int): Completable {
+        return activeGoalDao.updateGoal(goal, id)
+    }
+
+    fun updateType(type: MeasurementType, id: Int): Completable {
+        return activeGoalDao.updateType(type, id)
+    }
+
+    fun updateWorkoutId(workoutId: Int?, goalId: Int): Completable {
+        return activeGoalDao.updateWorkoutId(workoutId, goalId)
     }
 
 }
