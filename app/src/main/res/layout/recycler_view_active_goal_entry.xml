@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/list_element"
-    android:layout_marginBottom="15dp">
+    android:layout_marginBottom="15dp"
+    android:id="@+id/recycler_view_goals_entry">
 
     <TextView
         android:layout_width="wrap_content"
