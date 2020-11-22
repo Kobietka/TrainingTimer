@@ -2,6 +2,7 @@ package com.kobietka.trainingtimer.presentaion.ui.rvs
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.kobietka.trainingtimer.R
@@ -21,6 +22,7 @@ class AttachedWorkoutAdapter
     private val compositeDisposable = CompositeDisposable()
     private var ids = listOf<Int>()
     private lateinit var lifecycleOwner: LifecycleOwner
+    private lateinit var onItemClick: (Int) -> Unit
 
     private fun updateList(newList: List<Int>){
         ids = newList
@@ -29,6 +31,10 @@ class AttachedWorkoutAdapter
 
     fun setLifeCycleOwner(lifecycleOwner: LifecycleOwner){
         this.lifecycleOwner = lifecycleOwner
+    }
+
+    fun setOnClick(function: (Int) -> Unit){
+        onItemClick = function
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AttachedWorkoutViewHolder {
@@ -40,6 +46,9 @@ class AttachedWorkoutAdapter
 
     override fun onBindViewHolder(holder: AttachedWorkoutViewHolder, position: Int) {
         holder.viewModel.switchId(ids[position])
+        holder.itemView.findViewById<RelativeLayout>(R.id.fragment_create_goal_list_item).setOnClickListener {
+            onItemClick.invoke(ids[position])
+        }
     }
 
     override fun getItemCount(): Int {

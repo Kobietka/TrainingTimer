@@ -3,15 +3,19 @@ package com.kobietka.trainingtimer.presentaion.ui.fragmentcreategoal
 import android.os.Bundle
 import android.view.View
 import android.widget.RadioButton
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.AttachedWorkoutAdapter
 import com.kobietka.trainingtimer.presentaion.viewmodels.CreateGoalUIViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.fragment_add_exercise.*
 import kotlinx.android.synthetic.main.fragment_add_goal.*
+import org.w3c.dom.Text
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -31,20 +35,32 @@ class CreateGoalFragment : BaseFragment() {
             RecyclerView.VERTICAL,
             false
         )
+
+        adapter.setOnClick {
+            viewModel.setCurrentWorkout(it)
+        }
+
         recyclerView.adapter = adapter
 
+        viewModel.attachedWorkoutName().observe(viewLifecycleOwner, {
+            view.findViewById<TextView>(R.id.fragment_create_goal_anchor_text).text = it
+        })
+
         fragment_create_goal_add.setOnClickListener {
-            val radioButton = view.findViewById<RadioButton>(fragment_create_goal_radio_group.checkedRadioButtonId)
+            val goalName = fragment_create_goal_edit_text_name.text.toString()
+            val goalValue = fragment_create_goal_value_edit_text.text.toString()
+            val radioButtonId = fragment_create_goal_radio_group.checkedRadioButtonId
 
-            val type = when(radioButton.text){
-                "Time" -> MeasurementType.Time
-                "Repetition" -> MeasurementType.Repetition
-                else -> null
-            }
-            viewModel.saveGoal(fragment_create_goal_edit_text_name.text.toString(),
-                fragment_create_goal_value_edit_text.text.toString().toInt(), type!!)
+            if(goalName.isNotEmpty() && goalValue.isNotEmpty() && radioButtonId != -1){
+                val type = when(view.findViewById<RadioButton>(radioButtonId).text){
+                    "Time" -> MeasurementType.Time
+                    "Repetition" -> MeasurementType.Repetition
+                    else -> null
+                }
+                viewModel.saveGoal(goalName, goalValue.toInt(), type!!)
 
-            requireActivity().onBackPressed()
+                requireActivity().onBackPressed()
+            } else Snackbar.make(view, "Please fill all fields", Snackbar.LENGTH_LONG).show()
         }
 
         fragment_create_goal_back_arrow.setOnClickListener {
