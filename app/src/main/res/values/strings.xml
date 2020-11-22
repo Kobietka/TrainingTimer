@@ -28,4 +28,5 @@
     <string name="fragment_main_goals_text">Goals</string>
     <string name="fragment_create_goal_text">Create goal</string>
     <string name="fragment_create_goal_attach_text">Attach to workout (optional)</string>
+    <string name="fragment_edit_goal_text">Edit goal</string>
 </resources>
