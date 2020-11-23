@@ -32,6 +32,7 @@ class AfterTrainingViewModel
     private val _time = MutableLiveData<String>()
     private val _greeting = MutableLiveData<String>()
     private val _repetitions = MutableLiveData<String>()
+    private val _completedGoals = MutableLiveData<String>()
 
     private val greetings = listOf("Nice job!", "Well done!", "Nice one!", "Good job!")
     private var goals = listOf<ActiveGoal>()
@@ -39,7 +40,6 @@ class AfterTrainingViewModel
     var currentWorkoutId = 0
     var repetitionCount = 0
     var time = 0
-    var isAddingProgress = true
 
     init {
         compositeDisposable.add(
@@ -49,6 +49,9 @@ class AfterTrainingViewModel
         )
     }
 
+    fun completedGoals(): LiveData<String> {
+        return _completedGoals
+    }
 
     fun howManyTimes(): LiveData<String> {
         return _howManyTimes
@@ -119,9 +122,11 @@ class AfterTrainingViewModel
     }
 
     private fun checkIfGoalsCompleted(){
+        var count = 0;
         if(progressedGoals.isEmpty()) return
         progressedGoals.forEach {
             if(it.currentProgress >= it.goal){
+                count++;
                 completedGoalRepository.insert(
                     CompletedGoal(null, it.name, it.goal, it.type, it.workoutId, it.creationDate, getCurrentDate())
                 ).subscribeOn(Schedulers.io())
@@ -133,6 +138,8 @@ class AfterTrainingViewModel
                     .subscribe()
             }
         }
+        if(count == 1) _completedGoals.value = "You have completed a goal!"
+        else if(count > 1) _completedGoals.value = "You have completed a few goals!"
     }
 
 

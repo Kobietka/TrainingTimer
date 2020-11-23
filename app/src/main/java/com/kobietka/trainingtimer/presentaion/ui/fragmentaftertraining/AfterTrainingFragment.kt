@@ -52,6 +52,10 @@ class AfterTrainingFragment : BaseFragment() {
             fragment_after_training_repetitions.text = it
         })
 
+        viewModel.completedGoals().observe(viewLifecycleOwner, {
+            fragment_after_training_completed_goals.text = it
+        })
+
         fragment_after_training_screen_fab.setOnClickListener {
             navController.navigate(R.id.action_afterTrainingFragment_to_mainFragment)
         }
