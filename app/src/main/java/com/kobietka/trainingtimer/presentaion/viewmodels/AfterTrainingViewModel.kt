@@ -35,6 +35,7 @@ class AfterTrainingViewModel
 
     private val greetings = listOf("Nice job!", "Well done!", "Nice one!", "Good job!")
     private var goals = listOf<ActiveGoal>()
+    private var progressedGoals = mutableListOf<ActiveGoal>()
     var currentWorkoutId = 0
     var repetitionCount = 0
     var time = 0
@@ -87,32 +88,40 @@ class AfterTrainingViewModel
     }
 
     private fun addProgressToGoals(){
-        Log.e("AddProgress", "called")
         goals.forEach {
             if(it.isAttached){
                 if(it.workoutId == currentWorkoutId){
                     when(it.type){
-                        MeasurementType.Repetition -> updateRepetition(repetitionCount + it.currentProgress, it.id!!)
-                        MeasurementType.Time -> updateTime(time/60 + it.currentProgress, it.id!!)
+                        MeasurementType.Repetition -> {
+                            updateRepetition(repetitionCount + it.currentProgress, it.id!!)
+                            progressedGoals.add(it.copy(currentProgress = repetitionCount + it.currentProgress))
+                        }
+                        MeasurementType.Time -> {
+                            updateTime(time/60 + it.currentProgress, it.id!!)
+                            progressedGoals.add(it.copy(currentProgress = time/60 + it.currentProgress))
+                        }
                     }
                 }
             } else {
                 when(it.type){
-                    MeasurementType.Repetition -> updateRepetition(repetitionCount + it.currentProgress, it.id!!)
-                    MeasurementType.Time -> updateTime(time/60 + it.currentProgress, it.id!!)
+                    MeasurementType.Repetition -> {
+                        updateRepetition(repetitionCount + it.currentProgress, it.id!!)
+                        progressedGoals.add(it.copy(currentProgress = repetitionCount + it.currentProgress))
+                    }
+                    MeasurementType.Time -> {
+                        updateTime(time/60 + it.currentProgress, it.id!!)
+                        progressedGoals.add(it.copy(currentProgress = time/60 + it.currentProgress))
+                    }
                 }
             }
         }
-        isAddingProgress = false
+        checkIfGoalsCompleted()
     }
 
     private fun checkIfGoalsCompleted(){
-        Log.e("Check", "called")
-        if(goals.isEmpty()) return
-        goals.forEach {
-            Log.e("TIMES", "OUT")
+        if(progressedGoals.isEmpty()) return
+        progressedGoals.forEach {
             if(it.currentProgress >= it.goal){
-                Log.e("TIMES", "IN")
                 completedGoalRepository.insert(
                     CompletedGoal(null, it.name, it.goal, it.type, it.workoutId, it.creationDate, getCurrentDate())
                 ).subscribeOn(Schedulers.io())
@@ -128,15 +137,13 @@ class AfterTrainingViewModel
 
 
     private fun loadGoals(){
-        Log.e("Load", "called")
         compositeDisposable.add(
             activeGoalRepository.getAllGoals()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     goals = it
-                    if(isAddingProgress) addProgressToGoals()
-                    else checkIfGoalsCompleted()
+                    addProgressToGoals()
                 }
         )
     }
@@ -146,7 +153,7 @@ class AfterTrainingViewModel
             activeGoalRepository.updateProgress(repetition, goalId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::loadGoals)
+                .subscribe()
         )
     }
 
@@ -155,7 +162,7 @@ class AfterTrainingViewModel
             activeGoalRepository.updateProgress(time, goalId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(this::loadGoals)
+                .subscribe()
         )
     }
 
