@@ -25,6 +25,7 @@ class EditGoalUIViewModel
     private val _goalValue = MutableLiveData<String>()
     private val _goalType = MutableLiveData<MeasurementType>()
     private val _attachedWorkout = MutableLiveData<String>()
+    private val _removeWorkout = MutableLiveData<Boolean>()
 
     var currentWorkoutId: Int? = 0
     var currentGoalId = 0
@@ -33,6 +34,10 @@ class EditGoalUIViewModel
         compositeDisposable.add(
             ids.subscribe(this::loadGoal)
         )
+    }
+
+    fun removeWorkout(): LiveData<Boolean> {
+        return _removeWorkout
     }
 
     fun name(): LiveData<String> {
@@ -58,7 +63,14 @@ class EditGoalUIViewModel
 
     fun setCurrentWorkout(id: Int){
         loadWorkout(id)
+        _removeWorkout.value = true
         currentWorkoutId = id
+    }
+
+    fun onWorkoutRemoved(){
+        _removeWorkout.value = false
+        _attachedWorkout.value = "Attach to workout (optional)"
+        currentWorkoutId = 0
     }
 
     private fun loadGoal(id: Int){
@@ -83,6 +95,7 @@ class EditGoalUIViewModel
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     _attachedWorkout.value = it.name
+                    _removeWorkout.value = true
                 }
         )
     }
@@ -91,6 +104,25 @@ class EditGoalUIViewModel
         if(currentWorkoutId != 0) {
             compositeDisposable.add(
                 activeGoalRepository.updateWorkoutId(currentWorkoutId, currentGoalId)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe()
+            )
+            compositeDisposable.add(
+                activeGoalRepository.updateAttached(true, currentGoalId)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe()
+            )
+        } else {
+            compositeDisposable.add(
+                activeGoalRepository.updateAttached(false, currentGoalId)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe()
+            )
+            compositeDisposable.add(
+                activeGoalRepository.updateWorkoutId(null, currentGoalId)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe()

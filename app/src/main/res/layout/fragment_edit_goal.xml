@@ -206,6 +206,14 @@
                 android:textColor="@android:color/black"
                 android:text="@string/fragment_create_goal_attach_text"/>
 
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_clear"
+                android:layout_marginTop="9dp"
+                android:id="@+id/fragment_edit_goal_delete_workout"
+                android:visibility="gone"/>
+
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
