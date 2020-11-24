@@ -73,6 +73,15 @@ class EditGoalUIViewModel
         currentWorkoutId = 0
     }
 
+    fun deleteGoal(){
+        compositeDisposable.add(
+            activeGoalRepository.deleteById(currentGoalId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe()
+        )
+    }
+
     private fun loadGoal(id: Int){
         compositeDisposable.add(
             activeGoalRepository.getById(id)

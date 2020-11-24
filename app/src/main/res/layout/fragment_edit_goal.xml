@@ -11,21 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="25dp"
         android:layout_marginEnd="20dp">
 
         <ImageView
-            android:id="@+id/fragment_edit_goal_back_arrow"
+            android:id="@+id/fragment_edit_goal_delete_goal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_back_arrow"
-            android:layout_marginTop="1dp"/>
+            android:background="@drawable/ic_delete"
+            android:layout_marginTop="6dp"/>
 
         <TextView
             android:id="@+id/fragment_edit_goal_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/fragment_edit_goal_back_arrow"
+            android:layout_toEndOf="@+id/fragment_edit_goal_delete_goal"
             android:text="@string/fragment_edit_goal_text"
             android:textSize="23sp"
             android:textStyle="bold"

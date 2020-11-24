@@ -73,7 +73,8 @@ class EditGoalFragment : BaseFragment() {
             } else Snackbar.make(view, "Please fill all fields", Snackbar.LENGTH_LONG).show()
         }
 
-        fragment_edit_goal_back_arrow.setOnClickListener {
+        fragment_edit_goal_delete_goal.setOnClickListener {
+            viewModel.deleteGoal()
             requireActivity().onBackPressed()
         }
 
