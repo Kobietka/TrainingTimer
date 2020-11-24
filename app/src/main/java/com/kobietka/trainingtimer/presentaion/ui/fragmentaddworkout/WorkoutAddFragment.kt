@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.google.android.material.transition.MaterialSharedAxis
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.viewmodels.AddWorkoutUIViewModel
@@ -18,6 +19,11 @@ class WorkoutAddFragment : BaseFragment() {
 
     @Inject lateinit var addWorkoutViewModel: AddWorkoutUIViewModel
     lateinit var navController: NavController
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
