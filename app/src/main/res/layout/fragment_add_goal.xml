@@ -186,6 +186,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:gravity="start"
             android:layout_below="@+id/fragment_create_goal_line_below_radio_group">
 
             <ImageView
@@ -204,6 +205,14 @@
                 android:textSize="17sp"
                 android:textColor="@android:color/black"
                 android:text="@string/fragment_create_goal_attach_text"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_clear"
+                android:layout_marginTop="9dp"
+                android:id="@+id/fragment_create_goal_delete_workout"
+                android:visibility="gone"/>
 
         </LinearLayout>
 

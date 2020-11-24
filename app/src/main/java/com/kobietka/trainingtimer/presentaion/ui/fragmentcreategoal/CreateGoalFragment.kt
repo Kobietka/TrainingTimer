@@ -2,6 +2,7 @@ package com.kobietka.trainingtimer.presentaion.ui.fragmentcreategoal
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -45,6 +46,15 @@ class CreateGoalFragment : BaseFragment() {
         viewModel.attachedWorkoutName().observe(viewLifecycleOwner, {
             view.findViewById<TextView>(R.id.fragment_create_goal_anchor_text).text = it
         })
+
+        viewModel.removeWorkout().observe(viewLifecycleOwner, {
+            view.findViewById<ImageView>(R.id.fragment_create_goal_delete_workout)
+                .visibility = if(it) View.VISIBLE else View.GONE
+        })
+
+        fragment_create_goal_delete_workout.setOnClickListener {
+            viewModel.onWorkoutRemoved()
+        }
 
         fragment_create_goal_add.setOnClickListener {
             val goalName = fragment_create_goal_edit_text_name.text.toString()

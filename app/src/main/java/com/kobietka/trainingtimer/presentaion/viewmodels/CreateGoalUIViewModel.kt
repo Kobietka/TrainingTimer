@@ -23,6 +23,7 @@ class CreateGoalUIViewModel
     var id: Int? = 0
 
     private val _attachedWorkoutName = MutableLiveData<String>()
+    private val _removeWorkout = MutableLiveData<Boolean>()
 
     init {
         compositeDisposable.add(
@@ -34,9 +35,20 @@ class CreateGoalUIViewModel
         return _attachedWorkoutName
     }
 
+    fun removeWorkout(): LiveData<Boolean> {
+        return _removeWorkout
+    }
+
     fun setCurrentWorkout(workoutId: Int){
         workoutIds.onNext(workoutId)
+        _removeWorkout.value = true
         id = workoutId
+    }
+
+    fun onWorkoutRemoved(){
+        _removeWorkout.value = false
+        _attachedWorkoutName.value = "Attach to workout (optional)"
+        id = 0
     }
 
     fun saveGoal(name: String, goal: Int, measurementType: MeasurementType){
