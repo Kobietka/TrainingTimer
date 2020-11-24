@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.RadioButton
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
+import com.google.android.material.transition.MaterialSharedAxis
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
@@ -21,6 +22,11 @@ class EditExerciseFragment : BaseFragment() {
     lateinit var navController: NavController
 
     var exerciseId = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

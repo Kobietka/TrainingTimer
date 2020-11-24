@@ -41,18 +41,10 @@
         android:label="WorkoutsFragment">
         <action
             android:id="@+id/action_workoutsFragment_to_workoutAddFragment"
-            app:destination="@id/workoutAddFragment"
-            app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right" />
+            app:destination="@id/workoutAddFragment" />
         <action
             android:id="@+id/action_workoutsFragment_to_editWorkoutFragment"
-            app:destination="@id/editWorkoutFragment"
-            app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right" />
+            app:destination="@id/editWorkoutFragment" />
         <action
             android:id="@+id/action_workoutsFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
@@ -64,18 +56,10 @@
         android:label="ExercisesFragment">
         <action
             android:id="@+id/action_exercisesFragment_to_editExerciseFragment"
-            app:destination="@id/editExerciseFragment"
-            app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right" />
+            app:destination="@id/editExerciseFragment" />
         <action
             android:id="@+id/action_exercisesFragment_to_exerciseAddFragment"
-            app:destination="@id/exerciseAddFragment"
-            app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right" />
+            app:destination="@id/exerciseAddFragment" />
         <action
             android:id="@+id/action_exercisesFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
