@@ -52,4 +52,8 @@ class ActiveGoalRepository
         return activeGoalDao.updateWorkoutId(workoutId, goalId)
     }
 
+    fun updateAttached(isAttached: Boolean, goalId: Int): Completable {
+        return activeGoalDao.updateAttached(isAttached, goalId)
+    }
+
 }

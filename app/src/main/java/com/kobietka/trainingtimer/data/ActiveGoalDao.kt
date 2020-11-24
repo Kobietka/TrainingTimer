@@ -41,4 +41,7 @@ interface ActiveGoalDao {
 
     @Query("UPDATE activeGoal SET workoutId = :workoutId WHERE id = :goalId")
     fun updateWorkoutId(workoutId: Int?, goalId: Int): Completable
+
+    @Query("UPDATE activeGoal SET isAttached = :isAttached WHERE id = :goalId")
+    fun updateAttached(isAttached: Boolean, goalId: Int): Completable
 }
