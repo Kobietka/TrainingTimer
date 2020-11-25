@@ -30,4 +30,7 @@
     <string name="fragment_create_goal_text">Create goal</string>
     <string name="fragment_create_goal_attach_text">Attach to workout (optional)</string>
     <string name="fragment_edit_goal_text">Edit goal</string>
+    <string name="fragment_main_settings_text">Settings</string>
+    <string name="fragment_settings_clear_history">Clear History</string>
+    <string name="fragment_settings_clear_completed_goals">Clear completed goals</string>
 </resources>
