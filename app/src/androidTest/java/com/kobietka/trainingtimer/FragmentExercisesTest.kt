@@ -8,8 +8,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.kobietka.trainingtimer.presentaion.ui.MainActivity
-import com.kobietka.trainingtimer.presentaion.ui.fragmentexercises.ExercisesFragment
-import org.junit.Before
+import com.kobietka.trainingtimer.presentaion.ui.fragments.ExercisesFragment
 import org.junit.Test
 import org.junit.runner.RunWith
 

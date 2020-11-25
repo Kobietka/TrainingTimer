@@ -3,20 +3,19 @@ package com.kobietka.trainingtimer
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import com.kobietka.trainingtimer.presentaion.ui.MainActivity
-import com.kobietka.trainingtimer.presentaion.ui.fragmentaddexercise.ExerciseAddFragment
-import org.junit.Before
+import com.kobietka.trainingtimer.presentaion.ui.fragments.ExerciseAddFragment
 import org.junit.Test
 import org.junit.internal.runners.JUnit4ClassRunner
 import org.junit.runner.RunWith
 
 
 @RunWith(JUnit4ClassRunner::class)
+
 class FragmentAddExerciseTest {
 
     @Test

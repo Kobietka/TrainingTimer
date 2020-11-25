@@ -1,4 +1,4 @@
-package com.kobietka.trainingtimer.presentaion.ui.fragmenteditgoal
+package com.kobietka.trainingtimer.presentaion.ui.fragments
 
 import android.os.Bundle
 import android.view.View
@@ -16,7 +16,6 @@ import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.AttachedWorkoutAdapter
 import com.kobietka.trainingtimer.presentaion.viewmodels.EditGoalUIViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_add_goal.*
 import kotlinx.android.synthetic.main.fragment_edit_goal.*
 import javax.inject.Inject
 

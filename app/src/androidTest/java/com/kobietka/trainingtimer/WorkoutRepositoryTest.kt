@@ -22,7 +22,6 @@ class WorkoutRepositoryTest {
         null,
         "Cardio",
         15,
-        mutableListOf(1, 2, 3),
         "20/9/2020",
         0,
         0
