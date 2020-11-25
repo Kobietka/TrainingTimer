@@ -7,7 +7,7 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
 import com.kobietka.trainingtimer.presentaion.ui.MainActivity
-import com.kobietka.trainingtimer.presentaion.ui.fragmentworkouts.WorkoutsFragment
+import com.kobietka.trainingtimer.presentaion.ui.fragments.WorkoutsFragment
 import org.junit.Test
 import org.junit.internal.runners.JUnit4ClassRunner
 import org.junit.runner.RunWith
@@ -54,7 +54,7 @@ class FragmentWorkoutsTest {
     @Test
     fun backArrowNavigation(){
         val scenario = ActivityScenario.launch(MainActivity::class.java)
-        onView(withId(R.id.fragment_main_workouts_elements)).perform(click())
+        onView(withId(R.id.fragment_main_workouts_element)).perform(click())
 
         onView(withId(R.id.fragment_workouts))
             .check(matches(isDisplayed()))

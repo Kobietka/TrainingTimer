@@ -4,8 +4,7 @@ import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
-import com.kobietka.trainingtimer.presentaion.ui.fragmentaddexercise.ExerciseAddFragment
-import com.kobietka.trainingtimer.presentaion.ui.fragmenteditexercise.EditExerciseFragment
+import com.kobietka.trainingtimer.presentaion.ui.fragments.EditExerciseFragment
 import org.junit.Test
 import org.junit.internal.runners.JUnit4ClassRunner
 import org.junit.runner.RunWith

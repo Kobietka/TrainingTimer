@@ -1,4 +1,4 @@
-package com.kobietka.trainingtimer.presentaion.ui.fragmenttrainingscreen
+package com.kobietka.trainingtimer.presentaion.ui.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle

@@ -1,11 +1,10 @@
-package com.kobietka.trainingtimer.presentaion.ui.fragmentgoals
+package com.kobietka.trainingtimer.presentaion.ui.fragments
 
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.navigation.NavController
-import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,7 +15,6 @@ import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.ActiveGoalAdapter
 import com.kobietka.trainingtimer.presentaion.ui.rvs.CompletedGoalAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_add_goal.*
 import kotlinx.android.synthetic.main.fragment_goals.*
 import javax.inject.Inject
 

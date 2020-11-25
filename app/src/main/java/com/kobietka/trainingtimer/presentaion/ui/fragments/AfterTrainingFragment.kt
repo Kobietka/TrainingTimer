@@ -1,4 +1,4 @@
-package com.kobietka.trainingtimer.presentaion.ui.fragmentaftertraining
+package com.kobietka.trainingtimer.presentaion.ui.fragments
 
 import android.os.Bundle
 import android.view.View

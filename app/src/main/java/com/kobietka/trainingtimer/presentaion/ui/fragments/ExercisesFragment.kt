@@ -1,4 +1,4 @@
-package com.kobietka.trainingtimer.presentaion.ui.fragmentexercises
+package com.kobietka.trainingtimer.presentaion.ui.fragments
 
 import android.graphics.Color
 import android.os.Bundle
