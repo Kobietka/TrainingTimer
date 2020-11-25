@@ -35,6 +35,30 @@
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/fragment_train_text_if_no_exercises"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="normal"
+        android:layout_marginTop="50dp"
+        android:layout_below="@id/fragment_train_bar"
+        android:textSize="20sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="@android:color/black"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:text="@string/fragment_train_no_exercises_text"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fragment_train_image_if_no_exercises"
+        android:background="@drawable/ic_noworkouts"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/fragment_train_text_if_no_exercises"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragment_train_rv"
         android:layout_below="@+id/fragment_train_bar"

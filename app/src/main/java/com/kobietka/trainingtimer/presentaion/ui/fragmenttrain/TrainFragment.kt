@@ -12,6 +12,7 @@ import com.google.android.material.transition.MaterialContainerTransform
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.TrainAdapter
+import com.kobietka.trainingtimer.presentaion.viewmodels.TrainUIViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.android.synthetic.main.fragment_train.*
@@ -22,6 +23,7 @@ import javax.inject.Inject
 class TrainFragment : BaseFragment() {
 
     @Inject lateinit var adapter: TrainAdapter
+    @Inject lateinit var viewModel: TrainUIViewModel
     lateinit var recyclerView: RecyclerView
     lateinit var navController: NavController
 
@@ -41,6 +43,8 @@ class TrainFragment : BaseFragment() {
         val host = requireActivity().supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = host.navController
 
+        viewModel.checkWorkouts()
+
         recyclerView = view.findViewById(R.id.fragment_train_rv)
         recyclerView.layoutManager = LinearLayoutManager(
             activity,
@@ -54,6 +58,13 @@ class TrainFragment : BaseFragment() {
             navController.navigate(R.id.action_trainFragment_to_trainingScreenFragment, bundle)
         }
         recyclerView.adapter = adapter
+
+        viewModel.ifNoExercises().observe(viewLifecycleOwner, {
+            if(!it){
+                fragment_train_text_if_no_exercises.visibility = View.GONE
+                fragment_train_image_if_no_exercises.visibility = View.GONE
+            }
+        })
 
         fragment_train_back_arrow.setOnClickListener {
             requireActivity().onBackPressed()
