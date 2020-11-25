@@ -111,11 +111,7 @@
 
         <action
             android:id="@+id/action_editWorkoutFragment_to_chooseExerciseFragment"
-            app:destination="@id/chooseExerciseFragment"
-            app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right" />
+            app:destination="@id/chooseExerciseFragment" />
         <action
             android:id="@+id/action_editWorkoutFragment_to_workoutsFragment"
             app:destination="@id/workoutsFragment"

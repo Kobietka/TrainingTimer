@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.transition.MaterialSharedAxis
 import com.kobietka.trainingtimer.R
 import com.kobietka.trainingtimer.presentaion.common.BaseFragment
 import com.kobietka.trainingtimer.presentaion.ui.rvs.ChooseExerciseAdapter
@@ -25,6 +26,11 @@ class ChooseExerciseFragment : BaseFragment() {
     private lateinit var navController: NavController
 
     var currentWorkoutId = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,7 +56,10 @@ class ChooseExerciseFragment : BaseFragment() {
         )
 
         viewModel.textIfNoExercises().observe(viewLifecycleOwner, {
-            if(!it) fragment_choose_exercise_text_if_no_exercises.visibility = View.GONE
+            if(!it) {
+                fragment_choose_exercise_text_if_no_exercises.visibility = View.GONE
+                fragment_choose_exercise_image_if_no_exercises.visibility = View.GONE
+            }
         })
 
         adapter.setLifeCycleOwner(viewLifecycleOwner)
