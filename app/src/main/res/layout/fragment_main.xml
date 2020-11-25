@@ -45,7 +45,7 @@
             android:layout_weight="49"
             android:layout_marginEnd="4dp">
 
-            <FrameLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/fragment_main_train_element"
@@ -54,6 +54,7 @@
                 android:layout_weight="30">
 
                 <TextView
+                    android:id="@+id/fragment_main_train_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/fragment_main_train_text"
@@ -62,27 +63,46 @@
                     android:layout_marginStart="20dp"
                     android:textColor="@android:color/black" />
 
-            </FrameLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@id/fragment_main_train_text"
+                    android:background="@drawable/ic_klepsydra"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
 
-            <FrameLayout
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/fragment_main_exercises_element"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:id="@+id/fragment_main_exercises_element"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/fragment_main_button"
                 android:layout_weight="40"
+                android:background="@drawable/fragment_main_button"
                 android:transitionName="fragment_main_exercises">
 
                 <TextView
+                    android:id="@+id/fragment_main_exercises_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/fragment_main_exercises_text"
-                    android:textSize="25sp"
-                    android:layout_marginTop="20dp"
                     android:layout_marginStart="20dp"
-                    android:textColor="@android:color/black" />
+                    android:layout_marginTop="20dp"
+                    android:text="@string/fragment_main_exercises_text"
+                    android:textColor="@android:color/black"
+                    android:textSize="25sp" />
 
-            </FrameLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/fragment_main_exercises_text"
+                    android:background="@drawable/jumping_rope"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -114,7 +134,7 @@
             android:weightSum="100"
             android:layout_weight="52">
 
-            <FrameLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/fragment_main_workouts_element"
@@ -123,6 +143,7 @@
                 android:layout_weight="41">
 
                 <TextView
+                    android:id="@+id/fragment_main_workouts_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/fragment_main_workouts_text"
@@ -131,9 +152,18 @@
                     android:layout_marginStart="20dp"
                     android:textColor="@android:color/black" />
 
-            </FrameLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:layout_below="@+id/fragment_main_workouts_text"
+                    android:background="@drawable/workoutimg"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
 
-            <FrameLayout
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:id="@+id/fragment_main_goals_element"
@@ -143,6 +173,7 @@
                 android:layout_weight="30">
 
                 <TextView
+                    android:id="@+id/fragment_main_goals_text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/fragment_main_goals_text"
@@ -151,7 +182,16 @@
                     android:layout_marginStart="20dp"
                     android:textColor="@android:color/black" />
 
-            </FrameLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:layout_below="@+id/fragment_main_goals_text"
+                    android:background="@drawable/ic_goal"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"
