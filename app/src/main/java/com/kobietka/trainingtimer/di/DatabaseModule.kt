@@ -59,4 +59,9 @@ class DatabaseModule {
         return appDatabase.completedWorkoutDao()
     }
 
+    @Provides
+    fun provideWeekDao(appDatabase: AppDatabase): WeekDao {
+        return appDatabase.weekDao()
+    }
+
 }
