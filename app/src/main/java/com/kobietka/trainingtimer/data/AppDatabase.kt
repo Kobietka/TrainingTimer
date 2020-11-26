@@ -9,7 +9,7 @@ import com.kobietka.trainingtimer.models.Converters
 @Database(entities = [WorkoutEntity::class, ExerciseEntity::class,
     WorkoutRelation::class, HistoryEntity::class,
     ActiveGoal::class, CompletedGoal::class,
-    CompletedWorkoutEntity::class], version = 19)
+    CompletedWorkoutEntity::class, WeekEntity::class], version = 19)
 @TypeConverters(Converters::class)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun workoutDao(): WorkoutDao
@@ -19,4 +19,5 @@ abstract class AppDatabase: RoomDatabase() {
     abstract fun activeGoalDao(): ActiveGoalDao
     abstract fun completedGoalDao(): CompletedGoalDao
     abstract fun completedWorkoutDao(): CompletedWorkoutDao
+    abstract fun weekDao(): WeekDao
 }
