@@ -108,7 +108,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
-                android:id="@+id/fragment_main_history_element"
                 android:background="@drawable/fragment_main_button"
                 android:transitionName="fragment_main_history"
                 android:layout_weight="30">
@@ -116,7 +115,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/fragment_main_history_text"
+                    android:text="//"
                     android:textSize="25sp"
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="20dp"
@@ -195,6 +194,7 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
+                android:id="@+id/fragment_main_history_element"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/fragment_main_button"
@@ -203,7 +203,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="//"
+                    android:text="@string/fragment_main_history_text"
                     android:textSize="25sp"
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="20dp"
