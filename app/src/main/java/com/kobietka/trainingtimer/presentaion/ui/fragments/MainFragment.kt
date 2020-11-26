@@ -57,6 +57,13 @@ class MainFragment : BaseFragment() {
             navController.navigate(R.id.action_mainFragment_to_goalsFragment, null, null, extras)
         }
 
+        fragment_main_settings_element.setOnClickListener {
+            val extras = FragmentNavigatorExtras(
+                view.findViewById<FrameLayout>(R.id.fragment_main_settings_element) to "fragment_main_settings"
+            )
+            navController.navigate(R.id.action_mainFragment_to_settingsFragment, null, null, extras)
+        }
+
     }
 
     override fun getLayout(): Int {
