@@ -19,4 +19,7 @@ interface CompletedGoalDao {
     @Query("SELECT id FROM completedGoal")
     fun getAllIds(): Observable<List<Int>>
 
+    @Query("DELETE FROM completedGoal")
+    fun deleteAll(): Completable
+
 }

@@ -23,4 +23,8 @@ class CompletedGoalRepository
         return completedGoalDao.getAllIds()
     }
 
+    fun deleteAll(): Completable {
+        return completedGoalDao.deleteAll()
+    }
+
 }
