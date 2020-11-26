@@ -33,4 +33,5 @@
     <string name="fragment_main_settings_text">Settings</string>
     <string name="fragment_settings_clear_history">Clear History</string>
     <string name="fragment_settings_clear_completed_goals">Clear completed goals</string>
+    <string name="fragment_main_statistics_text">Statistics</string>
 </resources>
