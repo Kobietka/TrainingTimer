@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_mainFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_statisticsFragment"
+            app:destination="@id/statisticsFragment" />
     </fragment>
 
     <fragment
@@ -274,5 +277,9 @@
         android:id="@+id/settingsFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragments.SettingsFragment"
         android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="com.kobietka.trainingtimer.presentaion.ui.fragments.StatisticsFragment"
+        android:label="StatisticsFragment" />
 
 </navigation>
