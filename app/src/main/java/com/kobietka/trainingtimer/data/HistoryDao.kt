@@ -23,4 +23,7 @@ interface HistoryDao {
     @Query("SELECT * FROM history where workoutId = :id")
     fun getAllEntriesByWorkoutId(id: Int): Observable<List<HistoryEntity>>
 
+    @Query("DELETE FROM history")
+    fun deleteAll(): Completable
+
 }
