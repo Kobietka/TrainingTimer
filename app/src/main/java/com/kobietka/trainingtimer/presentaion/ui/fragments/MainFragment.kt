@@ -64,6 +64,13 @@ class MainFragment : BaseFragment() {
             navController.navigate(R.id.action_mainFragment_to_settingsFragment, null, null, extras)
         }
 
+        fragment_main_statistics_element.setOnClickListener {
+            val extras = FragmentNavigatorExtras(
+                view.findViewById<FrameLayout>(R.id.fragment_main_statistics_element) to "fragment_main_statistics"
+            )
+            navController.navigate(R.id.action_mainFragment_to_statisticsFragment, null, null, extras)
+        }
+
     }
 
     override fun getLayout(): Int {
