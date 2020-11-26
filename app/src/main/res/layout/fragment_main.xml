@@ -109,7 +109,6 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/fragment_main_button"
-                android:transitionName="fragment_main_history"
                 android:layout_weight="30">
 
                 <TextView
@@ -198,6 +197,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/fragment_main_button"
+                android:transitionName="fragment_main_history"
                 android:layout_weight="15">
 
                 <TextView
@@ -216,6 +216,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
+                android:transitionName="fragment_main_settings"
                 android:background="@drawable/fragment_main_button"
                 android:layout_weight="14">
 
