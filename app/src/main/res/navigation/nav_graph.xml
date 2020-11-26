@@ -33,6 +33,9 @@
             app:destination="@id/goalsFragment"
             app:popUpTo="@id/goalsFragment"
             app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_mainFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
 
     <fragment
@@ -267,5 +270,9 @@
             android:defaultValue="None"/>
 
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.kobietka.trainingtimer.presentaion.ui.fragments.SettingsFragment"
+        android:label="SettingsFragment" />
 
 </navigation>
