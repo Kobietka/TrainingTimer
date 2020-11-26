@@ -54,4 +54,9 @@ class DatabaseModule {
         return appDatabase.completedGoalDao()
     }
 
+    @Provides
+    fun provideCompletedWorkoutDao(appDatabase: AppDatabase): CompletedWorkoutDao {
+        return appDatabase.completedWorkoutDao()
+    }
+
 }
