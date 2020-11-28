@@ -22,6 +22,7 @@ class StatisticsAdapter
 
     private var ids = listOf<Int>()
     private lateinit var lifecycleOwner: LifecycleOwner
+    private lateinit var onClick: (Int) -> Unit
 
     private fun updateIds(newIds: List<Int>){
         ids = newIds
@@ -30,6 +31,10 @@ class StatisticsAdapter
 
     fun setLifeCycleOwner(lifecycleOwner: LifecycleOwner){
         this.lifecycleOwner = lifecycleOwner
+    }
+
+    fun onItemClick(function: (Int) -> Unit){
+        onClick = function
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StatisticsViewHolder {
@@ -41,6 +46,9 @@ class StatisticsAdapter
 
     override fun onBindViewHolder(holder: StatisticsViewHolder, position: Int) {
         holder.viewModel.switchId(ids[position])
+        holder.itemView.setOnClickListener {
+            onClick.invoke(ids[position])
+        }
     }
 
     override fun getItemCount(): Int {
