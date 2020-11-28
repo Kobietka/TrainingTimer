@@ -288,6 +288,11 @@
     <fragment
         android:id="@+id/weekReviewFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragments.WeekReviewFragment"
-        android:label="WeekReviewFragment" />
+        android:label="WeekReviewFragment" >
+
+        <argument android:name="weekId"
+            android:defaultValue="None"/>
+
+    </fragment>
 
 </navigation>
