@@ -28,7 +28,7 @@ class CompletedGoalAdapter
     }
 
     private fun updateList(newList: List<Int>){
-        ids = newList
+        ids = newList.reversed()
         notifyDataSetChanged()
     }
 
