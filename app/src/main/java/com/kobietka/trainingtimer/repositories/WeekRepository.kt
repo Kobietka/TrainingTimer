@@ -27,4 +27,8 @@ class WeekRepository
         return weekDao.deleteAll()
     }
 
+    fun getActiveWeekId(isActive: Boolean): Maybe<Int> {
+        return weekDao.getActiveWeekId(isActive)
+    }
+
 }

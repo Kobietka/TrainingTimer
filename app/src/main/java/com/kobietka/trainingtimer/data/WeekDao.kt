@@ -22,4 +22,7 @@ interface WeekDao {
     @Query("DELETE FROM week")
     fun deleteAll(): Completable
 
+    @Query("SELECT id FROM week WHERE isActive = :isActive")
+    fun getActiveWeekId(isActive: Boolean): Maybe<Int>
+
 }
