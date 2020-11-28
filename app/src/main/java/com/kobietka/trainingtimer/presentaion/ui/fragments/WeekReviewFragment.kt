@@ -24,6 +24,8 @@ class WeekReviewFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel.setWeekId(requireArguments().getString("weekId")!!.toInt())
+
         viewModel.dataRange().observe(viewLifecycleOwner, {
             fragment_week_review_date_range.text = it
         })
@@ -48,10 +50,11 @@ class WeekReviewFragment : BaseFragment() {
             if(it){
                 fragment_week_review_completed_goals_text.visibility = View.VISIBLE
                 fragment_week_review_completed_goals_content.visibility = View.VISIBLE
+                fragment_week_review_line_below_workouts_content.visibility = View.VISIBLE
             }
         })
 
-        fragment_statistics_back_arrow.setOnClickListener {
+        fragment_week_review_back_arrow.setOnClickListener {
             requireActivity().onBackPressed()
         }
     }
