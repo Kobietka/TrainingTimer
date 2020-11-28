@@ -10,6 +10,7 @@ import com.kobietka.trainingtimer.presentaion.common.TimeToString
 import com.kobietka.trainingtimer.repositories.ActiveGoalRepository
 import com.kobietka.trainingtimer.repositories.CompletedGoalRepository
 import com.kobietka.trainingtimer.repositories.HistoryRepository
+import com.kobietka.trainingtimer.repositories.WeekRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -21,7 +22,8 @@ import javax.inject.Inject
 class AfterTrainingViewModel
 @Inject constructor(private val historyRepository: HistoryRepository,
                     private val activeGoalRepository: ActiveGoalRepository,
-                    private val completedGoalRepository: CompletedGoalRepository){
+                    private val completedGoalRepository: CompletedGoalRepository,
+                    private val weekRepository: WeekRepository){
 
     private val compositeDisposable = CompositeDisposable()
     private val timeConverter = TimeToString()
@@ -118,17 +120,17 @@ class AfterTrainingViewModel
                 }
             }
         }
-        checkIfGoalsCompleted()
+        loadWeekId()
     }
 
-    private fun checkIfGoalsCompleted(){
+    private fun checkIfGoalsCompleted(weekId: Int){
         var count = 0;
         if(progressedGoals.isEmpty()) return
         progressedGoals.forEach {
             if(it.currentProgress >= it.goal){
                 count++;
                 completedGoalRepository.insert(
-                    CompletedGoal(null, it.name, it.goal, it.type, it.workoutId, it.creationDate, getCurrentDate())
+                    CompletedGoal(null, it.name, it.goal, it.type, it.workoutId, weekId ,it.creationDate, getCurrentDate())
                 ).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe()
@@ -142,6 +144,16 @@ class AfterTrainingViewModel
         else if(count > 1) _completedGoals.value = "You have completed a few goals!"
     }
 
+    private fun loadWeekId(){
+        compositeDisposable.add(
+            weekRepository.getActiveWeekId(true)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    checkIfGoalsCompleted(it)
+                }
+        )
+    }
 
     private fun loadGoals(){
         compositeDisposable.add(
