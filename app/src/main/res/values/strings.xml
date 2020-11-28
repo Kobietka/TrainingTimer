@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">Training Timer</string>
     <string name="fragment_main_train_text">Train</string>
-    <string name="fragment_main_train_description">Let\'s get going</string>
+    <string name="fragment_main_train_description" translatable="false">Let\'s get going</string>
     <string name="fragment_main_workouts_text">Workouts</string>
-    <string name="fragment_main_workouts_description">Create, edit and manage your workouts</string>
+    <string name="fragment_main_workouts_description" translatable="false">Create, edit and manage your workouts</string>
     <string name="fragment_main_exercises_text">Exercises</string>
-    <string name="fragment_main_exercises_description">Prepare exercises to use them in workouts</string>
+    <string name="fragment_main_exercises_description" translatable="false">Prepare exercises to use them in workouts</string>
     <string name="fragment_main_history_text">History</string>
-    <string name="fragment_main_history_description">Keep track of your completed workouts</string>
+    <string name="fragment_main_history_description" translatable="false">Keep track of your completed workouts</string>
     <string name="fragment_create_exercise_text">Create exercise</string>
     <string name="fragment_create_exercise_measurement_type_text">Measurement Type</string>
     <string name="radio_button_measurement_time">Time</string>
@@ -24,8 +24,8 @@
     <string name="fragment_workouts_text_if_no_workouts">Create workout by clicking +</string>
     <string name="fragment_choose_exercise_no_exercises_text">Seems like you haven\'t added any exercises yet. \n You can do it in Exercises section</string>
     <string name="fragment_train_no_exercises_text">Seems like you haven\'t created any workouts yet. \n You can do it in Workouts section</string>
-    <string name="dots">Dots</string>
-    <string name="add_icon">add icon</string>
+    <string name="dots" translatable="false">Dots</string>
+    <string name="add_icon" translatable="false">add icon</string>
     <string name="fragment_main_goals_text">Goals</string>
     <string name="fragment_create_goal_text">Create goal</string>
     <string name="fragment_create_goal_attach_text">Attach to workout (optional)</string>
@@ -34,4 +34,8 @@
     <string name="fragment_settings_clear_history">Clear History</string>
     <string name="fragment_settings_clear_completed_goals">Clear completed goals</string>
     <string name="fragment_main_statistics_text">Statistics</string>
+    <string name="fragment_week_review_text">Week review</string>
+    <string name="fragment_week_review_repetitions_text">repetitions</string>
+    <string name="fragment_week_review_trained_text">trained</string>
+    <string name="fragment_week_review_completed_goals_text">Completed goals</string>
 </resources>
