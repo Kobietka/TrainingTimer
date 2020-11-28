@@ -11,6 +11,7 @@ data class CompletedGoal(@PrimaryKey(autoGenerate = true) val id: Int?,
                          @ColumnInfo val goal: Int,
                          @ColumnInfo val type: MeasurementType,
                          @ColumnInfo val workoutId: Int?,
+                         @ColumnInfo val weekId: Int?,
                          @ColumnInfo val creationDate: String,
                          @ColumnInfo val completeDate: String
 )
