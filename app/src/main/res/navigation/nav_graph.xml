@@ -280,6 +280,14 @@
     <fragment
         android:id="@+id/statisticsFragment"
         android:name="com.kobietka.trainingtimer.presentaion.ui.fragments.StatisticsFragment"
-        android:label="StatisticsFragment" />
+        android:label="StatisticsFragment" >
+        <action
+            android:id="@+id/action_statisticsFragment_to_weekReviewFragment"
+            app:destination="@id/weekReviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/weekReviewFragment"
+        android:name="com.kobietka.trainingtimer.presentaion.ui.fragments.WeekReviewFragment"
+        android:label="WeekReviewFragment" />
 
 </navigation>
