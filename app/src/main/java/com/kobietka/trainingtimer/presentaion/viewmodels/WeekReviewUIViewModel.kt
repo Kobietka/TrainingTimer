@@ -25,9 +25,14 @@ class WeekReviewUIViewModel
     private val _time = MutableLiveData<String>()
     private val _workoutsContent = MutableLiveData<String>()
     private val _goalsContent = MutableLiveData<String>()
+    private val _areGoalsPresent = MutableLiveData<Boolean>()
 
     fun dataRange(): LiveData<String> {
         return _dateRange
+    }
+
+    fun areGoalsPresent(): LiveData<Boolean> {
+        return _areGoalsPresent
     }
 
     fun numberOfRepetitions(): LiveData<String> {
@@ -86,11 +91,14 @@ class WeekReviewUIViewModel
     }
 
     private fun joinGoals(goals: List<CompletedGoal>){
-        var goalsContent = ""
-        goals.forEach {
-            goalsContent = "$goalsContent ${it.name}\n"
+        if(goals.isEmpty()) _areGoalsPresent.value = false
+        else {
+            var goalsContent = ""
+            goals.forEach {
+                goalsContent = "$goalsContent ${it.name}\n"
+            }
+            _goalsContent.value = goalsContent
         }
-        _goalsContent.value = goalsContent
     }
 
     private fun calculateWorkoutValues(workouts: List<CompletedWorkoutEntity>){
