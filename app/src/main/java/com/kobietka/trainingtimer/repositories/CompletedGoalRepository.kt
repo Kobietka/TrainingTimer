@@ -27,4 +27,8 @@ class CompletedGoalRepository
         return completedGoalDao.deleteAll()
     }
 
+    fun getByWeekId(weekId: Int): Maybe<List<CompletedGoal>> {
+        return completedGoalDao.getByWeekId(weekId)
+    }
+
 }
