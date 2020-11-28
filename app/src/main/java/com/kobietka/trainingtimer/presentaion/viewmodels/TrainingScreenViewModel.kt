@@ -5,16 +5,14 @@ import android.media.MediaPlayer
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kobietka.trainingtimer.R
+import com.kobietka.trainingtimer.data.CompletedWorkoutEntity
 import com.kobietka.trainingtimer.data.ExerciseEntity
 import com.kobietka.trainingtimer.data.HistoryEntity
 import com.kobietka.trainingtimer.data.WorkoutEntity
 import com.kobietka.trainingtimer.models.MeasurementType
 import com.kobietka.trainingtimer.presentaion.common.TimeToString
 import com.kobietka.trainingtimer.presentaion.common.Timer
-import com.kobietka.trainingtimer.repositories.ExerciseRepository
-import com.kobietka.trainingtimer.repositories.HistoryRepository
-import com.kobietka.trainingtimer.repositories.WorkoutRelationRepository
-import com.kobietka.trainingtimer.repositories.WorkoutRepository
+import com.kobietka.trainingtimer.repositories.*
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -34,6 +32,8 @@ class TrainingScreenViewModel
                     private val exercisesRepository: ExerciseRepository,
                     private val workoutRepository: WorkoutRepository,
                     private val historyRepository: HistoryRepository,
+                    private val completedWorkoutRepository: CompletedWorkoutRepository,
+                    private val weekRepository: WeekRepository,
                     @ApplicationContext val appContext: Context){
 
 
@@ -120,6 +120,7 @@ class TrainingScreenViewModel
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe()
+                        getActiveWeekId()
                         onTrainingEndFunction.invoke(overallTime.toString(), totalAmountOfRepetitions.toString(), currentWorkout.id.toString())
                         clearComposite()
                     } else {
@@ -172,6 +173,7 @@ class TrainingScreenViewModel
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe()
+                getActiveWeekId()
                 onTrainingEndFunction.invoke(overallTime.toString(), totalAmountOfRepetitions.toString(), currentWorkout.id.toString())
                 clearComposite()
             } else {
@@ -299,6 +301,27 @@ class TrainingScreenViewModel
         )
     }
 
+    private fun getActiveWeekId(){
+        compositeDisposable.add(
+            weekRepository.getActiveWeekId(true)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    completedWorkoutRepository.insert(
+                        CompletedWorkoutEntity(null,
+                            it,
+                            currentWorkout.name,
+                            overallTime,
+                            totalAmountOfRepetitions,
+                            getDayNumber(),
+                            getMonthNumber(),
+                            getYearNumber()
+                        )
+                    )
+                }
+        )
+    }
+
     private fun loadNextExerciseName(id: Int) {
         compositeDisposable.add(
             exercisesRepository.getById(id)
@@ -340,6 +363,21 @@ class TrainingScreenViewModel
         return calendar.get(Calendar.DAY_OF_MONTH).toString() + "/" +
                 calendar.get(Calendar.MONTH).toString() + "/" +
                 calendar.get(Calendar.YEAR).toString()
+    }
+
+    private fun getDayNumber(): Int {
+        val calendar = Calendar.getInstance()
+        return calendar.get(Calendar.DAY_OF_MONTH)
+    }
+
+    private fun getMonthNumber(): Int {
+        val calendar = Calendar.getInstance()
+        return calendar.get(Calendar.MONTH)
+    }
+
+    private fun getYearNumber(): Int {
+        val calendar = Calendar.getInstance()
+        return calendar.get(Calendar.YEAR)
     }
 
 }
