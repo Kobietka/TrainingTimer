@@ -22,4 +22,7 @@ interface CompletedGoalDao {
     @Query("DELETE FROM completedGoal")
     fun deleteAll(): Completable
 
+    @Query("SELECT * FROM completedGoal WHERE weekId = :weekId")
+    fun getByWeekId(weekId: Int): Maybe<List<CompletedGoal>>
+
 }
