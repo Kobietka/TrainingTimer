@@ -35,4 +35,8 @@ class WeekRepository
         return weekDao.updateActiveStatus(isActive, id)
     }
 
+    fun getAllIdsMaybe(): Maybe<List<Int>> {
+        return weekDao.getAllIdsMaybe()
+    }
+
 }

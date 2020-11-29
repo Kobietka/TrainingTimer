@@ -19,6 +19,9 @@ interface WeekDao {
     @Query("SELECT id FROM week")
     fun getAllIds(): Observable<List<Int>>
 
+    @Query("SELECT id FROM week")
+    fun getAllIdsMaybe(): Maybe<List<Int>>
+
     @Query("DELETE FROM week")
     fun deleteAll(): Completable
 
