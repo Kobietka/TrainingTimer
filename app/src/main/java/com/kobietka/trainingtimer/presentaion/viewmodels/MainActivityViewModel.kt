@@ -65,22 +65,23 @@ class MainActivityViewModel
     private fun checkWeek(activeWeek: WeekEntity){
         val now = GregorianCalendar(getYearNumber(), getMonthNumber(), getDayNumber())
         val newWeek = calculateNewWeek(activeWeek)
-        Log.e("CHECK WEEK", "${newWeek.startYear}/${newWeek.startMonth}/${newWeek.startDay}")
         val weekCal = GregorianCalendar(newWeek.startYear, newWeek.startMonth, newWeek.startDay)
 
         if(!now.before(weekCal) && activeWeek.id != null){
             compositeDisposable.add(
-                weekRepository.updateActiveStatus(false, activeWeek.id!!)
+                weekRepository.insert(newWeek)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe()
             )
 
             compositeDisposable.add(
-                weekRepository.insert(newWeek)
+                weekRepository.updateActiveStatus(false, activeWeek.id)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe()
+                    .subscribe {
+                        getActiveWeekId()
+                    }
             )
 
             compositeDisposable.add(
@@ -91,13 +92,12 @@ class MainActivityViewModel
                         if(it.isNotEmpty()) onNewWeek.invoke(activeWeek.dateRange)
                     }
             )
-            checkWeek(newWeek)
         }
     }
 
     fun loadWeeks(){
         compositeDisposable.add(
-            weekRepository.getAllIds()
+            weekRepository.getAllIdsMaybe()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
@@ -112,7 +112,6 @@ class MainActivityViewModel
         val newDay = week.startDay + 7
         val newMonth = week.startMonth + 1
         var newYear = week.startYear
-        Log.e("MAX" , cal.getActualMaximum(Calendar.DAY_OF_MONTH).toString())
         if(newDay > cal.getActualMaximum(Calendar.DAY_OF_MONTH)){
             if(week.startMonth + 1 > 11){
                 newYear = week.startYear + 1
