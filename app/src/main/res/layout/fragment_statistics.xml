@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:transitionName="fragment_main_statistics"
     android:background="@color/surface">
 
@@ -40,6 +40,7 @@
         android:id="@+id/fragment_statistics_rv"
         android:layout_below="@id/fragment_statistics_app_bar"
         android:layout_marginStart="20dp"
+        tools:listitem="@layout/recycler_view_statistics_entry"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="20dp"/>
 
