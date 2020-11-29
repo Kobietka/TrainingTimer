@@ -31,4 +31,8 @@ class WeekRepository
         return weekDao.getActiveWeekId(isActive)
     }
 
+    fun updateActiveStatus(isActive: Boolean, id: Int): Completable {
+        return weekDao.updateActiveStatus(isActive, id)
+    }
+
 }

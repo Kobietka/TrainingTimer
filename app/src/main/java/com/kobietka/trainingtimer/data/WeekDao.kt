@@ -25,4 +25,7 @@ interface WeekDao {
     @Query("SELECT id FROM week WHERE isActive = :isActive")
     fun getActiveWeekId(isActive: Boolean): Maybe<Int>
 
+    @Query("UPDATE week SET isActive = :isActive WHERE id = :id")
+    fun updateActiveStatus(isActive: Boolean, id: Int): Completable
+
 }
