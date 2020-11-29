@@ -119,8 +119,10 @@ class TrainingScreenViewModel
                         historyRepository.insert(HistoryEntity(null, currentWorkout.name, currentWorkout.id!!, getCurrentDate()))
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe()
-                        getActiveWeekId()
+                            .subscribe {
+                                getActiveWeekId()
+                            }
+
                         onTrainingEndFunction.invoke(overallTime.toString(), totalAmountOfRepetitions.toString(), currentWorkout.id.toString())
                         clearComposite()
                     } else {
@@ -172,8 +174,9 @@ class TrainingScreenViewModel
                 historyRepository.insert(HistoryEntity(null, currentWorkout.name, currentWorkout.id!!, getCurrentDate()))
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe()
-                getActiveWeekId()
+                    .subscribe {
+                        getActiveWeekId()
+                    }
                 onTrainingEndFunction.invoke(overallTime.toString(), totalAmountOfRepetitions.toString(), currentWorkout.id.toString())
                 clearComposite()
             } else {
@@ -307,18 +310,26 @@ class TrainingScreenViewModel
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    completedWorkoutRepository.insert(
-                        CompletedWorkoutEntity(null,
-                            it,
-                            currentWorkout.name,
-                            overallTime,
-                            totalAmountOfRepetitions,
-                            getDayNumber(),
-                            getMonthNumber(),
-                            getYearNumber()
-                        )
-                    )
+                    saveCompletedWorkout(it)
                 }
+        )
+    }
+
+    private fun saveCompletedWorkout(id: Int){
+        compositeDisposable.add(
+            completedWorkoutRepository.insert(
+                CompletedWorkoutEntity(null,
+                    id,
+                    currentWorkout.name,
+                    overallTime,
+                    totalAmountOfRepetitions,
+                    getDayNumber(),
+                    getMonthNumber(),
+                    getYearNumber()
+                )
+            ).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe()
         )
     }
 
