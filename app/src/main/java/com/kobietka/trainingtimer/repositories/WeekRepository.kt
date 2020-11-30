@@ -39,4 +39,8 @@ class WeekRepository
         return weekDao.getAllIdsMaybe()
     }
 
+    fun getIdsOfNotActiveWeeks(): Observable<List<Int>> {
+        return weekDao.getIdsOfNotActiveWeeks(false)
+    }
+
 }
