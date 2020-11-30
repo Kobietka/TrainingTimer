@@ -108,7 +108,7 @@ class WeekReviewUIViewModel
         workouts.forEach {
             totalRepetitionCount += it.workoutRepetitionCount
             totalTime += it.workoutCompletionTime
-            workoutsContent = "$workoutsContent ${it.workoutName} - ${timeToString(it.workoutCompletionTime)} / ${it.workoutRepetitionCount}\n"
+            workoutsContent = "$workoutsContent ${it.workoutName} - ${timeToString(it.workoutCompletionTime)} / ${it.workoutRepetitionCount} reps\n"
         }
         _numberOfRepetitions.value = totalRepetitionCount.toString()
         _time.value = timeToString(totalTime)
