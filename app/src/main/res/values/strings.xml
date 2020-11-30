@@ -38,4 +38,5 @@
     <string name="fragment_week_review_repetitions_text">repetitions</string>
     <string name="fragment_week_review_trained_text">trained</string>
     <string name="fragment_week_review_completed_goals_text">Completed goals</string>
+    <string name="fragment_statistics_text_if_no_weeks">Week reviews are not ready yet.\nYou will receive notification when one arrives</string>
 </resources>
