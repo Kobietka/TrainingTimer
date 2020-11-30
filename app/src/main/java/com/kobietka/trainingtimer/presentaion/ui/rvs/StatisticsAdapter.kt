@@ -25,7 +25,7 @@ class StatisticsAdapter
     private lateinit var onClick: (Int) -> Unit
 
     private fun updateIds(newIds: List<Int>){
-        ids = newIds
+        ids = newIds.reversed()
         notifyDataSetChanged()
     }
 
@@ -58,7 +58,7 @@ class StatisticsAdapter
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
         compositeDisposable.add(
-            weekRepository.getAllIds()
+            weekRepository.getIdsOfNotActiveWeeks()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(this::updateIds)
