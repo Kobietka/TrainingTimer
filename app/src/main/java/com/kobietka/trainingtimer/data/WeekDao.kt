@@ -31,7 +31,7 @@ interface WeekDao {
     @Query("UPDATE week SET isActive = :isActive WHERE id = :id")
     fun updateActiveStatus(isActive: Boolean, id: Int): Completable
 
-    @Query("SELECT id FROM week WHERE isActive = :active")
+    @Query("SELECT DISTINCT week.id FROM week INNER JOIN completedWorkout ON week.id = completedWorkout.weekId WHERE week.isActive = :active")
     fun getIdsOfNotActiveWeeks(active: Boolean): Observable<List<Int>>
 
 }
