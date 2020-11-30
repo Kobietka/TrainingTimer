@@ -58,7 +58,7 @@ class StatisticsViewModel
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    _workoutCount.value = it.size.toString()
+                    _workoutCount.value = "${it.size} workouts"
                 }
         )
     }
