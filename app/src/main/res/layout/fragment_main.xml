@@ -193,7 +193,7 @@
 
             </RelativeLayout>
 
-            <FrameLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:id="@+id/fragment_main_history_element"
                 android:layout_height="0dp"
@@ -203,6 +203,8 @@
                 android:layout_weight="15">
 
                 <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/fragment_main_history_text"
@@ -211,9 +213,9 @@
                     android:layout_marginStart="20dp"
                     android:textColor="@android:color/black" />
 
-            </FrameLayout>
+            </RelativeLayout>
 
-            <FrameLayout
+            <RelativeLayout
                 android:id="@+id/fragment_main_settings_element"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -223,6 +225,8 @@
                 android:layout_weight="14">
 
                 <TextView
+                    android:layout_centerVertical="true"
+                    android:layout_centerHorizontal="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/fragment_main_settings_text"
@@ -231,7 +235,7 @@
                     android:layout_marginStart="20dp"
                     android:textColor="@android:color/black" />
 
-            </FrameLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 
