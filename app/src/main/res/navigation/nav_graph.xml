@@ -83,10 +83,6 @@
         <action
             android:id="@+id/action_editExerciseFragment_to_exercisesFragment"
             app:destination="@id/exercisesFragment"
-            app:enterAnim="@transition/slide_in_left"
-            app:exitAnim="@transition/slide_out_right"
-            app:popEnterAnim="@transition/slide_in_right"
-            app:popExitAnim="@transition/slide_out_left"
             app:popUpTo="@id/exercisesFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -98,10 +94,6 @@
         <action
             android:id="@+id/action_exerciseAddFragment_to_exercisesFragment"
             app:destination="@id/exercisesFragment"
-            app:enterAnim="@transition/slide_in_left"
-            app:exitAnim="@transition/slide_out_right"
-            app:popEnterAnim="@transition/slide_in_right"
-            app:popExitAnim="@transition/slide_out_left"
             app:popUpTo="@id/exerciseAddFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -121,10 +113,6 @@
         <action
             android:id="@+id/action_editWorkoutFragment_to_workoutsFragment"
             app:destination="@id/workoutsFragment"
-            app:enterAnim="@transition/slide_in_left"
-            app:exitAnim="@transition/slide_out_right"
-            app:popEnterAnim="@transition/slide_in_right"
-            app:popExitAnim="@transition/slide_out_left"
             app:popUpTo="@id/editWorkoutFragment"
             app:popUpToInclusive="true"/>
     </fragment>
@@ -135,18 +123,10 @@
         android:label="WorkoutAddFragment">
         <action
             android:id="@+id/action_workoutAddFragment_to_chooseExerciseFragment"
-            app:destination="@id/chooseExerciseFragment"
-            app:enterAnim="@transition/slide_in_right"
-            app:exitAnim="@transition/slide_out_left"
-            app:popEnterAnim="@transition/slide_in_left"
-            app:popExitAnim="@transition/slide_out_right" />
+            app:destination="@id/chooseExerciseFragment" />
         <action
             android:id="@+id/action_workoutAddFragment_to_workoutsFragment"
             app:destination="@id/workoutsFragment"
-            app:enterAnim="@transition/slide_in_left"
-            app:exitAnim="@transition/slide_out_right"
-            app:popEnterAnim="@transition/slide_in_right"
-            app:popExitAnim="@transition/slide_out_left"
             app:popUpTo="@id/workoutAddFragment" />
     </fragment>
 
@@ -162,10 +142,6 @@
         <action
             android:id="@+id/action_chooseExerciseFragment_to_editWorkoutFragment"
             app:destination="@id/editWorkoutFragment"
-            app:enterAnim="@transition/slide_in_left"
-            app:exitAnim="@transition/slide_out_right"
-            app:popEnterAnim="@transition/slide_in_right"
-            app:popExitAnim="@transition/slide_out_left"
             app:popUpTo="@id/editWorkoutFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -199,10 +175,6 @@
         <action
             android:id="@+id/action_trainingScreenFragment_to_trainFragment"
             app:destination="@id/trainFragment"
-            app:enterAnim="@transition/slide_in_left"
-            app:exitAnim="@transition/slide_out_right"
-            app:popEnterAnim="@transition/slide_in_right"
-            app:popExitAnim="@transition/slide_out_left"
             app:popUpTo="@id/trainingScreenFragment"
             app:popUpToInclusive="true" />
         <action
