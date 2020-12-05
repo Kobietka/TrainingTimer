@@ -116,7 +116,7 @@ class TrainingScreenViewModel
                         val mp = MediaPlayer.create(appContext, R.raw.trainingtimersound)
                         mp.start()
                         overallTimer.stopCountUp()
-                        historyRepository.insert(HistoryEntity(null, currentWorkout.name, currentWorkout.id!!, getCurrentDate()))
+                        historyRepository.insert(HistoryEntity(null, currentWorkout.name, currentWorkout.id!!, "${getDayNumber()}/${getMonthNumber() + 1}/${getYearNumber()}"))
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe {
@@ -171,7 +171,7 @@ class TrainingScreenViewModel
                 val mp = MediaPlayer.create(appContext, R.raw.trainingtimersound)
                 mp.start()
                 overallTimer.stopCountUp()
-                historyRepository.insert(HistoryEntity(null, currentWorkout.name, currentWorkout.id!!, getCurrentDate()))
+                historyRepository.insert(HistoryEntity(null, currentWorkout.name, currentWorkout.id!!, "${getDayNumber()}/${getMonthNumber() + 1}/${getYearNumber()}"))
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
