@@ -199,7 +199,7 @@ class AfterTrainingViewModel
     private fun getCurrentDate(): String {
         val calendar = Calendar.getInstance()
         return calendar.get(Calendar.DAY_OF_MONTH).toString() + "/" +
-                calendar.get(Calendar.MONTH).toString() + "/" +
+                (calendar.get(Calendar.MONTH) + 1).toString() + "/" +
                 calendar.get(Calendar.YEAR).toString()
     }
 

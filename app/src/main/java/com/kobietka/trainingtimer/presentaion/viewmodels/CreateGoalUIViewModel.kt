@@ -60,7 +60,7 @@ class CreateGoalUIViewModel
 
         val calendar = Calendar.getInstance()
         val creationDate = calendar.get(Calendar.DAY_OF_MONTH).toString() + "/" +
-                calendar.get(Calendar.MONTH).toString() + "/" +
+                (calendar.get(Calendar.MONTH) + 1).toString() + "/" +
                 calendar.get(Calendar.YEAR).toString()
 
         compositeDisposable.add(
